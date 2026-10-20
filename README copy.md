@@ -9,11 +9,12 @@ Basic Pitch has already converted the singing audio into predicted notes, but th
 
 The fixed input is original **tuning_001: onset 0.99, frame 0.30, minimum note length 127.7 ms, Melodia on**. Everyone uses the same predictions and note IDs. Do not resample songs, change splits, or substitute predictions.
 
-## Only six notebooks matter
+## Only seven notebooks matter
 Paths are relative to this folder. Open in Jupyter or VS Code; read saved outputs first.
 
 | Order | Notebook | Purpose |
 |---|---|---|
+| Background (first) | `GTSinger_100_EDA_and_BasicPitch.ipynb` | Original executed Phase A: frozen-sample verification (100 songs, 60/20/20 split, 858 recordings, 3,432 files, 2.51 h audio, 9 languages, 20 singers, 4 vocal ranges), descriptive EDA tables/charts, and Basic Pitch input preparation. No BP inference. Do not rerun (see below). |
 | Background | `notebooks/GTSinger_100_BasicPitch_Tuning.ipynb` | Original executed BP experiment: what was tried and why 0.99 was selected. Do not rerun. |
 | 1: everyone | `notebooks/correction_handover/Shared_Correction_Label_Audit.ipynb` | Inspect automatic label proposals, listen to examples, compare predicted/reference notes, and agree on shared labels. |
 | 2: Queenie | `notebooks/correction_handover/queenie_merge_starter.ipynb` | Future merge/keep model. Currently blocked by zero candidate pairs. |
@@ -40,6 +41,7 @@ The person notebooks load data, inspect proposed targets, calculate a no-change 
 
 ## Folder map — everything else supports those notebooks
 - `data/`: complete frozen 100-song sample, organized into train/val/test. Includes audio and original JSON, MusicXML and TextGrid annotations. No duplicate source download folder or reserves.
+- `GTSinger_100_EDA_and_BasicPitch.ipynb` (root): the Phase A EDA notebook; it sits at the root because it locates the sample by finding `selected_100.csv` in its working folder.
 - `notebooks/`: six notebooks plus required Python helpers. Helpers are dependencies, not extra tasks to read.
 - `basic_pitch_runs/correction_handover/`: shared prediction inputs, training proposals, review queues, folds and baseline outputs. No separate tuning-candidate run folders.
 - `selected_100.csv`, `selected_recordings.csv`, `selected_files.csv`, `split_manifest.csv`: fixed sample/recording/file/split manifests. Do not edit. Use `export_path` / recording paths to locate packaged data; source `local_path` entries are original download provenance and are intentionally not duplicated.
@@ -161,6 +163,8 @@ python -m venv .venv
 ```
 
 Choose that environment as the notebook kernel in your notebook editor. Run notebooks from their own folder or this extracted root. This package contains the dataset needed for shared review; no Basic Pitch inference is needed to use the supplied predictions. Selected audio is also embedded in the saved shared notebook.
+
+The EDA notebook (`GTSinger_100_EDA_and_BasicPitch.ipynb`) is read-only history: read its saved outputs. It predates the BP experiment, so its statements that Basic Pitch is not installed, its Python 3.14 environment and its three prepared run configs (onset 0.5/0.6/0.4) are superseded by the BP notebook and the fixed tuning_001 input. Do not rerun it in this package: it needs `validation_report.json` and the original source `local_path` copies, which are intentionally omitted, and it would write `eda_outputs/`, `reports/`, `basic_pitch_runs/run_00*` folders and `notebooks/basic_pitch_train_val.py`. Its `RUN_BASIC_PITCH` and `RUN_FINAL_TEST` flags stay False; test data appears only in integrity checks and descriptive counts.
 
 The BP notebook has an explicit accidental-rerun guard. Original experiment code and outputs are retained. Its historical 0.95 comparisons are scientific history, NOT an alternative input package. All standalone 0.95 run folders and the retired experiment are excluded. Removing those comparisons from the original notebook would misrepresent how 0.99 was selected.
 
