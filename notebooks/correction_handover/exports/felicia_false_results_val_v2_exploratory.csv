@@ -1,0 +1,4 @@
+system,onset_pitch_f1,delta_f1,offset_f1,deleted,deleted_bp_matched,songs_improved,songs_worse
+BP unchanged,0.27264306924988774,0.0,0.16024855433363022,,,,
+final (set A): gaussian_nb (A),0.28063482215194785,0.007991752902060112,0.16588527964612018,122.0,0.0,16.0,0.0
+"alternative (A+B): logistic_regression (A+B), tuned by recall at precision >= 0.90",0.28038976105890295,0.007746691809015216,0.16562845846606283,125.0,0.0,17.0,0.0

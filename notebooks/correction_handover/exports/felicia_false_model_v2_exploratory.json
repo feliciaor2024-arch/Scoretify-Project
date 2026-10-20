@@ -1,0 +1,24 @@
+{
+  "role": "final (set A)",
+  "label_version": "proposed_v2/train_targets_v2.csv (unapproved, exploratory)",
+  "labels_approved": false,
+  "model": "gaussian_nb (A)",
+  "params": {
+    "clf__var_smoothing": "1e-09",
+    "scale": "PowerTransformer()"
+  },
+  "cutoff": 0.9011259449497444,
+  "features": [
+    "start",
+    "end",
+    "pitch",
+    "amplitude",
+    "duration",
+    "prev_gap",
+    "next_gap"
+  ],
+  "feature_code": "add_context_features() in this notebook",
+  "trained_on": "all 3893 v2-labelled training notes",
+  "pm2s_used": false,
+  "sklearn": "1.7.2"
+}
