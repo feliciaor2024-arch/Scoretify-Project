@@ -1,0 +1,28 @@
+{
+  "version": "train_targets_v2_mutual_best",
+  "status": "PROPOSED_AUTOMATIC_NOT_MANUALLY_VERIFIED",
+  "approved": false,
+  "based_on": "train_targets.csv (v1, PROVISIONAL_PENDING_GROUP_REVIEW)",
+  "change": "Unique-overlap check replaced by mutual-best overlap; checks 2-5 unchanged; v1 labels kept unchanged",
+  "safety_filter": {
+    "second_overlap_max_fraction": 0.3,
+    "max_pitch_diff_new_matches": 2
+  },
+  "counts": {
+    "one_to_one_v1": 946,
+    "one_to_one_added_v2": 2751,
+    "one_to_one_total": 3697,
+    "wrong_pitch": 292,
+    "wrong_start": 1876,
+    "wrong_end": 1033,
+    "spurious_candidate": 196,
+    "split_candidate": 98,
+    "ambiguous": 3632,
+    "dropped_second_overlap": 256,
+    "dropped_pitch_jump": 40
+  },
+  "sha256": {
+    "train_targets_v2.csv": "4491e79129c6b9453a8772a1a9716fe1c355de75ac975b5897933eb2abec0c6d",
+    "correction_labels_v2.py": "e9f816214dfee5b5c9ad374de27eae50460bed2bf80211473630bfbefca33ee1"
+  }
+}
