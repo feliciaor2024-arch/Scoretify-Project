@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise>
+	<work>
+		<work-title>光阴的故事</work-title>
+	</work>
+	<identification>
+		<creator type="composer">罗大佑词曲</creator>
+		<encoding>
+			<encoding-date>2024-05-07</encoding-date>
+			<software>HwMusicxml</software>
+		</encoding>
+	</identification>
+	<part-list>
+		<score-part id="P1">
+			<part-name>Piano</part-name>
+			<score-instrument id="P1-I1">
+				<instrument-name>Piano</instrument-name>
+			</score-instrument>
+			<midi-instrument id="P1-I1">
+				<midi-program>1</midi-program>
+			</midi-instrument>
+		</score-part>
+	</part-list>
+	<part id="P1">
+		<measure number="1">
+			<attributes>
+				<divisions>4</divisions>
+				<key>
+					<fifths>0</fifths>
+					<mode>major</mode>
+				</key>
+				<time>
+					<beats>4</beats>
+					<beat-type>4</beat-type>
+				</time>
+				<clef>
+					<sign>G</sign>
+					<line>2</line>
+				</clef>
+			</attributes>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>就</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>在</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>F</step>
+					<alter>1</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>那</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>1</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<slur type="start" number="1"/>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>多</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>1</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<slur type="stop" number="1"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>愁</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>善</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>感</text>
+				</lyric>
+			</note>
+			<backup>
+				<duration>16</duration>
+			</backup>
+			<direction placement="above">
+				<direction-type>
+					<metronome>
+						<beat-unit>quarter</beat-unit>
+						<per-minute>103.0</per-minute>
+					</metronome>
+				</direction-type>
+				<voice>1</voice>
+			</direction>
+		</measure>
+		<measure number="2">
+			<attributes>
+				<divisions>4</divisions>
+			</attributes>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<voice>1</voice>
+				<type>16th</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>而</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>1</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<slur type="start" number="1"/>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>初</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>1</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<slur type="stop" number="1"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>次</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>G</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>等</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>G</step>
+					<alter>1</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>待</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>G</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>的</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<slur type="start" number="1"/>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>青</text>
+				</lyric>
+			</note>
+		</measure>
+		<measure number="3">
+			<attributes>
+				<divisions>2</divisions>
+			</attributes>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>E</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<slur type="stop" number="1"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>4</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>half</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>春</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+		</measure>
+	</part>
+</score-partwise>

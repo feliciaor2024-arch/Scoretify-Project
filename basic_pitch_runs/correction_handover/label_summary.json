@@ -1,0 +1,24 @@
+{
+  "train_notes": 7623,
+  "val_notes": 2329,
+  "training_relationships": {
+    "ambiguous": 6383,
+    "one_to_one": 946,
+    "split_candidate": 98,
+    "spurious_candidate": 196
+  },
+  "training_label_status": {
+    "unresolved": 6481,
+    "provisional_auto": 1142
+  },
+  "merge_candidates": 0,
+  "merge_labels": {},
+  "false_labels": {
+    "None": 6481,
+    "0": 946,
+    "1": 196
+  },
+  "test_included": false,
+  "group_review_approved": false,
+  "labels": "PROVISIONAL_HEURISTIC_NOT_HUMAN_GROUND_TRUTH"
+}

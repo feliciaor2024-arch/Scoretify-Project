@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise>
+	<work>
+		<work-title/>
+	</work>
+	<identification>
+		<encoding>
+			<encoding-date>2025-02-06</encoding-date>
+			<software>HwMusicxml</software>
+		</encoding>
+	</identification>
+	<part-list>
+		<score-part id="P1">
+			<part-name>Piano</part-name>
+			<score-instrument id="P1-I1">
+				<instrument-name>Piano</instrument-name>
+			</score-instrument>
+			<midi-instrument id="P1-I1">
+				<midi-program>1</midi-program>
+			</midi-instrument>
+		</score-part>
+	</part-list>
+	<part id="P1">
+		<measure number="1">
+			<attributes>
+				<divisions>2</divisions>
+				<key>
+					<fifths>-2</fifths>
+					<mode>minor</mode>
+				</key>
+				<time>
+					<beats>4</beats>
+					<beat-type>4</beat-type>
+				</time>
+				<clef>
+					<sign>F</sign>
+					<line>4</line>
+				</clef>
+			</attributes>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>4</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>half</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>ella</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>2</duration>
+				<tie type="start"/>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>quarter</type>
+				<notations>
+					<tied type="start"/>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>1</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>or</text>
+				</lyric>
+			</note>
+			<backup>
+				<duration>8</duration>
+			</backup>
+			<direction placement="above">
+				<direction-type>
+					<metronome>
+						<beat-unit>quarter</beat-unit>
+						<per-minute>120.0</per-minute>
+					</metronome>
+				</direction-type>
+				<voice>1</voice>
+			</direction>
+		</measure>
+		<measure number="2">
+			<attributes>
+				<divisions>4</divisions>
+			</attributes>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>1</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>2</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<rest/>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+			</note>
+			<note>
+				<rest/>
+				<duration>1</duration>
+				<voice>1</voice>
+				<type>16th</type>
+			</note>
+			<note>
+				<pitch>
+					<step>B</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>2</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>mi</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>B</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>8</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>half</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>scorda</text>
+				</lyric>
+			</note>
+		</measure>
+		<measure number="3">
+			<attributes>
+				<divisions>4</divisions>
+			</attributes>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>4</duration>
+				<tie type="start"/>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>quarter</type>
+				<notations>
+					<tied type="start"/>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>1</duration>
+				<voice>1</voice>
+				<type>16th</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>e</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>ad</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>8</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>half</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>altro</text>
+				</lyric>
+			</note>
+		</measure>
+		<measure number="4">
+			<attributes>
+				<divisions>4</divisions>
+			</attributes>
+			<note>
+				<pitch>
+					<step>D</step>
+					<alter>0</alter>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>1</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>8</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>half</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>amor</text>
+				</lyric>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>1</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<rest/>
+				<duration>4</duration>
+				<voice>1</voice>
+				<type>quarter</type>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>16th</type>
+				<notations>
+					<slur type="start" number="1"/>
+					<tied type="start"/>
+				</notations>
+				<lyric>
+					<syllabic>single</syllabic>
+					<text>s'affida</text>
+				</lyric>
+			</note>
+		</measure>
+		<measure number="5">
+			<attributes>
+				<divisions>2</divisions>
+			</attributes>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>4</duration>
+				<tie type="start"/>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>half</type>
+				<notations>
+					<tied type="start"/>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>2</duration>
+				<tie type="start"/>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>quarter</type>
+				<notations>
+					<tied type="start"/>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>0</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>1</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="start"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<tied type="start"/>
+				</notations>
+			</note>
+		</measure>
+		<measure number="6">
+			<attributes>
+				<divisions>2</divisions>
+			</attributes>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>1</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>4</duration>
+				<tie type="start"/>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>half</type>
+				<notations>
+					<tied type="start"/>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<alter>1</alter>
+					<octave>3</octave>
+				</pitch>
+				<duration>1</duration>
+				<tie type="stop"/>
+				<voice>1</voice>
+				<type>eighth</type>
+				<notations>
+					<slur type="stop" number="1"/>
+					<tied type="stop"/>
+				</notations>
+			</note>
+			<note>
+				<rest/>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>quarter</type>
+			</note>
+			<note>
+				<rest/>
+				<duration>1</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+			</note>
+		</measure>
+		<measure number="7">
+			<attributes>
+				<divisions>4</divisions>
+			</attributes>
+			<note>
+				<rest/>
+				<duration>4</duration>
+				<voice>1</voice>
+				<type>quarter</type>
+			</note>
+			<note>
+				<rest/>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+			</note>
+			<note>
+				<rest/>
+				<duration>1</duration>
+				<voice>1</voice>
+				<type>16th</type>
+			</note>
+		</measure>
+	</part>
+</score-partwise>

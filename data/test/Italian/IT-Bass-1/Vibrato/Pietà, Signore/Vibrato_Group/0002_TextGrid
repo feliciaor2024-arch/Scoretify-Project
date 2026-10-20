@@ -1,0 +1,678 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0.0
+xmax = 10.976
+tiers? <exists>
+size = 9
+item []:
+	item [1]:
+		class = "IntervalTier"
+		name = "word"
+		xmin = 0.0
+		xmax = 10.976
+		intervals: size = 6
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.912
+				text = "non"
+			intervals [2]:
+				xmin = 0.912
+				xmax = 1.815
+				text = "mi"
+			intervals [3]:
+				xmin = 1.815
+				xmax = 4.89
+				text = "punisca"
+			intervals [4]:
+				xmin = 4.89
+				xmax = 5.285
+				text = "il"
+			intervals [5]:
+				xmin = 5.285
+				xmax = 7.382
+				text = "tuo"
+			intervals [6]:
+				xmin = 7.382
+				xmax = 10.976
+				text = "rigor"
+	item [2]:
+		class = "IntervalTier"
+		name = "phone"
+		xmin = 0.0
+		xmax = 10.976
+		intervals: size = 21
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.195
+				text = "n"
+			intervals [2]:
+				xmin = 0.195
+				xmax = 0.641
+				text = "o"
+			intervals [3]:
+				xmin = 0.641
+				xmax = 0.912
+				text = "n"
+			intervals [4]:
+				xmin = 0.912
+				xmax = 1.058
+				text = "m"
+			intervals [5]:
+				xmin = 1.058
+				xmax = 1.815
+				text = "i"
+			intervals [6]:
+				xmin = 1.815
+				xmax = 2.165
+				text = "p"
+			intervals [7]:
+				xmin = 2.165
+				xmax = 2.664
+				text = "u"
+			intervals [8]:
+				xmin = 2.664
+				xmax = 2.817
+				text = "n"
+			intervals [9]:
+				xmin = 2.817
+				xmax = 4.197
+				text = "i"
+			intervals [10]:
+				xmin = 4.197
+				xmax = 4.387
+				text = "ʃ"
+			intervals [11]:
+				xmin = 4.387
+				xmax = 4.89
+				text = "a"
+			intervals [12]:
+				xmin = 4.89
+				xmax = 5.214
+				text = "i"
+			intervals [13]:
+				xmin = 5.214
+				xmax = 5.285
+				text = "l"
+			intervals [14]:
+				xmin = 5.285
+				xmax = 5.407
+				text = "t"
+			intervals [15]:
+				xmin = 5.407
+				xmax = 7.195
+				text = "u"
+			intervals [16]:
+				xmin = 7.195
+				xmax = 7.382
+				text = "o"
+			intervals [17]:
+				xmin = 7.382
+				xmax = 7.563
+				text = "r"
+			intervals [18]:
+				xmin = 7.563
+				xmax = 7.852
+				text = "i"
+			intervals [19]:
+				xmin = 7.852
+				xmax = 7.977
+				text = "ɡ"
+			intervals [20]:
+				xmin = 7.977
+				xmax = 9.582
+				text = "o"
+			intervals [21]:
+				xmin = 9.582
+				xmax = 10.976
+				text = "r"
+	item [3]:
+		class = "IntervalTier"
+		name = "mix"
+		xmin = 0.0
+		xmax = 10.976
+		intervals: size = 21
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.195
+				text = "1"
+			intervals [2]:
+				xmin = 0.195
+				xmax = 0.641
+				text = "1"
+			intervals [3]:
+				xmin = 0.641
+				xmax = 0.912
+				text = "1"
+			intervals [4]:
+				xmin = 0.912
+				xmax = 1.058
+				text = "1"
+			intervals [5]:
+				xmin = 1.058
+				xmax = 1.815
+				text = "1"
+			intervals [6]:
+				xmin = 1.815
+				xmax = 2.165
+				text = "1"
+			intervals [7]:
+				xmin = 2.165
+				xmax = 2.664
+				text = "1"
+			intervals [8]:
+				xmin = 2.664
+				xmax = 2.817
+				text = "1"
+			intervals [9]:
+				xmin = 2.817
+				xmax = 4.197
+				text = "1"
+			intervals [10]:
+				xmin = 4.197
+				xmax = 4.387
+				text = "1"
+			intervals [11]:
+				xmin = 4.387
+				xmax = 4.89
+				text = "1"
+			intervals [12]:
+				xmin = 4.89
+				xmax = 5.214
+				text = "1"
+			intervals [13]:
+				xmin = 5.214
+				xmax = 5.285
+				text = "1"
+			intervals [14]:
+				xmin = 5.285
+				xmax = 5.407
+				text = "1"
+			intervals [15]:
+				xmin = 5.407
+				xmax = 7.195
+				text = "1"
+			intervals [16]:
+				xmin = 7.195
+				xmax = 7.382
+				text = "1"
+			intervals [17]:
+				xmin = 7.382
+				xmax = 7.563
+				text = "1"
+			intervals [18]:
+				xmin = 7.563
+				xmax = 7.852
+				text = "1"
+			intervals [19]:
+				xmin = 7.852
+				xmax = 7.977
+				text = "1"
+			intervals [20]:
+				xmin = 7.977
+				xmax = 9.582
+				text = "1"
+			intervals [21]:
+				xmin = 9.582
+				xmax = 10.976
+				text = "1"
+	item [4]:
+		class = "IntervalTier"
+		name = "falsetto"
+		xmin = 0.0
+		xmax = 10.976
+		intervals: size = 21
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.195
+				text = "0"
+			intervals [2]:
+				xmin = 0.195
+				xmax = 0.641
+				text = "0"
+			intervals [3]:
+				xmin = 0.641
+				xmax = 0.912
+				text = "0"
+			intervals [4]:
+				xmin = 0.912
+				xmax = 1.058
+				text = "0"
+			intervals [5]:
+				xmin = 1.058
+				xmax = 1.815
+				text = "0"
+			intervals [6]:
+				xmin = 1.815
+				xmax = 2.165
+				text = "0"
+			intervals [7]:
+				xmin = 2.165
+				xmax = 2.664
+				text = "0"
+			intervals [8]:
+				xmin = 2.664
+				xmax = 2.817
+				text = "0"
+			intervals [9]:
+				xmin = 2.817
+				xmax = 4.197
+				text = "0"
+			intervals [10]:
+				xmin = 4.197
+				xmax = 4.387
+				text = "0"
+			intervals [11]:
+				xmin = 4.387
+				xmax = 4.89
+				text = "0"
+			intervals [12]:
+				xmin = 4.89
+				xmax = 5.214
+				text = "0"
+			intervals [13]:
+				xmin = 5.214
+				xmax = 5.285
+				text = "0"
+			intervals [14]:
+				xmin = 5.285
+				xmax = 5.407
+				text = "0"
+			intervals [15]:
+				xmin = 5.407
+				xmax = 7.195
+				text = "0"
+			intervals [16]:
+				xmin = 7.195
+				xmax = 7.382
+				text = "0"
+			intervals [17]:
+				xmin = 7.382
+				xmax = 7.563
+				text = "0"
+			intervals [18]:
+				xmin = 7.563
+				xmax = 7.852
+				text = "0"
+			intervals [19]:
+				xmin = 7.852
+				xmax = 7.977
+				text = "0"
+			intervals [20]:
+				xmin = 7.977
+				xmax = 9.582
+				text = "0"
+			intervals [21]:
+				xmin = 9.582
+				xmax = 10.976
+				text = "0"
+	item [5]:
+		class = "IntervalTier"
+		name = "breathy"
+		xmin = 0.0
+		xmax = 10.976
+		intervals: size = 21
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.195
+				text = "0"
+			intervals [2]:
+				xmin = 0.195
+				xmax = 0.641
+				text = "0"
+			intervals [3]:
+				xmin = 0.641
+				xmax = 0.912
+				text = "0"
+			intervals [4]:
+				xmin = 0.912
+				xmax = 1.058
+				text = "0"
+			intervals [5]:
+				xmin = 1.058
+				xmax = 1.815
+				text = "0"
+			intervals [6]:
+				xmin = 1.815
+				xmax = 2.165
+				text = "0"
+			intervals [7]:
+				xmin = 2.165
+				xmax = 2.664
+				text = "0"
+			intervals [8]:
+				xmin = 2.664
+				xmax = 2.817
+				text = "0"
+			intervals [9]:
+				xmin = 2.817
+				xmax = 4.197
+				text = "0"
+			intervals [10]:
+				xmin = 4.197
+				xmax = 4.387
+				text = "0"
+			intervals [11]:
+				xmin = 4.387
+				xmax = 4.89
+				text = "0"
+			intervals [12]:
+				xmin = 4.89
+				xmax = 5.214
+				text = "0"
+			intervals [13]:
+				xmin = 5.214
+				xmax = 5.285
+				text = "0"
+			intervals [14]:
+				xmin = 5.285
+				xmax = 5.407
+				text = "0"
+			intervals [15]:
+				xmin = 5.407
+				xmax = 7.195
+				text = "0"
+			intervals [16]:
+				xmin = 7.195
+				xmax = 7.382
+				text = "0"
+			intervals [17]:
+				xmin = 7.382
+				xmax = 7.563
+				text = "0"
+			intervals [18]:
+				xmin = 7.563
+				xmax = 7.852
+				text = "0"
+			intervals [19]:
+				xmin = 7.852
+				xmax = 7.977
+				text = "0"
+			intervals [20]:
+				xmin = 7.977
+				xmax = 9.582
+				text = "0"
+			intervals [21]:
+				xmin = 9.582
+				xmax = 10.976
+				text = "0"
+	item [6]:
+		class = "IntervalTier"
+		name = "pharyngeal"
+		xmin = 0.0
+		xmax = 10.976
+		intervals: size = 21
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.195
+				text = "0"
+			intervals [2]:
+				xmin = 0.195
+				xmax = 0.641
+				text = "0"
+			intervals [3]:
+				xmin = 0.641
+				xmax = 0.912
+				text = "0"
+			intervals [4]:
+				xmin = 0.912
+				xmax = 1.058
+				text = "0"
+			intervals [5]:
+				xmin = 1.058
+				xmax = 1.815
+				text = "0"
+			intervals [6]:
+				xmin = 1.815
+				xmax = 2.165
+				text = "0"
+			intervals [7]:
+				xmin = 2.165
+				xmax = 2.664
+				text = "0"
+			intervals [8]:
+				xmin = 2.664
+				xmax = 2.817
+				text = "0"
+			intervals [9]:
+				xmin = 2.817
+				xmax = 4.197
+				text = "0"
+			intervals [10]:
+				xmin = 4.197
+				xmax = 4.387
+				text = "0"
+			intervals [11]:
+				xmin = 4.387
+				xmax = 4.89
+				text = "0"
+			intervals [12]:
+				xmin = 4.89
+				xmax = 5.214
+				text = "0"
+			intervals [13]:
+				xmin = 5.214
+				xmax = 5.285
+				text = "0"
+			intervals [14]:
+				xmin = 5.285
+				xmax = 5.407
+				text = "0"
+			intervals [15]:
+				xmin = 5.407
+				xmax = 7.195
+				text = "0"
+			intervals [16]:
+				xmin = 7.195
+				xmax = 7.382
+				text = "0"
+			intervals [17]:
+				xmin = 7.382
+				xmax = 7.563
+				text = "0"
+			intervals [18]:
+				xmin = 7.563
+				xmax = 7.852
+				text = "0"
+			intervals [19]:
+				xmin = 7.852
+				xmax = 7.977
+				text = "0"
+			intervals [20]:
+				xmin = 7.977
+				xmax = 9.582
+				text = "0"
+			intervals [21]:
+				xmin = 9.582
+				xmax = 10.976
+				text = "0"
+	item [7]:
+		class = "IntervalTier"
+		name = "vibrato"
+		xmin = 0.0
+		xmax = 10.976
+		intervals: size = 21
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.195
+				text = "1"
+			intervals [2]:
+				xmin = 0.195
+				xmax = 0.641
+				text = "1"
+			intervals [3]:
+				xmin = 0.641
+				xmax = 0.912
+				text = "1"
+			intervals [4]:
+				xmin = 0.912
+				xmax = 1.058
+				text = "1"
+			intervals [5]:
+				xmin = 1.058
+				xmax = 1.815
+				text = "1"
+			intervals [6]:
+				xmin = 1.815
+				xmax = 2.165
+				text = "1"
+			intervals [7]:
+				xmin = 2.165
+				xmax = 2.664
+				text = "1"
+			intervals [8]:
+				xmin = 2.664
+				xmax = 2.817
+				text = "1"
+			intervals [9]:
+				xmin = 2.817
+				xmax = 4.197
+				text = "1"
+			intervals [10]:
+				xmin = 4.197
+				xmax = 4.387
+				text = "1"
+			intervals [11]:
+				xmin = 4.387
+				xmax = 4.89
+				text = "1"
+			intervals [12]:
+				xmin = 4.89
+				xmax = 5.214
+				text = "1"
+			intervals [13]:
+				xmin = 5.214
+				xmax = 5.285
+				text = "1"
+			intervals [14]:
+				xmin = 5.285
+				xmax = 5.407
+				text = "1"
+			intervals [15]:
+				xmin = 5.407
+				xmax = 7.195
+				text = "1"
+			intervals [16]:
+				xmin = 7.195
+				xmax = 7.382
+				text = "1"
+			intervals [17]:
+				xmin = 7.382
+				xmax = 7.563
+				text = "1"
+			intervals [18]:
+				xmin = 7.563
+				xmax = 7.852
+				text = "1"
+			intervals [19]:
+				xmin = 7.852
+				xmax = 7.977
+				text = "1"
+			intervals [20]:
+				xmin = 7.977
+				xmax = 9.582
+				text = "1"
+			intervals [21]:
+				xmin = 9.582
+				xmax = 10.976
+				text = "1"
+	item [8]:
+		class = "IntervalTier"
+		name = "glissando"
+		xmin = 0.0
+		xmax = 10.976
+		intervals: size = 21
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.195
+				text = "0"
+			intervals [2]:
+				xmin = 0.195
+				xmax = 0.641
+				text = "0"
+			intervals [3]:
+				xmin = 0.641
+				xmax = 0.912
+				text = "0"
+			intervals [4]:
+				xmin = 0.912
+				xmax = 1.058
+				text = "0"
+			intervals [5]:
+				xmin = 1.058
+				xmax = 1.815
+				text = "0"
+			intervals [6]:
+				xmin = 1.815
+				xmax = 2.165
+				text = "0"
+			intervals [7]:
+				xmin = 2.165
+				xmax = 2.664
+				text = "0"
+			intervals [8]:
+				xmin = 2.664
+				xmax = 2.817
+				text = "0"
+			intervals [9]:
+				xmin = 2.817
+				xmax = 4.197
+				text = "0"
+			intervals [10]:
+				xmin = 4.197
+				xmax = 4.387
+				text = "0"
+			intervals [11]:
+				xmin = 4.387
+				xmax = 4.89
+				text = "0"
+			intervals [12]:
+				xmin = 4.89
+				xmax = 5.214
+				text = "0"
+			intervals [13]:
+				xmin = 5.214
+				xmax = 5.285
+				text = "0"
+			intervals [14]:
+				xmin = 5.285
+				xmax = 5.407
+				text = "0"
+			intervals [15]:
+				xmin = 5.407
+				xmax = 7.195
+				text = "0"
+			intervals [16]:
+				xmin = 7.195
+				xmax = 7.382
+				text = "0"
+			intervals [17]:
+				xmin = 7.382
+				xmax = 7.563
+				text = "0"
+			intervals [18]:
+				xmin = 7.563
+				xmax = 7.852
+				text = "0"
+			intervals [19]:
+				xmin = 7.852
+				xmax = 7.977
+				text = "0"
+			intervals [20]:
+				xmin = 7.977
+				xmax = 9.582
+				text = "0"
+			intervals [21]:
+				xmin = 9.582
+				xmax = 10.976
+				text = "0"
+	item [9]:
+		class = "IntervalTier"
+		name = "global"
+		xmin = 0.0
+		xmax = 10.976
+		intervals: size = 1
+			intervals [1]:
+				xmin = 0
+				xmax = 10.976
+				text = "bel canto, moderate, low, sad"
