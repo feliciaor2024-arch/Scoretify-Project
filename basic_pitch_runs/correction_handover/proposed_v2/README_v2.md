@@ -26,7 +26,7 @@ Column `match_rule` shows `v1_original`, `v2_mutual_best`, or blank.
 
 ## How to use
 `train_targets_v2.csv` has the same columns as `train_targets.csv` (plus `match_rule`) and the same 7,623 note IDs.
-In your starter notebook, change the targets filename from `train_targets.csv` to `proposed_v2/train_targets_v2.csv`.
+The Felicia, Le Xin and Hann Qian starter notebooks already load `proposed_v2/train_targets_v2.csv`. To go back to v1, change the targets filename in the loading cell to `train_targets.csv`.
 
 Suggested check: train on v1 and on v2, compare on the same held-out folds.
 

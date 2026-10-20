@@ -5,6 +5,8 @@ Basic Pitch has already converted the singing audio into predicted notes, but th
 
 **Basic Pitch is finished for this handover. Correction models are NOT trained yet. The shared training labels are NOT approved yet.** Do not mistake the starter notebooks or their unchanged-note exports for finished models.
 
+**Label version in use:** the Felicia, Le Xin and Hann Qian starters now load the **proposed v2 labels** (`basic_pitch_runs/correction_handover/proposed_v2/train_targets_v2.csv`, mutual-best overlap rule). v2 is automatic, NOT manually verified and NOT approved. The original v1 `train_targets.csv` is unchanged. See `basic_pitch_runs/correction_handover/proposed_v2/README_v2.md`. Counts below are v2 with v1 in brackets.
+
 The fixed input is original **tuning_001: onset 0.99, frame 0.30, minimum note length 127.7 ms, Melodia on**. Everyone uses the same predictions and note IDs. Do not resample songs, change splits, or substitute predictions.
 
 ## Only six notebooks matter
@@ -22,7 +24,7 @@ Paths are relative to this folder. Open in Jupyter or VS Code; read saved output
 The person notebooks load data, inspect proposed targets, calculate a no-change baseline and demonstrate export format. They contain no fitted correction models. Training them is the next development phase AFTER shared label review.
 
 ## Current blockers — discuss these before training
-1. **Automatic labels are proposals, not human ground truth.** Of 7,623 training predictions, 1,142 have provisional labels and 6,481 remain unresolved. An unmatched prediction might need a timing/pitch repair rather than deletion. Blank means unknown, NEVER zero. One note can need both timing and pitch correction.
+1. **Automatic labels are proposals, not human ground truth.** Of 7,623 training predictions, 3,893 have provisional labels and 3,730 remain unresolved under v2 (v1: 1,142 and 6,481). The v2 rule adds 2,751 matches automatically and has not been listened to. An unmatched prediction might need a timing/pitch repair rather than deletion. Blank means unknown, NEVER zero. One note can need both timing and pitch correction.
 2. **Queenie has zero merge candidates.** The current rule considers neighbouring same-pitch notes with a gap from -0.02 to 0.12 seconds. Zero candidates under this rule does not prove there are no merge errors. Agree on whether/how to broaden the rule and version the resulting candidates/labels before supervised merge training.
 3. **No combined correction system exists yet.** Evaluate each component before combining; agree how deletion, merging, timing and pitch decisions interact. Missing-note insertion and splitting a long prediction are outside the four initial tasks.
 4. **Final test is locked.** The dataset includes test files for completeness, NOT permission to inspect test answers for development or run test inference/evaluation. Separate approval is required. Validation was already used for BP selection and is not fresh independent evidence.
@@ -33,7 +35,7 @@ The person notebooks load data, inspect proposed targets, calculate a no-change 
 3. Record decisions, reviewer and reasons in `basic_pitch_runs/correction_handover/review_queue.csv`; use the merge review queue when a valid candidate set exists.
 4. Agree on the correspondence policy, usable training examples and handling of unresolved cases. You need a reviewed usable set, not invented answers for every note.
 5. Save actual reviewed targets in a NEW file such as `train_targets_reviewed_v1.csv`, with a version and reviewers. The shared notebook rebuilds `train_targets.csv` as provisional proposals; NEVER store human-curated targets there. A decision queue alone is not yet a machine-ready corrected target table.
-6. After real agreement, record the approved label version and change each starter to load that reviewed file. The approval flag currently remains false; running notebooks does not constitute approval.
+6. After real agreement, record the approved label version and change each starter to load that reviewed file. The starters currently point at the proposed v2 file for exploration only; that does not mean v2 is approved. The approval flag currently remains false; running notebooks does not constitute approval. Suggested check before choosing: train on v1 and on v2 and compare on the same held-out folds.
 7. Develop each model using the fixed song-grouped `folds.csv`. Fit preprocessing and tune only inside training folds. Never put reference/target columns into model inputs.
 
 ## Folder map — everything else supports those notebooks
@@ -48,14 +50,15 @@ The person notebooks load data, inspect proposed targets, calculate a no-change 
 | File | Meaning |
 |---|---|
 | `train_features.csv` | What the model may observe for each predicted training note. |
-| `train_targets.csv` | Automatically proposed training answers; review required. |
+| `train_targets.csv` | Automatically proposed training answers (v1); review required. |
+| `proposed_v2/train_targets_v2.csv` | Proposed v2 answers (mutual-best overlap, more matches) with a `match_rule` column; loaded by the starters; not approved. |
 | `val_features.csv` | Validation inputs, without correction targets. |
 | `merge_candidates.csv`, `merge_targets.csv` | Queenie's proposed note pairs and labels; currently empty. |
 | `selected_predictions_train.json`, `selected_predictions_val.json` | Frozen 0.99 prediction events used by all tasks. |
 | `references_train.csv` | Complete reference notes for evaluation, NOT model inputs. |
 | `training_recording_manifest.csv` | All training recordings for scoring, including empty predictions. |
 | `folds.csv` | Fixed training folds: excerpts of the same song stay together. |
-| `input_version.json`, `label_version.json`, `baseline_config.json` | Identify predictions, original provisional-label snapshot and final BP settings. Human-reviewed labels need their own version. |
+| `input_version.json`, `label_version.json`, `baseline_config.json` | Identify predictions, original provisional-label snapshot and final BP settings. Human-reviewed labels need their own version. `proposed_v2/label_version_v2.json` identifies the v2 proposal. |
 
 See `notebooks/correction_handover/DATA_DICTIONARY.md` for detailed columns. Some historic audit-only artifacts named there are intentionally omitted from this minimal package; they are not required to use the notebooks.
 
@@ -68,11 +71,11 @@ These are **automatic rules for proposing TRAINING labels**, not rules learned b
 | Person / task | Current examples available | Current automatic rule | Task-specific metrics | No-change comparison |
 |---|---|---|---|---|
 | **Queenie: merge / keep separate** | **0 candidate pairs; 0 labelled pairs. Currently blocked.** | Consider immediately neighbouring predictions in the same recording, with identical pitch and gap **-0.02 to 0.12 s**. Propose merge only for accepted fragments of the same reference note (details below). Propose keep when each has an accepted one-to-one match to a different reference note. Otherwise unknown. | Merge precision, recall and F1; confusion matrix. Higher precision/recall/F1 is better. Currently unavailable because there are no pairs. | Never merge any pair. |
-| **Felicia: remove extra notes** | **1,142 provisionally labelled notes: 196 extra/delete, 946 retain.** Another **6,481** have no usable false-note label. | Propose delete only when the prediction overlaps no reference and is **more than 0.20 s away from every reference**. Propose retain for an accepted one-to-one match. Otherwise unknown; unmatched does NOT automatically mean extra. | Extra-note detection precision, recall and F1; confusion matrix. Higher is better. Precision matters because false positives delete real notes. | Keep every note; make no deletions. |
-| **Le Xin: correct timing** | **946 prediction-reference matches.** Among these, **562** have wrong-start flags and **265** have wrong-end flags; these groups can overlap. | Use accepted one-to-one matches. Target = reference start/end; adjustment = reference minus predicted time. Wrong-start flag: error **>0.05 s**. Wrong-end flag: error **>max(0.05 s, 20% of reference duration)**. | Start and end MAE/RMSE (lower is better); median absolute error; fraction of starts within 50 ms and ends within tolerance (higher is better). | Leave BP start/end times unchanged on the same labelled examples. |
-| **Hann Qian: correct pitch** | **946 prediction-reference matches: 76 wrong-pitch and 870 already-correct examples.** | Use accepted one-to-one matches. Target = reference MIDI pitch; adjustment = reference minus predicted pitch. Wrong-pitch flag: integer MIDI pitches differ. | Pitch MAE/RMSE in cents (and MAE in semitones), fraction within 50 cents, octave-error rate. Lower errors and higher within-tolerance fraction are better. | Leave BP pitches unchanged on the same labelled examples. |
+| **Felicia: remove extra notes** | **3,893 provisionally labelled notes: 196 extra/delete, 3,697 retain** (v1: 1,142 = 196 + 946). Another **3,730** (v1: 6,481) have no usable false-note label. | Propose delete only when the prediction overlaps no reference and is **more than 0.20 s away from every reference**. Propose retain for an accepted one-to-one match. Otherwise unknown; unmatched does NOT automatically mean extra. | Extra-note detection precision, recall and F1; confusion matrix. Higher is better. Precision matters because false positives delete real notes. | Keep every note; make no deletions. |
+| **Le Xin: correct timing** | **3,697 prediction-reference matches** (v1: 946). Among these, **1,876** (v1: 562) have wrong-start flags and **1,033** (v1: 265) have wrong-end flags; these groups can overlap. | Use accepted one-to-one matches. Target = reference start/end; adjustment = reference minus predicted time. Wrong-start flag: error **>0.05 s**. Wrong-end flag: error **>max(0.05 s, 20% of reference duration)**. | Start and end MAE/RMSE (lower is better); median absolute error; fraction of starts within 50 ms and ends within tolerance (higher is better). | Leave BP start/end times unchanged on the same labelled examples. |
+| **Hann Qian: correct pitch** | **3,697 prediction-reference matches: 292 wrong-pitch and 3,405 already-correct examples** (v1: 946 = 76 + 870). | Use accepted one-to-one matches. Target = reference MIDI pitch; adjustment = reference minus predicted pitch. Wrong-pitch flag: integer MIDI pitches differ. | Pitch MAE/RMSE in cents (and MAE in semitones), fraction within 50 cents, octave-error rate. Lower errors and higher within-tolerance fraction are better. | Leave BP pitches unchanged on the same labelled examples. |
 
-Le Xin and Hann Qian use the **same 946 matched notes**, not separate sets. Already-correct examples are important: the models must learn when not to change a note. There are 7,623 training predictions overall; label coverage is not true error prevalence. These counts will need updating if the group creates a new reviewed label version.
+Le Xin and Hann Qian use the **same 3,697 matched notes** (v1: 946), not separate sets. Already-correct examples are important: the models must learn when not to change a note. There are 7,623 training predictions overall; label coverage is not true error prevalence. These counts will need updating if the group creates a new reviewed label version.
 
 ### Shared rule: accepted one-to-one prediction/reference match
 
@@ -80,7 +83,8 @@ All conditions must pass. This correspondence rule determines eligible examples 
 
 | Check | Current requirement |
 |---|---|
-| Unique overlap | The prediction overlaps exactly one reference, and that reference overlaps exactly one prediction. Overlap must have positive duration. |
+| Unique overlap (v1) | The prediction overlaps exactly one reference, and that reference overlaps exactly one prediction. Overlap must have positive duration. |
+| Mutual-best overlap (proposed v2, replaces the row above) | The prediction is matched to the reference it overlaps most, if that reference also overlaps it most. New v2-only matches are dropped if a second reference covers > 30% of the prediction or pitch differs by > 2 semitones. All v1 matches are kept. |
 | Sufficient overlap | Overlap covers at least **60% of the shorter note**. |
 | Duration compatibility | The longer note is no more than **3 times** the shorter note's duration. |
 | Start compatibility | Start times differ by no more than **0.20 s**. |
@@ -115,7 +119,7 @@ Felicia's extra-note classification F1 and Queenie's merge classification F1 are
 | **Onset+pitch note F1 (primary)** | One-to-one note matching: start within **50 ms**, pitch within **50 cents**. End time is not checked. | Shared measure of transcription quality, consistent with BP selection. |
 | **Offset-aware note F1** | Same start/pitch checks, plus end within **max(50 ms, 20% of reference duration)**. | Essential for timing work: fixing only note endings may not change primary F1 at all. |
 
-Within each song, matching counts are aggregated across its excerpts before calculating precision/recall/F1; then song scores are averaged. **Song-macro means averaging across songs**, not combining people's models. Higher F1 is better. MAE is average absolute error; RMSE penalizes large errors more strongly. One semitone is 100 cents. Classification precision asks whether proposed actions are correct; recall asks how many true action cases were found. Accuracy alone can hide class imbalance, especially with 870 already-correct versus 76 incorrect pitch examples.
+Within each song, matching counts are aggregated across its excerpts before calculating precision/recall/F1; then song scores are averaged. **Song-macro means averaging across songs**, not combining people's models. Higher F1 is better. MAE is average absolute error; RMSE penalizes large errors more strongly. One semitone is 100 cents. Classification precision asks whether proposed actions are correct; recall asks how many true action cases were found. Accuracy alone can hide class imbalance, especially with 3,405 already-correct versus 292 incorrect pitch examples (v1: 870 versus 76).
 
 ### Unchanged 0.99 BP baseline scores
 

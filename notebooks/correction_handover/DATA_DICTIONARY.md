@@ -38,7 +38,9 @@ At missing-neighbour boundaries the gap is explicitly zero. This conflates a bou
 | wrong_start | Absolute start error > 0.05 s |
 | wrong_end | Absolute end error > max(0.05 s, 20% reference duration) |
 | wrong_pitch | Integer predicted/reference MIDI pitches differ |
-| status | provisional_auto or unresolved; no manually approved labels yet |
+| status | provisional_auto, provisional_auto_v2 (v2 file only) or unresolved; no manually approved labels yet |
+
+`proposed_v2/train_targets_v2.csv` (proposed, NOT approved) has the same columns and the same 7,623 note IDs, plus `match_rule`: `v1_original`, `v2_mutual_best`, or blank. It replaces the unique-overlap check with mutual-best overlap and a safety filter; all v1 labels are kept. The Felicia, Le Xin and Hann Qian starters currently load this file. Details: `proposed_v2/README_v2.md`.
 
 `merge_targets.csv`: pair_id, merge (1/0/blank), status. A merge requires fragments of the same reference event; keep requires distinct one-to-one reference correspondences. Blank pairs need review. Pair merge labels do not automatically define transitive multi-pair actions.
 
@@ -60,6 +62,7 @@ The starter loading cells explicitly rename raw targets to helper names: false_n
 - `group_review_gate.json`: approval remains false.
 - `input_version.json`: fixed prediction hashes and version.
 - `label_version.json`: algorithm/data hashes for this provisional label snapshot, written by final verification.
+- `proposed_v2/label_version_v2.json`: version, counts, safety-filter settings and hashes for the proposed v2 labels; `approved` is false.
 - `prior_artifact_hashes.json`: original tuning_001 and top-level notebook/helper preservation baseline. This is an audit artifact, not model data.
 
 ## Corrected prediction format
