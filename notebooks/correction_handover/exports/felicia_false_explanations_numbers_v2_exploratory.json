@@ -1,0 +1,915 @@
+{
+  "definitions": {
+    "low_pitch": "pitch <= 44.5",
+    "high_pitch": "pitch > 71.5",
+    "quiet": "amplitude <= 0.425",
+    "late": "start / audio_duration > 0.8",
+    "short": "duration < 0.2 s",
+    "at_floor": "duration < 0.14 s",
+    "unmatched": "no reference within 50 ms onset and 50 cents"
+  },
+  "train_bands": {
+    "low": {
+      "notes": 84,
+      "unmatched_pct": 100.0,
+      "median_pitch": 31.0,
+      "below_E2_pct": 73.8,
+      "median_dev_from_recording_median": -26.0,
+      "overlaps_another_note_pct": 44.0,
+      "vocal_range": {
+        "Bass": 38,
+        "Alto": 27,
+        "Soprano": 11,
+        "Tenor": 8
+      },
+      "v2_false": 43,
+      "v2_real": 4,
+      "v2_unlabelled": 37,
+      "v2_false_median_dev": -29.0,
+      "v2_false_overlap_pct": 27.9,
+      "v2_false_octave_overlaps": 2,
+      "v2_false_vocal_range": {
+        "Alto": 18,
+        "Bass": 14,
+        "Soprano": 6,
+        "Tenor": 5
+      }
+    },
+    "high": {
+      "notes": 490,
+      "unmatched_pct": 91.2,
+      "median_pitch": 78.0,
+      "below_E2_pct": 0.0,
+      "median_dev_from_recording_median": 15.0,
+      "overlaps_another_note_pct": 66.7,
+      "vocal_range": {
+        "Tenor": 191,
+        "Bass": 117,
+        "Soprano": 92,
+        "Alto": 90
+      },
+      "v2_false": 42,
+      "v2_real": 55,
+      "v2_unlabelled": 393,
+      "v2_false_median_dev": 4.0,
+      "v2_false_overlap_pct": 31.0,
+      "v2_false_octave_overlaps": 1,
+      "v2_false_vocal_range": {
+        "Soprano": 31,
+        "Tenor": 11
+      }
+    },
+    "mid": {
+      "notes": 7049,
+      "unmatched_pct": 71.1,
+      "median_pitch": 62.0,
+      "below_E2_pct": 0.0,
+      "median_dev_from_recording_median": 0.0,
+      "overlaps_another_note_pct": 16.6,
+      "vocal_range": {
+        "Tenor": 2522,
+        "Soprano": 1955,
+        "Alto": 1709,
+        "Bass": 863
+      },
+      "v2_false": 111,
+      "v2_real": 3638,
+      "v2_unlabelled": 3300,
+      "v2_false_median_dev": 0.0,
+      "v2_false_overlap_pct": 25.2,
+      "v2_false_octave_overlaps": 2,
+      "v2_false_vocal_range": {
+        "Soprano": 59,
+        "Tenor": 43,
+        "Bass": 6,
+        "Alto": 3
+      }
+    }
+  },
+  "val_bands": {
+    "low": {
+      "notes": 34,
+      "unmatched_pct": 100.0,
+      "median_pitch": 32.0,
+      "below_E2_pct": 58.8,
+      "median_dev_from_recording_median": -23.5,
+      "overlaps_another_note_pct": 47.1,
+      "vocal_range": {
+        "Bass": 18,
+        "Soprano": 8,
+        "Alto": 7,
+        "Tenor": 1
+      }
+    },
+    "high": {
+      "notes": 135,
+      "unmatched_pct": 93.3,
+      "median_pitch": 75.0,
+      "below_E2_pct": 0.0,
+      "median_dev_from_recording_median": 8.0,
+      "overlaps_another_note_pct": 58.5,
+      "vocal_range": {
+        "Soprano": 57,
+        "Bass": 32,
+        "Tenor": 28,
+        "Alto": 18
+      }
+    },
+    "mid": {
+      "notes": 2160,
+      "unmatched_pct": 69.8,
+      "median_pitch": 62.0,
+      "below_E2_pct": 0.0,
+      "median_dev_from_recording_median": 0.0,
+      "overlaps_another_note_pct": 17.7,
+      "vocal_range": {
+        "Soprano": 689,
+        "Tenor": 566,
+        "Alto": 558,
+        "Bass": 347
+      }
+    }
+  },
+  "train_signals": {
+    "v2_false": {
+      "amplitude_median": 0.634,
+      "quiet_pct": 19.4,
+      "position_median": 0.604,
+      "last20_pct": 35.2,
+      "clip_seconds_median": 12.87,
+      "duration_median": 0.244,
+      "short_pct": 33.7,
+      "at_floor_pct": 10.2,
+      "prev_overlap_pct": 14.3,
+      "any_overlap_pct": 27.0,
+      "overlap_within_2_semitones_pct": 45.3,
+      "overlap_octave_pct": 9.4,
+      "notes": 196
+    },
+    "v2_real": {
+      "amplitude_median": 0.688,
+      "quiet_pct": 1.2,
+      "position_median": 0.417,
+      "last20_pct": 10.7,
+      "clip_seconds_median": 10.48,
+      "duration_median": 0.337,
+      "short_pct": 17.6,
+      "at_floor_pct": 2.7,
+      "prev_overlap_pct": 5.6,
+      "any_overlap_pct": 15.4,
+      "overlap_within_2_semitones_pct": 66.0,
+      "overlap_octave_pct": 12.4,
+      "notes": 3697
+    },
+    "unmatched": {
+      "amplitude_median": 0.652,
+      "quiet_pct": 9.2,
+      "position_median": 0.452,
+      "last20_pct": 12.7,
+      "clip_seconds_median": 10.75,
+      "duration_median": 0.302,
+      "short_pct": 25.3,
+      "at_floor_pct": 4.2,
+      "prev_overlap_pct": 10.7,
+      "any_overlap_pct": 20.2,
+      "overlap_within_2_semitones_pct": 37.6,
+      "overlap_octave_pct": 23.5,
+      "notes": 5546
+    },
+    "matched": {
+      "amplitude_median": 0.7,
+      "quiet_pct": 0.7,
+      "position_median": 0.423,
+      "last20_pct": 11.6,
+      "clip_seconds_median": 10.65,
+      "duration_median": 0.384,
+      "short_pct": 13.0,
+      "at_floor_pct": 2.1,
+      "prev_overlap_pct": 9.9,
+      "any_overlap_pct": 20.0,
+      "overlap_within_2_semitones_pct": 69.0,
+      "overlap_octave_pct": 9.6,
+      "notes": 2077
+    }
+  },
+  "val_signals": {
+    "unmatched": {
+      "amplitude_median": 0.671,
+      "quiet_pct": 7.8,
+      "position_median": 0.468,
+      "last20_pct": 13.7,
+      "clip_seconds_median": 10.52,
+      "duration_median": 0.325,
+      "short_pct": 24.9,
+      "at_floor_pct": 4.2,
+      "prev_overlap_pct": 10.3,
+      "any_overlap_pct": 20.3,
+      "overlap_within_2_semitones_pct": 40.4,
+      "overlap_octave_pct": 25.1,
+      "notes": 1668
+    },
+    "matched": {
+      "amplitude_median": 0.693,
+      "quiet_pct": 0.3,
+      "position_median": 0.459,
+      "last20_pct": 11.5,
+      "clip_seconds_median": 10.98,
+      "duration_median": 0.372,
+      "short_pct": 13.5,
+      "at_floor_pct": 1.1,
+      "prev_overlap_pct": 10.7,
+      "any_overlap_pct": 20.9,
+      "overlap_within_2_semitones_pct": 76.1,
+      "overlap_octave_pct": 10.1,
+      "notes": 661
+    }
+  },
+  "train_unmatched_rate": {
+    "quiet": {
+      "notes": 523,
+      "unmatched_pct": 97.3,
+      "rest_unmatched_pct": 70.9
+    },
+    "last20": {
+      "notes": 942,
+      "unmatched_pct": 74.5,
+      "rest_unmatched_pct": 72.5
+    },
+    "short": {
+      "notes": 1673,
+      "unmatched_pct": 83.8,
+      "rest_unmatched_pct": 69.6
+    },
+    "prev_overlap": {
+      "notes": 797,
+      "unmatched_pct": 74.3,
+      "rest_unmatched_pct": 72.6
+    },
+    "low": {
+      "notes": 84,
+      "unmatched_pct": 100.0,
+      "rest_unmatched_pct": 72.4
+    },
+    "high": {
+      "notes": 490,
+      "unmatched_pct": 91.2,
+      "rest_unmatched_pct": 71.5
+    }
+  },
+  "val_unmatched_rate": {
+    "quiet": {
+      "notes": 132,
+      "unmatched_pct": 98.5,
+      "rest_unmatched_pct": 70.0
+    },
+    "last20": {
+      "notes": 304,
+      "unmatched_pct": 75.0,
+      "rest_unmatched_pct": 71.1
+    },
+    "short": {
+      "notes": 505,
+      "unmatched_pct": 82.4,
+      "rest_unmatched_pct": 68.6
+    },
+    "prev_overlap": {
+      "notes": 242,
+      "unmatched_pct": 70.7,
+      "rest_unmatched_pct": 71.7
+    },
+    "low": {
+      "notes": 34,
+      "unmatched_pct": 100.0,
+      "rest_unmatched_pct": 71.2
+    },
+    "high": {
+      "notes": 135,
+      "unmatched_pct": 93.3,
+      "rest_unmatched_pct": 70.3
+    }
+  },
+  "train_extra": {
+    "high_overlap": {
+      "overlapping": 327,
+      "within_2_pct": 6.4,
+      "octave_12_pct": 22.0,
+      "twelfth_19_pct": 7.6,
+      "two_octaves_24_pct": 8.6,
+      "harmonic_12_19_24_pct": 38.2,
+      "above_pct": 96.3
+    },
+    "low_overlap": {
+      "overlapping": 37,
+      "within_2_pct": 0.0,
+      "octave_12_pct": 10.8,
+      "twelfth_19_pct": 24.3,
+      "two_octaves_24_pct": 0.0,
+      "harmonic_12_19_24_pct": 35.1,
+      "above_pct": 16.2
+    },
+    "notes_in_recordings_without_references": 0,
+    "mid_overlap": {
+      "overlapping": 1173,
+      "within_2_pct": 58.7,
+      "octave_12_pct": 19.4,
+      "twelfth_19_pct": 2.5,
+      "two_octaves_24_pct": 2.0,
+      "harmonic_12_19_24_pct": 23.8,
+      "above_pct": 41.5
+    },
+    "unmatched_overlap": {
+      "overlapping": 1121,
+      "within_2_pct": 37.6,
+      "octave_12_pct": 23.5,
+      "twelfth_19_pct": 4.9,
+      "two_octaves_24_pct": 3.8,
+      "harmonic_12_19_24_pct": 32.2,
+      "above_pct": 58.1
+    },
+    "matched_overlap": {
+      "overlapping": 416,
+      "within_2_pct": 69.0,
+      "octave_12_pct": 9.6,
+      "twelfth_19_pct": 1.9,
+      "two_octaves_24_pct": 1.9,
+      "harmonic_12_19_24_pct": 13.5,
+      "above_pct": 37.7
+    },
+    "high_share_of_range_pct": {
+      "Alto": 4.9,
+      "Bass": 11.5,
+      "Soprano": 4.5,
+      "Tenor": 7.0
+    },
+    "after_last_ref": {
+      "notes": 73,
+      "unmatched_pct": 100.0,
+      "share_of_last20_pct": 7.5
+    },
+    "quiet_after_last_ref_pct": 6.1,
+    "v2_false_after_last_ref_pct": 33.7,
+    "v2_real_after_last_ref_pct": 0.0,
+    "v2_false_late_after_last_ref_pct": 94.2,
+    "v2_false_overlap": {
+      "overlapping": 53,
+      "within_2_pct": 45.3,
+      "octave_12_pct": 9.4,
+      "twelfth_19_pct": 5.7,
+      "two_octaves_24_pct": 1.9,
+      "harmonic_12_19_24_pct": 17.0,
+      "above_pct": 54.7
+    },
+    "v2_real_overlap": {
+      "overlapping": 571,
+      "within_2_pct": 66.0,
+      "octave_12_pct": 12.4,
+      "twelfth_19_pct": 2.3,
+      "two_octaves_24_pct": 2.1,
+      "harmonic_12_19_24_pct": 16.8,
+      "above_pct": 38.0
+    },
+    "quiet_v2": {
+      "false": 38,
+      "real": 44,
+      "unlabelled": 441
+    },
+    "high_v2_by_range": {
+      "Alto": {
+        "false": 0,
+        "real": 32,
+        "unlabelled": 58
+      },
+      "Bass": {
+        "false": 0,
+        "real": 0,
+        "unlabelled": 117
+      },
+      "Soprano": {
+        "false": 31,
+        "real": 8,
+        "unlabelled": 53
+      },
+      "Tenor": {
+        "false": 11,
+        "real": 15,
+        "unlabelled": 165
+      }
+    }
+  },
+  "val_extra": {
+    "high_overlap": {
+      "overlapping": 79,
+      "within_2_pct": 7.6,
+      "octave_12_pct": 22.8,
+      "twelfth_19_pct": 6.3,
+      "two_octaves_24_pct": 13.9,
+      "harmonic_12_19_24_pct": 43.0,
+      "above_pct": 96.2
+    },
+    "low_overlap": {
+      "overlapping": 16,
+      "within_2_pct": 0.0,
+      "octave_12_pct": 43.8,
+      "twelfth_19_pct": 6.2,
+      "two_octaves_24_pct": 12.5,
+      "harmonic_12_19_24_pct": 62.5,
+      "above_pct": 31.2
+    },
+    "notes_in_recordings_without_references": 0,
+    "mid_overlap": {
+      "overlapping": 382,
+      "within_2_pct": 61.8,
+      "octave_12_pct": 19.4,
+      "twelfth_19_pct": 2.6,
+      "two_octaves_24_pct": 2.4,
+      "harmonic_12_19_24_pct": 24.3,
+      "above_pct": 41.9
+    },
+    "unmatched_overlap": {
+      "overlapping": 339,
+      "within_2_pct": 40.4,
+      "octave_12_pct": 25.1,
+      "twelfth_19_pct": 4.4,
+      "two_octaves_24_pct": 6.2,
+      "harmonic_12_19_24_pct": 35.7,
+      "above_pct": 53.4
+    },
+    "matched_overlap": {
+      "overlapping": 138,
+      "within_2_pct": 76.1,
+      "octave_12_pct": 10.1,
+      "twelfth_19_pct": 0.7,
+      "two_octaves_24_pct": 0.7,
+      "harmonic_12_19_24_pct": 11.6,
+      "above_pct": 43.5
+    },
+    "high_share_of_range_pct": {
+      "Alto": 3.1,
+      "Bass": 8.1,
+      "Soprano": 7.6,
+      "Tenor": 4.7
+    },
+    "after_last_ref": {
+      "notes": 25,
+      "unmatched_pct": 100.0,
+      "share_of_last20_pct": 8.2
+    },
+    "quiet_after_last_ref_pct": 6.1
+  },
+  "min_duration": {
+    "train": 0.129,
+    "val": 0.129
+  },
+  "bp_unchanged": {
+    "train_f1": 0.26275846642410683,
+    "train_offset_f1": 0.15386648702425776,
+    "val_f1": 0.27264306924988774,
+    "val_offset_f1": 0.16024855433363022
+  },
+  "models": {
+    "decision_tree": {
+      "params": {
+        "clf__class_weight": "None",
+        "clf__max_depth": "5",
+        "clf__min_samples_leaf": "20"
+      },
+      "refit_cutoff": 1.0,
+      "train": {
+        "precision": 0.8666666666666667,
+        "recall": 0.0663265306122449,
+        "v2_false_deleted": 13,
+        "v2_real_deleted": 2,
+        "unlabelled_deleted": 27,
+        "f1": 0.26368121280300916,
+        "delta_f1": 0.0009227463789023282,
+        "offset_f1": 0.15442880321627492,
+        "deleted": 42,
+        "deleted_bp_matched": 0,
+        "deleted_after_last_reference": 13,
+        "deleted_overlap": {
+          "overlapping": 30,
+          "within_2_pct": 0.0,
+          "octave_12_pct": 73.3,
+          "twelfth_19_pct": 10.0,
+          "two_octaves_24_pct": 6.7,
+          "harmonic_12_19_24_pct": 90.0,
+          "above_pct": 93.3
+        },
+        "deleted_low": 15,
+        "deleted_high": 27,
+        "deleted_mid": 0,
+        "median_pitch": 77.0,
+        "median_amplitude": 0.362,
+        "median_position": 0.701,
+        "median_duration": 0.255,
+        "prev_overlap_pct": 61.9
+      },
+      "val": {
+        "f1": 0.2736470348096276,
+        "delta_f1": 0.0010039655597398611,
+        "offset_f1": 0.16098219174023987,
+        "songs_improved": 6,
+        "songs_worse": 0,
+        "deleted": 20,
+        "deleted_bp_matched": 0,
+        "deleted_after_last_reference": 7,
+        "deleted_overlap": {
+          "overlapping": 9,
+          "within_2_pct": 0.0,
+          "octave_12_pct": 33.3,
+          "twelfth_19_pct": 11.1,
+          "two_octaves_24_pct": 22.2,
+          "harmonic_12_19_24_pct": 66.7,
+          "above_pct": 33.3
+        },
+        "deleted_low": 20,
+        "deleted_high": 0,
+        "deleted_mid": 0,
+        "median_pitch": 31.0,
+        "median_amplitude": 0.364,
+        "median_position": 0.824,
+        "median_duration": 0.261,
+        "prev_overlap_pct": 30.0
+      },
+      "leaves": [
+        {
+          "leaf": 2,
+          "v2_false": 27,
+          "v2_real": 0,
+          "delete_prob": 1.0,
+          "train_notes": 50,
+          "val_notes": 20,
+          "val_unmatched_pct": 100.0
+        },
+        {
+          "leaf": 3,
+          "v2_false": 16,
+          "v2_real": 4,
+          "delete_prob": 0.8,
+          "train_notes": 34,
+          "val_notes": 14,
+          "val_unmatched_pct": 100.0
+        },
+        {
+          "leaf": 8,
+          "v2_false": 3,
+          "v2_real": 17,
+          "delete_prob": 0.15,
+          "train_notes": 104,
+          "val_notes": 31,
+          "val_unmatched_pct": 96.8
+        },
+        {
+          "leaf": 9,
+          "v2_false": 49,
+          "v2_real": 3033,
+          "delete_prob": 0.016,
+          "train_notes": 5599,
+          "val_notes": 1706,
+          "val_unmatched_pct": 68.7
+        },
+        {
+          "leaf": 11,
+          "v2_false": 9,
+          "v2_real": 48,
+          "delete_prob": 0.158,
+          "train_notes": 148,
+          "val_notes": 45,
+          "val_unmatched_pct": 86.7
+        },
+        {
+          "leaf": 12,
+          "v2_false": 16,
+          "v2_real": 318,
+          "delete_prob": 0.048,
+          "train_notes": 669,
+          "val_notes": 213,
+          "val_unmatched_pct": 67.6
+        },
+        {
+          "leaf": 14,
+          "v2_false": 9,
+          "v2_real": 22,
+          "delete_prob": 0.29,
+          "train_notes": 60,
+          "val_notes": 19,
+          "val_unmatched_pct": 89.5
+        },
+        {
+          "leaf": 16,
+          "v2_false": 14,
+          "v2_real": 163,
+          "delete_prob": 0.079,
+          "train_notes": 378,
+          "val_notes": 118,
+          "val_unmatched_pct": 75.4
+        },
+        {
+          "leaf": 17,
+          "v2_false": 11,
+          "v2_real": 37,
+          "delete_prob": 0.229,
+          "train_notes": 91,
+          "val_notes": 28,
+          "val_unmatched_pct": 60.7
+        },
+        {
+          "leaf": 20,
+          "v2_false": 10,
+          "v2_real": 11,
+          "delete_prob": 0.476,
+          "train_notes": 152,
+          "val_notes": 52,
+          "val_unmatched_pct": 94.2
+        },
+        {
+          "leaf": 21,
+          "v2_false": 22,
+          "v2_real": 8,
+          "delete_prob": 0.733,
+          "train_notes": 186,
+          "val_notes": 48,
+          "val_unmatched_pct": 97.9
+        },
+        {
+          "leaf": 23,
+          "v2_false": 8,
+          "v2_real": 17,
+          "delete_prob": 0.32,
+          "train_notes": 102,
+          "val_notes": 25,
+          "val_unmatched_pct": 88.0
+        },
+        {
+          "leaf": 24,
+          "v2_false": 2,
+          "v2_real": 19,
+          "delete_prob": 0.095,
+          "train_notes": 50,
+          "val_notes": 10,
+          "val_unmatched_pct": 80.0
+        }
+      ],
+      "importances": {
+        "start": 0.025,
+        "end": 0.0,
+        "pitch": 0.852,
+        "amplitude": 0.007,
+        "duration": 0.087,
+        "prev_gap": 0.015,
+        "next_gap": 0.013
+      }
+    },
+    "random_forest": {
+      "params": {
+        "clf__class_weight": "None",
+        "clf__max_depth": "None",
+        "clf__min_samples_leaf": "1"
+      },
+      "refit_cutoff": 0.6666666666666666,
+      "train": {
+        "precision": 0.7884615384615384,
+        "recall": 0.20918367346938777,
+        "v2_false_deleted": 41,
+        "v2_real_deleted": 11,
+        "unlabelled_deleted": 201,
+        "f1": 0.2655105320629428,
+        "delta_f1": 0.0027520656388359543,
+        "offset_f1": 0.1555748654977324,
+        "deleted": 253,
+        "deleted_bp_matched": 10,
+        "deleted_after_last_reference": 41,
+        "deleted_overlap": {
+          "overlapping": 203,
+          "within_2_pct": 2.0,
+          "octave_12_pct": 22.2,
+          "twelfth_19_pct": 11.8,
+          "two_octaves_24_pct": 9.9,
+          "harmonic_12_19_24_pct": 43.8,
+          "above_pct": 85.2
+        },
+        "deleted_low": 66,
+        "deleted_high": 161,
+        "deleted_mid": 26,
+        "median_pitch": 77.0,
+        "median_amplitude": 0.364,
+        "median_position": 0.755,
+        "median_duration": 0.221,
+        "prev_overlap_pct": 66.8
+      },
+      "val": {
+        "f1": 0.2763710700919385,
+        "delta_f1": 0.0037280008420507715,
+        "offset_f1": 0.16276961154396424,
+        "songs_improved": 13,
+        "songs_worse": 0,
+        "deleted": 66,
+        "deleted_bp_matched": 0,
+        "deleted_after_last_reference": 14,
+        "deleted_overlap": {
+          "overlapping": 53,
+          "within_2_pct": 0.0,
+          "octave_12_pct": 30.2,
+          "twelfth_19_pct": 9.4,
+          "two_octaves_24_pct": 11.3,
+          "harmonic_12_19_24_pct": 50.9,
+          "above_pct": 86.8
+        },
+        "deleted_low": 22,
+        "deleted_high": 41,
+        "deleted_mid": 3,
+        "median_pitch": 78.0,
+        "median_amplitude": 0.353,
+        "median_position": 0.774,
+        "median_duration": 0.227,
+        "prev_overlap_pct": 74.2
+      },
+      "importances": {
+        "start": 0.125,
+        "end": 0.122,
+        "pitch": 0.276,
+        "amplitude": 0.159,
+        "duration": 0.106,
+        "prev_gap": 0.111,
+        "next_gap": 0.101
+      }
+    },
+    "logistic_regression": {
+      "params": {
+        "clf__C": "0.1",
+        "clf__class_weight": "'balanced'"
+      },
+      "refit_cutoff": 0.9752694717352011,
+      "train": {
+        "precision": 0.2,
+        "recall": 0.00510204081632653,
+        "v2_false_deleted": 1,
+        "v2_real_deleted": 4,
+        "unlabelled_deleted": 37,
+        "f1": 0.2630769735480713,
+        "delta_f1": 0.0003185071239644732,
+        "offset_f1": 0.1540941785216724,
+        "deleted": 42,
+        "deleted_bp_matched": 2,
+        "deleted_after_last_reference": 2,
+        "deleted_overlap": {
+          "overlapping": 29,
+          "within_2_pct": 0.0,
+          "octave_12_pct": 13.8,
+          "twelfth_19_pct": 17.2,
+          "two_octaves_24_pct": 10.3,
+          "harmonic_12_19_24_pct": 41.4,
+          "above_pct": 86.2
+        },
+        "deleted_low": 6,
+        "deleted_high": 15,
+        "deleted_mid": 21,
+        "median_pitch": 66.5,
+        "median_amplitude": 0.342,
+        "median_position": 0.84,
+        "median_duration": 0.238,
+        "prev_overlap_pct": 45.2
+      },
+      "val": {
+        "f1": 0.2727667430469859,
+        "delta_f1": 0.00012367379709815607,
+        "offset_f1": 0.16033679517526328,
+        "songs_improved": 2,
+        "songs_worse": 0,
+        "deleted": 2,
+        "deleted_bp_matched": 0,
+        "deleted_after_last_reference": 0,
+        "deleted_overlap": {
+          "overlapping": 2,
+          "within_2_pct": 0.0,
+          "octave_12_pct": 50.0,
+          "twelfth_19_pct": 0.0,
+          "two_octaves_24_pct": 0.0,
+          "harmonic_12_19_24_pct": 50.0,
+          "above_pct": 100.0
+        },
+        "deleted_low": 0,
+        "deleted_high": 2,
+        "deleted_mid": 0,
+        "median_pitch": 89.0,
+        "median_amplitude": 0.331,
+        "median_position": 0.819,
+        "median_duration": 0.279,
+        "prev_overlap_pct": 100.0
+      },
+      "coef_per_sd": {
+        "start": 0.342,
+        "end": 0.311,
+        "pitch": 0.23,
+        "amplitude": -0.489,
+        "duration": -0.234,
+        "prev_gap": 0.092,
+        "next_gap": 0.154
+      }
+    },
+    "gaussian_nb": {
+      "params": {
+        "clf__var_smoothing": "1e-09",
+        "scale": "PowerTransformer()"
+      },
+      "refit_cutoff": 0.9011259449497444,
+      "train": {
+        "precision": 0.8571428571428571,
+        "recall": 0.1836734693877551,
+        "v2_false_deleted": 36,
+        "v2_real_deleted": 6,
+        "unlabelled_deleted": 389,
+        "f1": 0.2691718649168994,
+        "delta_f1": 0.006413398492792544,
+        "offset_f1": 0.15794231343275725,
+        "deleted": 431,
+        "deleted_bp_matched": 1,
+        "deleted_after_last_reference": 30,
+        "deleted_overlap": {
+          "overlapping": 388,
+          "within_2_pct": 1.8,
+          "octave_12_pct": 36.3,
+          "twelfth_19_pct": 9.5,
+          "two_octaves_24_pct": 6.2,
+          "harmonic_12_19_24_pct": 52.1,
+          "above_pct": 86.9
+        },
+        "deleted_low": 50,
+        "deleted_high": 266,
+        "deleted_mid": 115,
+        "median_pitch": 78.0,
+        "median_amplitude": 0.372,
+        "median_position": 0.578,
+        "median_duration": 0.244,
+        "prev_overlap_pct": 74.9
+      },
+      "val": {
+        "f1": 0.28063482215194785,
+        "delta_f1": 0.007991752902060112,
+        "offset_f1": 0.16588527964612018,
+        "songs_improved": 16,
+        "songs_worse": 0,
+        "deleted": 122,
+        "deleted_bp_matched": 0,
+        "deleted_after_last_reference": 13,
+        "deleted_overlap": {
+          "overlapping": 115,
+          "within_2_pct": 2.6,
+          "octave_12_pct": 42.6,
+          "twelfth_19_pct": 7.0,
+          "two_octaves_24_pct": 11.3,
+          "harmonic_12_19_24_pct": 60.9,
+          "above_pct": 87.0
+        },
+        "deleted_low": 19,
+        "deleted_high": 66,
+        "deleted_mid": 37,
+        "median_pitch": 77.0,
+        "median_amplitude": 0.365,
+        "median_position": 0.596,
+        "median_duration": 0.255,
+        "prev_overlap_pct": 84.4
+      },
+      "retain_mean": {
+        "start": -0.037,
+        "end": -0.036,
+        "pitch": -0.011,
+        "amplitude": 0.03,
+        "duration": 0.021,
+        "prev_gap": 0.0,
+        "next_gap": 0.001
+      },
+      "delete_mean": {
+        "start": 0.691,
+        "end": 0.671,
+        "pitch": 0.2,
+        "amplitude": -0.567,
+        "duration": -0.397,
+        "prev_gap": -0.005,
+        "next_gap": -0.013
+      },
+      "retain_sd": {
+        "start": 0.987,
+        "end": 0.989,
+        "pitch": 0.907,
+        "amplitude": 0.976,
+        "duration": 0.996,
+        "prev_gap": 0.926,
+        "next_gap": 1.008
+      },
+      "delete_sd": {
+        "start": 1.0,
+        "end": 0.978,
+        "pitch": 2.074,
+        "amplitude": 1.247,
+        "duration": 1.002,
+        "prev_gap": 1.924,
+        "next_gap": 0.84
+      },
+      "class_prior": [
+        0.9497,
+        0.0503
+      ]
+    }
+  }
+}
