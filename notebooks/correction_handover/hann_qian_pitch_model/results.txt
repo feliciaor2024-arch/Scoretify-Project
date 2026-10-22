@@ -1,0 +1,12 @@
+           setup  fixed  broken  net  pitch_acc  song_macro_f1                        cutoffs
+       no change      0       0    0     0.9210         0.2628                           None
+    allowed only      0       0    0     0.9210         0.2628 [1.01, 1.01, 1.01, 1.01, 1.01]
+       + context      8       5    3     0.9218         0.2632    [0.8, 1.01, 0.8, 1.01, 0.5]
++ context + pyin     53      19   34     0.9302         0.2655      [0.7, 0.7, 0.7, 0.8, 0.5]
+       pyin only     54      23   31     0.9294         0.2652      [0.6, 0.6, 0.6, 0.7, 0.7]
+wrong-pitch notes available to fix: 292 of 3697
+pyin sign matches true direction on wrong notes: 0.87 n = 292
+|cents| 0-25: notes 2341, share wrong 0.038
+|cents| 25-50: notes 1193, share wrong 0.106
+|cents| 50-100: notes 161, share wrong 0.478
+|cents| 100-600: notes 2, share wrong 0.500

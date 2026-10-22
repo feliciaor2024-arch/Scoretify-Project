@@ -1,0 +1,9 @@
+                                     setup  fixed  broken  net  pitch_acc
+                                whole note     57      21   36     0.9308
+                         trim 10% each end     66      33   33     0.9299
+                         trim 20% each end     52      23   29     0.9289
+                         trim 30% each end     57      34   23     0.9272
+NESTED (trim+cutoff picked on train folds)     65      29   36     0.9308
+nested picks per fold (trim, cutoff): [(0.0, 0.7), (0.1, 0.6), (0.0, 0.7), (0.1, 0.5), (0.1, 0.5)]
+nested song_macro_f1: 0.2653
+wrong-pitch notes: 292 of 3697 | no-change pitch_acc 0.921
