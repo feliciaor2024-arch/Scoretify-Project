@@ -5,8 +5,6 @@ import sys
 import numpy as np, pandas as pd
 from sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier
 from common import CLUES_V2
-sys.path.insert(0, r'C:\Users\derp2\AppData\Local\Temp\claude\C--Users-derp2-SMU-Y2SEM1-DMBA-GTSinger-Correction-Group-Handover'
-                   r'\8c87ca1c-d4c7-4a6c-88e9-3fa8dace1748\scratchpad\pylib')          # lightgbm (installed there only)
 import lightgbm as lgb
 
 JOBS = 4

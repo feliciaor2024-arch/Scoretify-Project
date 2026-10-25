@@ -41,7 +41,7 @@ val_chain = read(V4 / 'val_stage2_delete_v2.csv')
 cu.validate_notes(val_chain, val_man)
 common.manifest = val_man
 common.REF = {}                                                 # no answer key: labels stay empty
-common.BPACT = BPACT.parent / 'bpact_val'
+common.BPACT = BPACT.parent / 'val'
 common._ACT.clear()
 vc = CACHE / 'curves_val.pkl'
 if not vc.exists():

@@ -22,8 +22,8 @@ Only starts change: ends, pitches and note IDs are kept, and every note keeps st
 - `stage3_snap_v3_train_oof.csv`: COMPLETE note table (note_id, recording_id, start, end, pitch), written with `cu.export_corrections`.
 - `stage3_snap_v3_actions.csv`: one row per move: note_id, recording_id, round (1/2), old_start, new_start, shift_ms,
   score (the chosen option's per-note softmax score), stay_score, fold, margin. There are 2,302 rows; some notes moved in both rounds.
-- Code: `le_xin_work/snap_v3/stage3_v4.py` (run with `SNAP_CHAIN=<this stage2 csv> SNAP_CACHE=cache_v4`); log
-  `snap_v3/stage3_v4.log`; caches in `snap_v3/cache_v4/`.
+- Code: `le_xin_work/experiments/snap_v3/stage3_v4.py` (run with `SNAP_CHAIN=<this stage2 csv> SNAP_CACHE=cache_v4`); log
+  `snap_v3/logs/stage3_v4.log`; caches in `snap_v3/cache_v4/`.
 
 ## Final-model recipe for val
 1. Options: `build_options(val_chain, win=0.15, extra_kinds=True)` from `snap_v3/common.py`. Moment kinds: attack,
@@ -59,4 +59,4 @@ Note: round 2 moved more on val (7% of notes) than on train (2%), probably becau
 than most per-fold margins (0.05-0.15). It still helped overall. Caveat as before: val was used earlier in the project
 (Basic Pitch settings, earlier stages), so this is continued development, not untouched evidence.
 Files: `val_stage3_snap_v3.csv` (COMPLETE note table, only starts changed, start < end), `val_stage3_snap_v3_actions.csv`
-(note_id, recording_id, round, old_start, new_start, shift_ms, score, stay_score, margin). Code: `snap_v3/val_stage3.py`, log `snap_v3/val_stage3.log`.
+(note_id, recording_id, round, old_start, new_start, shift_ms, score, stay_score, margin). Code: `snap_v3/val_stage3.py`, log `snap_v3/logs/val_stage3.log`.

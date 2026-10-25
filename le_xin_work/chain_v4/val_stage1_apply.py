@@ -1,12 +1,12 @@
 """Chain v4 VALIDATION, stage 1: final split v2 model (RF + boosting average, v2 candidates, 74 richer clues) trained on
 ALL training candidates, threshold from the training OOF scores, applied ONCE to the 20 val songs.
-Val features: le_xin_work/split_v2/s8_val_features.py (no answer key). The val answer key (bp_experiment.references)
+Val features: le_xin_work/experiments/split_v2/s8_val_features.py (no answer key). The val answer key (bp_experiment.references)
 is used only for scoring at the end. Refuses to run a second time. Test is never opened; no TextGrid."""
 import string, sys
 from pathlib import Path
 import numpy as np, pandas as pd
 from sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'split_v2'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'experiments' / 'split_v2'))
 import common as C
 import clues as K
 from exp import Experiment, THRESHOLDS

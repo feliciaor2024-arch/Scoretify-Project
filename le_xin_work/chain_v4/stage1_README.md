@@ -17,7 +17,7 @@ cut 1 -> ... -> original end. Piece pitch = rounded median pyin pitch of ~150 ms
 if no pitch is found (same as the split notebook's `apply_splits`).
 
 ## Recipe (what was trained, and how to make the final model for val later)
-Code: `le_xin_work/split_v2/` (`common.py`, `clues.py`, `s3_candidates.py`, `s4_clues.py`, `s5_models.py`).
+Code: `le_xin_work/experiments/split_v2/` (`common.py`, `clues.py`, `s3_candidates.py`, `s4_clues.py`, `s5_models.py`).
 1. **Audio tracks** (`s1_tracks.py`): librosa 22,050 Hz, hop 256; pyin (65-1100 Hz) MIDI + voiced + voicing prob,
    onset strength (/99th percentile), RMS dB, 13 MFCC. Basic Pitch activations (onset/note) per recording,
    time axis = basic_pitch `model_frames_to_time`.
@@ -38,16 +38,16 @@ Code: `le_xin_work/split_v2/` (`common.py`, `clues.py`, `s3_candidates.py`, `s4_
    threshold = best training out-of-fold onset F1 over the same grid using the outer OOF probabilities
    (`split_v2/cache/prob_v2_avg_rich.npy`); expected 0.6. Val input = `exports/le_xin_timing_val_rf_audio_pitch.csv`;
    val tracks + candidates + clues built the same way (no labels; Basic Pitch val activations exist in the other
-   session's scratchpad `bpact_val`); then `apply_splits` with the same id scheme.
+   `le_xin_work/bp_activations/val`); then `apply_splits` with the same id scheme.
 
 Caveat: the later stages (delete, snap) were trained on the old split's output, so their inputs change.
 
-## Validation (run once, 2026-10-26; script `val_stage1_apply.py`, log `val_stage1.log`)
+## Validation (run once, 2026-10-26; script `val_stage1_apply.py`, log `logs/val_stage1.log`)
 - Final model: `Avg` (RF + boosting) fit on ALL 36,096 training candidates (same training input as the OOF above).
   Threshold from the training OOF onset F1 only: 0.3 0.2783 | 0.4 0.3295 | 0.5 0.3547 | **0.6 0.3622** | 0.7 0.3595 |
   0.8 0.3557 | 0.9 0.3542 | 0.95 0.3541 -> **0.6**. Nothing was chosen on val.
-- Val features: `le_xin_work/split_v2/s8_val_features.py` (no answer key). Val tracks, v2 candidates and the 74 clues were
-  built the same way as for train, using the Basic Pitch val activations in the other session's scratchpad `bpact_val`.
+- Val features: `le_xin_work/experiments/split_v2/s8_val_features.py` (no answer key). Val tracks, v2 candidates and the 74 clues were
+  built the same way as for train, using the Basic Pitch val activations in `le_xin_work/bp_activations/val`.
   The old-finder part of the val candidates equals the notebook's `split_candidates_val_v1.csv` exactly (6,158 rows).
   11,508 val candidates in total.
 - Val references: `notebooks/bp_experiment.references` (as in Le Xin's Step 6), used only for scoring.

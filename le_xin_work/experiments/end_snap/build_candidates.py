@@ -13,7 +13,7 @@ Clues come from the audio, Basic Pitch activations and the predicted notes only.
 Labels (answer key, never a clue): true note = reference note with the same pitch (< 0.5 st) whose start is the
 nearest within 50 ms of this note's start (= what mir_eval would match). An option is RIGHT if it lies within
 max(50 ms, 20% of the true note's duration) of the true end (mir_eval's offset rule).
-Output: le_xin_work/end_snap/end_candidates_train.csv
+Output: le_xin_work/experiments/end_snap/end_candidates_train.csv
 """
 import numpy as np
 import pandas as pd

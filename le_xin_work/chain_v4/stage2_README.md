@@ -20,7 +20,7 @@ match nothing under the official rule, usually because they are real notes whose
   minus the deleted notes. Ids and times are unchanged from stage 1. Written with `cu.export_corrections`.
 - `stage2_delete_v2_actions.csv`: one row per stage-1 note. `prob` = out-of-fold probability that the note is
   false, `fold`, `threshold` = that fold's nested threshold, `deleted` = prob >= threshold.
-- Code: `le_xin_work/delete_v2/stage2.py`, which calls `features.py <pool> <out>` to build
+- Code: `le_xin_work/experiments/delete_v2/stage2.py`, which calls `features.py <pool> <out>` to build
   `delete_v2/features_chain_v4_stage1.csv` and then `models.run`. Results are also in `delete_v2/stage2_results.csv`.
 
 ## Recipe
@@ -68,4 +68,4 @@ match nothing under the official rule, usually because they are real notes whose
   to new songs. Caveat (as before): val was used earlier to choose Basic Pitch settings.
 - Files: `val_stage2_delete_v2.csv` (complete note table minus deleted notes, written with `cu.export_corrections`),
   `val_stage2_delete_v2_actions.csv` (`note_id, recording_id, prob, threshold, deleted`). Code:
-  `delete_v2/val_stage2.py`; val clues cached in `delete_v2/features_chain_v4_val_stage1.csv`; log `delete_v2/val_stage2_log.txt`.
+  `delete_v2/val_stage2.py`; val clues cached in `delete_v2/features_chain_v4_val_stage1.csv`; log `delete_v2/logs/val_stage2_log.txt`.

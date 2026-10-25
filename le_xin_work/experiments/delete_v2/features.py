@@ -138,7 +138,7 @@ rows = []
 for rid, g in p.groupby('recording_id', sort=False):
     t, hz = f0[f'{rid}_t'], f0[f'{rid}_f0']
     midi = 69 + 12 * np.log2(hz / 440.)
-    with np.load((BPACT if SPLIT == 'train' else BPACT.parent / 'bpact_val') / f'{rid}.npz') as z:
+    with np.load((BPACT if SPLIT == 'train' else BPACT.parent / 'val') / f'{rid}.npz') as z:
         note, onset = z['note'], z['onset']                     # read once per recording (npz is lazy)
     T = bp_times(len(note))
     for i, r in g.iterrows():

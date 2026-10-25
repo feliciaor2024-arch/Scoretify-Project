@@ -23,7 +23,7 @@ Validation, test and TextGrid were not used. The answer key (`references_train.c
 - `stage4_end_snap_train_oof.csv`: the COMPLETE note table (note_id, recording_id, start, end, pitch).
 - `stage4_end_snap_actions.csv`: one row per moved end: note_id, recording_id, old_end, new_end, prob (P(right) of
   the chosen option), stay_prob, fold, margin, shift_ms, model. A move happens when prob - stay_prob >= margin.
-- Code: `le_xin_work/end_snap/`. The run order is `END_SNAP_TAG=v4 python build_candidates.py` (~2 min, candidates
+- Code: `le_xin_work/experiments/end_snap/`. The run order is `END_SNAP_TAG=v4 python build_candidates.py` (~2 min, candidates
   `end_candidates_train_v4.csv`), then `END_SNAP_TAG=v4 python end_snap_model.py rf`, then `python stage4_export.py`.
 
 ## Method
@@ -64,6 +64,6 @@ Validation, test and TextGrid were not used. The answer key (`references_train.c
   here, so it prints 0/0.
 - Files: `val_stage4_end_snap.csv` (complete note table, only ends change, end > start) and
   `val_stage4_end_snap_actions.csv` (note_id, recording_id, old_end, new_end, prob, stay_prob, margin, shift_ms, model).
-  The code is `le_xin_work/end_snap/val_stage4.py`, and the val candidates are cached in `end_snap/end_candidates_val_v4.csv`.
+  The code is `le_xin_work/experiments/end_snap/val_stage4.py`, and the val candidates are cached in `end_snap/end_candidates_val_v4.csv`.
 - Caveat: val was already used to choose the Basic Pitch settings and earlier stages, so it is continued
   development, not untouched evidence.

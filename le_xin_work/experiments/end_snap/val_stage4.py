@@ -16,7 +16,7 @@ from sklearn.ensemble import RandomForestClassifier
 import build_candidates as bc
 from common import OUT, ROOT, DATA, cu, read
 
-bc.BPACT = Path(str(bc.BPACT).replace('bpact_train', 'bpact_val'))       # cached Basic Pitch val activations
+bc.BPACT = bc.BPACT.parent / 'val'       # cached Basic Pitch val activations
 DEST = ROOT / 'le_xin_work' / 'chain_v4'
 NOT_CLUES = {'note_id', 'recording_id', 't', 'label', 'labelled_note', '_true_end', 'fold'}
 

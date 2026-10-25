@@ -1,10 +1,10 @@
 """Chain v4 stage 1: export split v2 (RF + boosting average, v2 candidates, 74 richer clues, nested threshold) on the
 TRAINING songs, out-of-fold by song, as a complete note table. Reads the OOF cuts/probabilities saved by
-le_xin_work/split_v2/s5_models.py (run 'v2 avg_rich'); no val, no test, no TextGrid."""
+le_xin_work/experiments/split_v2/s5_models.py (run 'v2 avg_rich'); no val, no test, no TextGrid."""
 import ast, string, sys
 from pathlib import Path
 import numpy as np, pandas as pd
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'split_v2'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'experiments' / 'split_v2'))
 import common as C
 
 OUT = Path(__file__).resolve().parent

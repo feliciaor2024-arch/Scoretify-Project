@@ -4,15 +4,14 @@ import sys
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 HERE = ROOT / 'notebooks' / 'correction_handover'
 OUT = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import correction_utils as cu  # noqa: E402
 
 DATA, EXPORTS = ROOT / 'basic_pitch_runs' / 'correction_handover', HERE / 'exports'
-BPACT = Path(r'C:\Users\derp2\AppData\Local\Temp\claude\C--Users-derp2-SMU-Y2SEM1-DMBA-GTSinger-Correction-Group-Handover'
-             r'\6efc453f-37d1-4798-af6f-53bef5f326a6\scratchpad\bpact_train')
+BPACT = ROOT / 'le_xin_work' / 'bp_activations' / 'train'
 import os  # noqa: E402
 TAG = os.environ.get('END_SNAP_TAG', '')                              # '' = first run (snap v2 input); 'v4' = chain v4
 INPUTS = {'': EXPORTS / 'le_xin_snap_train_oof_v2.csv',

@@ -50,7 +50,7 @@ Gain over timing only: +0.0081 onset / +0.0166 offset (old split: +0.0044 / +0.0
 
 ## Not done
 - Validation: needs val tracks, v2 candidates and clues for val (Basic Pitch val activations exist in the other
-  session's scratchpad `bpact_val`). Final model = average on all train candidates, threshold 0.6.
+  `le_xin_work/bp_activations/val`). Final model = average on all train candidates, threshold 0.6.
 - Effect on the full chain (timing -> split -> delete -> snap) not measured; later steps were trained on the old split.
 
 ## Validation (run once, chain v4 stage 1)

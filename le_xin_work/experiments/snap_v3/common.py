@@ -12,7 +12,7 @@ import os, pickle, sys, importlib.util
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 HERE = ROOT / 'notebooks' / 'correction_handover'
 OUT = Path(__file__).resolve().parent
 BASE_CACHE = OUT / 'cache'
@@ -23,8 +23,7 @@ import correction_utils as cu
 import librosa
 
 DATA, EXPORTS, LX_CACHE = ROOT / 'basic_pitch_runs' / 'correction_handover', HERE / 'exports', HERE / 'le_xin_cache'
-BPACT = Path(r'C:\Users\derp2\AppData\Local\Temp\claude\C--Users-derp2-SMU-Y2SEM1-DMBA-GTSinger-Correction-Group-Handover'
-             r'\6efc453f-37d1-4798-af6f-53bef5f326a6\scratchpad\bpact_train')
+BPACT = ROOT / 'le_xin_work' / 'bp_activations' / 'train'
 read = lambda path: pd.read_csv(path, dtype={'note_id': str, 'recording_id': str, 'sample_id': str})
 
 manifest = pd.read_csv(DATA / 'training_recording_manifest.csv', dtype={'recording_id': str, 'sample_id': str})
@@ -218,7 +217,7 @@ def add_labels(cands, notes):
     return out.drop(columns='_target')
 
 def add_bp_clues(c):
-    """Same numbers as le_xin_work/snap_bp_clues.py, from its cached activations."""
+    """Same numbers as le_xin_work/tools/snap_bp_clues.py, from its cached activations."""
     vals = np.zeros((len(c), 4))
     for rid, idx in c.groupby('recording_id', sort=False).indices.items():
         onset, note, times = bp_act(rid)

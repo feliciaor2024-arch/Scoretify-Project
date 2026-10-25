@@ -2,7 +2,7 @@
 
 Per note: move the end to the best MOVE option only if P(right) beats 'stay' by >= margin. The margin is chosen
 per held-out fold on the other 4 folds only (nested), by OFFSET F1 (moving ends cannot change onset F1).
-Writes results_train_oof.csv and the chosen ends (end_snap_train_oof_<version>.csv) into le_xin_work/end_snap/.
+Writes results_train_oof.csv and the chosen ends (end_snap_train_oof_<version>.csv) into le_xin_work/experiments/end_snap/.
 """
 import sys
 import numpy as np
