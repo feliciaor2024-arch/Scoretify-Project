@@ -1,0 +1,7 @@
+{'version': 'lambdarank +-150 ms + extra kinds, seed 0', 'starts_moved': 3311, 'labelled_right': 74.1, 'onset_F1': 0.4133, 'offset_F1': 0.2637, 'margins': {0: -0.05, 1: 0.05, 2: 0.0, 3: 0.05, 4: -0.1}, 'songs_better_than_v2': 33, 'songs_worse': 24, 'songs': 60}
+{'version': 'lambdarank +-150 ms + extra kinds, seed 1', 'starts_moved': 3046, 'labelled_right': 74.3, 'onset_F1': 0.4147, 'offset_F1': 0.2644, 'margins': {0: 0.05, 1: -0.05, 2: 0.05, 3: 0.05, 4: 0.05}, 'songs_better_than_v2': 32, 'songs_worse': 19, 'songs': 60}
+{'version': 'lambdarank +-150 ms + extra kinds, seed 2', 'starts_moved': 2768, 'labelled_right': 74.4, 'onset_F1': 0.4153, 'offset_F1': 0.2637, 'margins': {0: 0.1, 1: 0.05, 2: 0.05, 3: 0.05, 4: 0.05}, 'songs_better_than_v2': 36, 'songs_worse': 16, 'songs': 60}
+                                  version  starts_moved  labelled_right  onset_F1  offset_F1                                        margins  songs_better_than_v2  songs_worse  songs
+lambdarank +-150 ms + extra kinds, seed 0          3311            74.1    0.4133     0.2637  {0: -0.05, 1: 0.05, 2: 0.0, 3: 0.05, 4: -0.1}                    33           24     60
+lambdarank +-150 ms + extra kinds, seed 1          3046            74.3    0.4147     0.2644 {0: 0.05, 1: -0.05, 2: 0.05, 3: 0.05, 4: 0.05}                    32           19     60
+lambdarank +-150 ms + extra kinds, seed 2          2768            74.4    0.4153     0.2637   {0: 0.1, 1: 0.05, 2: 0.05, 3: 0.05, 4: 0.05}                    36           16     60

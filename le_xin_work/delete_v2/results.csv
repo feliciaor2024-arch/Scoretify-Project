@@ -1,0 +1,15 @@
+setting,label,model,features,notes_out,deleted,deleted_truly_false,deleted_unmatched,onset_F1,offset_F1,thresholds,felicia_prob_used
+replace,y_official_pool,RF,49,6952,1030,818,952,0.4087,0.2615,0.80/0.75/0.75/0.75/0.75,False
+replace,y_official_pool,RF,50,7109,873,747,833,0.4102,0.262,0.80/0.80/0.75/0.80/0.80,True
+more,y_official_kept,RF,64,6741,809,483,697,0.4099,0.2623,0.80/0.75/0.70/0.75/0.75,True
+replace,y_official_pool,GB,49,7063,919,765,883,0.4116,0.2627,0.90/0.85/0.90/0.90/0.90,False
+replace,y_official_pool,GB,50,7138,844,727,818,0.4112,0.2625,0.90/0.90/0.90/0.90/0.90,True
+more,y_official_kept,GB,64,7067,483,333,448,0.4112,0.262,0.90/0.90/0.90/0.85/0.90,True
+replace,y_loose,RF,49,7152,830,735,796,0.4097,0.2614,0.65/0.65/0.70/0.70/0.65,False
+replace,y_loose,RF,50,7197,785,711,756,0.409,0.2607,0.70/0.65/0.70/0.70/0.65,True
+more,y_loose,RF,64,7063,487,365,436,0.4087,0.2608,0.65/0.65/0.65/0.65/0.65,True
+replace,y_loose,GB,49,7195,787,715,762,0.4096,0.2615,0.75/0.75/0.75/0.80/0.65,False
+replace,y_loose,GB,50,7238,744,690,724,0.4091,0.2609,0.70/0.75/0.80/0.80/0.70,True
+more,y_loose,GB,64,7046,504,393,453,0.409,0.2615,0.70/0.65/0.60/0.75/0.70,True
+replace,y_official_pool,rule,1,7437,545,528,540,0.4064,0.2588,0.55/0.65/0.70/0.70/0.70,False
+more,y_official_kept,rule,1,7403,147,130,142,0.4065,0.2588,0.55/0.65/0.70/0.70/0.70,False

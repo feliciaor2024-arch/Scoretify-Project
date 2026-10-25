@@ -1,0 +1,8 @@
+version,ends_moved,labelled_ends_right,onset_F1,offset_F1,margins
+Snap v2 input (no end snap),0,63.2%,0.4034,0.2568,-
+Ceiling: always pick a right option (answer key),333,73.9%,0.4034,0.2989,-
+Rule: snap end to nearest next_start,2015,62.6%,0.4034,0.254,-
+Rule: snap end to nearest bp_off,2632,63.2%,0.4034,0.2581,-
+Rule: snap end to nearest voice_off,2123,63.3%,0.4034,0.2574,-
+Decision tree picker,1614,63.6%,0.4034,0.2578,"{0: 0.4, 1: 0.2, 2: 0.2, 3: 0.15, 4: 0.1}"
+Random forest picker,2676,65.1%,0.4034,0.2643,"{0: 0.0, 1: 0.05, 2: 0.0, 3: -0.05, 4: 0.05}"

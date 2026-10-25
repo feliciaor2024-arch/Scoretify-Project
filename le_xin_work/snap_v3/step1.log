@@ -1,0 +1,14 @@
+rf_v2: 56 s {'version': 'snap v2: random forest (reproduced)', 'starts_moved': 2546, 'labelled_right': 72.7, 'onset_F1': 0.4034, 'offset_F1': 0.2568, 'margins': {0: 0.0, 1: 0.0, 2: 0.0, 3: -0.05, 4: 0.0}}
+hgb_v2: 793 s {'version': 'gradient boosting (HistGradientBoosting)', 'starts_moved': 2388, 'labelled_right': 72.3, 'onset_F1': 0.4005, 'offset_F1': 0.2544, 'margins': {0: 0.05, 1: 0.05, 2: 0.0, 3: 0.0, 4: 0.0}}
+rfhgb_v2: 712 s {'version': 'forest + boosting average', 'starts_moved': 2516, 'labelled_right': 72.7, 'onset_F1': 0.4029, 'offset_F1': 0.2559, 'margins': {0: 0.05, 1: 0.0, 2: 0.0, 3: -0.05, 4: 0.0}}
+lgbrank_v2: 137 s {'version': 'ranker: LightGBM lambdarank (per-note softmax)', 'starts_moved': 2358, 'labelled_right': 72.9, 'onset_F1': 0.4047, 'offset_F1': 0.2567, 'margins': {0: 0.05, 1: 0.05, 2: 0.15, 3: 0.1, 4: 0.15}}
+lgbxe_v2: 126 s {'version': 'ranker: LightGBM xendcg (listwise softmax)', 'starts_moved': 1945, 'labelled_right': 72.9, 'onset_F1': 0.4048, 'offset_F1': 0.2565, 'margins': {0: 0.0, 1: 0.05, 2: 0.05, 3: 0.05, 4: 0.05}}
+two_v2: 476 s {'version': 'two-stage: move at all? (boosting) then which? (forest)', 'starts_moved': 1833, 'labelled_right': 70.5, 'onset_F1': 0.3901, 'offset_F1': 0.2469, 'margins': {0: -0.05, 1: -0.1, 2: 0.0, 3: -0.2, 4: -0.1}}
+                                                version  starts_moved  labelled_right  onset_F1  offset_F1                                       margins
+                                  Final chain (no snap)             0            65.8    0.3667     0.2294                                          None
+                    snap v2: random forest (reproduced)          2546            72.7    0.4034     0.2568    {0: 0.0, 1: 0.0, 2: 0.0, 3: -0.05, 4: 0.0}
+               gradient boosting (HistGradientBoosting)          2388            72.3    0.4005     0.2544    {0: 0.05, 1: 0.05, 2: 0.0, 3: 0.0, 4: 0.0}
+                              forest + boosting average          2516            72.7    0.4029     0.2559   {0: 0.05, 1: 0.0, 2: 0.0, 3: -0.05, 4: 0.0}
+         ranker: LightGBM lambdarank (per-note softmax)          2358            72.9    0.4047     0.2567  {0: 0.05, 1: 0.05, 2: 0.15, 3: 0.1, 4: 0.15}
+             ranker: LightGBM xendcg (listwise softmax)          1945            72.9    0.4048     0.2565  {0: 0.0, 1: 0.05, 2: 0.05, 3: 0.05, 4: 0.05}
+two-stage: move at all? (boosting) then which? (forest)          1833            70.5    0.3901     0.2469 {0: -0.05, 1: -0.1, 2: 0.0, 3: -0.2, 4: -0.1}

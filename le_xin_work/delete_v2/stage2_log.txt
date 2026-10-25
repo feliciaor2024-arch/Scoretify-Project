@@ -1,0 +1,6 @@
+                              version  notes  deleted  onset_F1  offset_F1  precision  recall
+0   stage 1 input (timing + split v2)   8493        0  0.362204   0.234248     0.3560  0.3764
+1  Felicia OOF decisions on same pool   8062      431  0.370188   0.239466     0.3714  0.3758
+2           delete v2 GB (this stage)   7096     1397  0.381007   0.247541     0.4063  0.3668
+fold thresholds {0: 0.9, 1: 0.85, 2: 0.9, 3: 0.88, 4: 0.88} | final-model threshold (all-train OOF) 0.875
+deleted truly-false 968 of 1397

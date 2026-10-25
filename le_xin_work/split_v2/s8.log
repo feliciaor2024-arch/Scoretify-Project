@@ -1,0 +1,5 @@
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  33 tasks      | elapsed:   27.2s
+[Parallel(n_jobs=4)]: Done 160 out of 160 | elapsed:  1.5min finished
+val candidates 11508 notes with candidates 2318 of 2329
+{'old': 6158, 'bp_onset': 3527, 'pitch_small': 1438, 'timbre': 249, 'valley': 136}

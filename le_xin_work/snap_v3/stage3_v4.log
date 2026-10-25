@@ -1,0 +1,8 @@
+input: 7096 notes, 534 recordings
+                                         version  starts_moved  onset_F1  offset_F1                                    margins  labelled_right
+input: stage 2 (timing -> split v2 -> delete v2)             0    0.3810     0.2475                                       None            67.7
+             snap v2 (forest, +-100 ms, 1 round)          1922    0.4127     0.2702   {0: 0.0, 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0}            73.6
+snap v3 round 1 (ranker, +-150 ms + extra kinds)          2161    0.4200     0.2761 {0: 0.05, 1: 0.1, 2: 0.0, 3: 0.1, 4: 0.15}            74.6
+               snap v3 round 1 + round 2 (final)          2184    0.4213     0.2772 {0: 0.05, 1: 0.1, 2: 0.1, 3: 0.1, 4: 0.15}            74.8
+round-2 moves: 141 | final-model margins (all-train OOF): round 1 0.1 round 2 0.05
+wrote C:\Users\derp2\SMU\Y2SEM1\DMBA\Data-Mining-Project\le_xin_work\chain_v4\stage3_snap_v3_train_oof.csv C:\Users\derp2\SMU\Y2SEM1\DMBA\Data-Mining-Project\le_xin_work\chain_v4\stage3_snap_v3_actions.csv

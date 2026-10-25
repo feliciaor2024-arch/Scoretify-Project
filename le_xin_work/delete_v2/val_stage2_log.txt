@@ -1,0 +1,7 @@
+threshold from training OOF: 0.875 (train OOF onset F1 at it 0.3822)
+2587 notes; 75 columns
+val: 2587 notes in, 329 deleted, 2258 kept; share deleted 0.127 (train OOF 0.164)
+mean prob val 0.639 | train OOF 0.661
+timing (val input)   notes  2329  onset F1 0.3755  offset F1 0.2360
++ split v2           notes  2587  onset F1 0.3844  offset F1 0.2584  songs better/worse vs previous: 12/8
++ delete v2          notes  2258  onset F1 0.4050  offset F1 0.2730  songs better/worse vs previous: 19/1

@@ -1,0 +1,14 @@
++-100 ms {'options': 22615, 'per_note': 3.0, 'ceiling': np.float64(91.1), 'stay_right': np.float64(65.8)}
+437 s {'version': 'rf, +-100 ms', 'starts_moved': 2577, 'labelled_right': 72.4, 'onset_F1': 0.4017, 'offset_F1': 0.2551, 'margins': {0: 0.05, 1: 0.0, 2: 0.0, 3: -0.05, 4: -0.05}}
++-100 ms + extra kinds {'options': 25266, 'per_note': 3.35, 'ceiling': np.float64(93.5), 'stay_right': np.float64(65.8)}
+335 s {'version': 'rf, +-100 ms + extra kinds', 'starts_moved': 2900, 'labelled_right': 73.9, 'onset_F1': 0.4096, 'offset_F1': 0.2595, 'margins': {0: -0.05, 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0}}
++-150 ms {'options': 30902, 'per_note': 4.09, 'ceiling': np.float64(96.3), 'stay_right': np.float64(65.8)}
+518 s {'version': 'rf, +-150 ms', 'starts_moved': 2350, 'labelled_right': 72.9, 'onset_F1': 0.4056, 'offset_F1': 0.2569, 'margins': {0: 0.0, 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0}}
++-150 ms + extra kinds {'options': 34798, 'per_note': 4.61, 'ceiling': np.float64(97.3), 'stay_right': np.float64(65.8)}
+507 s {'version': 'rf, +-150 ms + extra kinds', 'starts_moved': 2829, 'labelled_right': 73.1, 'onset_F1': 0.4065, 'offset_F1': 0.2577, 'margins': {0: 0.0, 1: -0.05, 2: 0.0, 3: 0.0, 4: 0.0}}
+                   version  starts_moved  labelled_right  onset_F1  offset_F1                                       margins
+     Final chain (no snap)             0            65.8    0.3667     0.2294                                          None
+              rf, +-100 ms          2577            72.4    0.4017     0.2551 {0: 0.05, 1: 0.0, 2: 0.0, 3: -0.05, 4: -0.05}
+rf, +-100 ms + extra kinds          2900            73.9    0.4096     0.2595    {0: -0.05, 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0}
+              rf, +-150 ms          2350            72.9    0.4056     0.2569      {0: 0.0, 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0}
+rf, +-150 ms + extra kinds          2829            73.1    0.4065     0.2577    {0: 0.0, 1: -0.05, 2: 0.0, 3: 0.0, 4: 0.0}

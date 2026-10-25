@@ -1,0 +1,27 @@
+decision tree...
+  fold 0 margin 0.4
+  fold 1 margin 0.2
+  fold 2 margin 0.2
+  fold 3 margin 0.15
+  fold 4 margin 0.1
+random forest...
+  fold 0 margin 0.0
+  fold 1 margin 0.05
+  fold 2 margin 0.0
+  fold 3 margin -0.05
+  fold 4 margin 0.05
+{'version': 'Snap v2 input (no end snap)', 'ends_moved': 0, 'labelled_ends_right': '63.2%', 'onset_F1': 0.4034, 'offset_F1': 0.2568, 'margins': '-'}
+{'version': 'Ceiling: always pick a right option (answer key)', 'ends_moved': 333, 'labelled_ends_right': '73.9%', 'onset_F1': 0.4034, 'offset_F1': 0.2989, 'margins': '-'}
+{'version': 'Rule: snap end to nearest next_start', 'ends_moved': 2015, 'labelled_ends_right': '62.6%', 'onset_F1': 0.4034, 'offset_F1': 0.254, 'margins': '-'}
+{'version': 'Rule: snap end to nearest bp_off', 'ends_moved': 2632, 'labelled_ends_right': '63.2%', 'onset_F1': 0.4034, 'offset_F1': 0.2581, 'margins': '-'}
+{'version': 'Rule: snap end to nearest voice_off', 'ends_moved': 2123, 'labelled_ends_right': '63.3%', 'onset_F1': 0.4034, 'offset_F1': 0.2574, 'margins': '-'}
+{'version': 'Decision tree picker', 'ends_moved': 1614, 'labelled_ends_right': '63.6%', 'onset_F1': 0.4034, 'offset_F1': 0.2578, 'margins': {0: 0.4, 1: 0.2, 2: 0.2, 3: 0.15, 4: 0.1}}
+{'version': 'Random forest picker', 'ends_moved': 2676, 'labelled_ends_right': '65.1%', 'onset_F1': 0.4034, 'offset_F1': 0.2643, 'margins': {0: 0.0, 1: 0.05, 2: 0.0, 3: -0.05, 4: 0.05}}
+                                         version  ends_moved labelled_ends_right  onset_F1  offset_F1                                      margins
+                     Snap v2 input (no end snap)           0               63.2%    0.4034     0.2568                                            -
+Ceiling: always pick a right option (answer key)         333               73.9%    0.4034     0.2989                                            -
+            Rule: snap end to nearest next_start        2015               62.6%    0.4034     0.2540                                            -
+                Rule: snap end to nearest bp_off        2632               63.2%    0.4034     0.2581                                            -
+             Rule: snap end to nearest voice_off        2123               63.3%    0.4034     0.2574                                            -
+                            Decision tree picker        1614               63.6%    0.4034     0.2578    {0: 0.4, 1: 0.2, 2: 0.2, 3: 0.15, 4: 0.1}
+                            Random forest picker        2676               65.1%    0.4034     0.2643 {0: 0.0, 1: 0.05, 2: 0.0, 3: -0.05, 4: 0.05}
