@@ -1,6 +1,7 @@
 # Large or rebuildable files: kept on disk, not in git
 bp_activations/
 experiments/*/cache*/
+inference/cache/
 experiments/delete_v2/features_*.csv
 experiments/delete_v2/oof_*.csv
 experiments/end_snap/end_candidates_*.csv
