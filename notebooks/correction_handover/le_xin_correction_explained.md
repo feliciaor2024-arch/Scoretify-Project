@@ -3,6 +3,7 @@
 Basic Pitch listens to a singer and writes down the notes, but it gets a lot wrong. My part was to build the
 correction steps that clean up its notes so they match the real notes (the answer key) more closely.
 This page explains what I built, in what order, what worked, what didn't, and why the score stops well short of 0.8.
+For the full story in the order I did it, see `le_xin_explainer.md`.
 
 **Result in one line:** on the 20 validation songs, onset F1 went from **0.273** (Basic Pitch alone) to **0.456**,
 and offset F1 from **0.160** to **0.321**.
