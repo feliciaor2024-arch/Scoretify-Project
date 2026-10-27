@@ -1,7 +1,7 @@
 # le_xin_work: Le Xin's correction work (GTSinger, IS424 G2)
 
 Start here. For a plain-language explanation of the whole part (what was built, what was and wasn't used, why not 0.8),
-read `notebooks/correction_handover/le_xin_correction_explained.md` (summary) or `le_xin_explainer.md` (step by step). The **final system is `chain_v4/`**; everything in `experiments/` is how each piece of it was built.
+read `notebooks/correction_handover/le_xin_correction_explained.md` (summary) or `le_xin_explainer.md` (step by step). For how each step and model of the final pipeline works, read `pipeline.md`. The **final system is `chain_v4/`**; everything in `experiments/` is how each piece of it was built.
 The notebooks in `notebooks/correction_handover/` (timing, split, snap, combined) are the earlier, step-by-step versions.
 
 ## Folders
