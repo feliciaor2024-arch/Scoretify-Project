@@ -1,0 +1,4 @@
+# Downloadable media are binary; preserve bytes and avoid text diffs.
+*.pdf binary
+*.mid binary
+*.wav binary
