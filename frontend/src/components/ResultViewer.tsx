@@ -10,6 +10,7 @@ import {
   Music2,
 } from "lucide-react";
 import type { TranscriptionResult } from "../lib/demo";
+import { scorePdf } from "../lib/pdf";
 type Mode = "synth" | "mix";
 /** A transcribed score from the back end: MusicXML drawn by OpenSheetMusicDisplay, a cursor that follows playback,
  * and a switch between the transcribed notes alone and the notes mixed with the singer. */
@@ -22,7 +23,8 @@ export function ResultViewer({ result }: { result: TranscriptionResult }) {
     [playing, setPlaying] = useState(false),
     [mode, setMode] = useState<Mode>("synth"),
     [error, setError] = useState(""),
-    [attempt, setAttempt] = useState(0);
+    [attempt, setAttempt] = useState(0),
+    [makingPdf, setMakingPdf] = useState(false);
   const host = useRef<HTMLDivElement>(null),
     osmd = useRef<OpenSheetMusicDisplay | null>(null),
     steps = useRef<number[]>([]),
@@ -136,6 +138,26 @@ export function ResultViewer({ result }: { result: TranscriptionResult }) {
     }
     setTime(0);
     setPlaying(false);
+  };
+  const downloadPdf = async () => {
+    setMakingPdf(true);
+    setError("");
+    try {
+      const xml = await fetch(result.files.musicxml).then((r) => {
+        if (!r.ok) throw Error();
+        return r.text();
+      });
+      const url = URL.createObjectURL(await scorePdf(xml, "Your melody"));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `scoretify-${result.id}.pdf`;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch {
+      setError("The PDF could not be made. Please try again.");
+    } finally {
+      setMakingPdf(false);
+    }
   };
   const switchMode = (next: Mode) => {
     if (next === mode) return;
@@ -306,6 +328,13 @@ export function ResultViewer({ result }: { result: TranscriptionResult }) {
           <span>Downloads</span>
         </div>
         <div>
+          <button
+            disabled={makingPdf || status !== "ready"}
+            onClick={() => void downloadPdf()}
+          >
+            {makingPdf ? "Making PDF…" : "PDF"}
+            <Download size={13} />
+          </button>
           {(
             [
               ["MusicXML", result.files.musicxml, "musicxml"],

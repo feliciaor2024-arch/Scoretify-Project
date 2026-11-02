@@ -699,7 +699,8 @@ h1 em {
 .downloads > div:first-child {
   color: var(--muted);
 }
-.downloads a {
+.downloads a,
+.downloads button {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -710,7 +711,8 @@ h1 em {
   font-size: 12px;
   background: #f8f5ef;
 }
-.downloads a:hover {
+.downloads a:hover,
+.downloads button:hover:not(:disabled) {
   background: #fffdf7;
 }
 .score-footnote {
