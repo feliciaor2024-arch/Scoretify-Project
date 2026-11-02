@@ -1,0 +1,45 @@
+sanity raw rematch: {'raw_rematch_labels': 3696, 'raw_rematch_same_as_v2': 3696}
+export_gated rematch {'labels': 3877, 'new_vs_v2': 367, 'v2_lost': 187, 'both': 3510, 'same_reference_where_both': 3510, 'new_label_start_shift_median_ms': -209.0, 'new_label_abs_start_shift_gt50ms': 0.935, 'v2_label_abs_start_shift_gt50ms': 0.507}
+export_gated union {'labels': 4059, 'new_vs_v2': 362, 'v2_lost': 0, 'both': 3697, 'same_reference_where_both': 3697, 'new_label_start_shift_median_ms': -209.0, 'new_label_abs_start_shift_gt50ms': 0.934, 'v2_label_abs_start_shift_gt50ms': 0.507}
+oof_ungated rematch {'labels': 3898, 'new_vs_v2': 403, 'v2_lost': 202, 'both': 3495, 'same_reference_where_both': 3495, 'new_label_start_shift_median_ms': -208.1, 'new_label_abs_start_shift_gt50ms': 0.945, 'v2_label_abs_start_shift_gt50ms': 0.507}
+oof_ungated union {'labels': 4094, 'new_vs_v2': 397, 'v2_lost': 0, 'both': 3697, 'same_reference_where_both': 3697, 'new_label_start_shift_median_ms': -208.3, 'new_label_abs_start_shift_gt50ms': 0.95, 'v2_label_abs_start_shift_gt50ms': 0.507}
+{'model': 'BP unchanged', 'onset_F1': 0.2628, 'offset_F1': 0.1539, 'onset_mae_ms_v2labelled': 68.8, 'offset_mae_ms_v2labelled': 91.8}
+  [v2] fold 0: 3019 training labels, gate 30/60 ms
+  [v2] fold 1: 2841 training labels, gate 40/80 ms
+  [v2] fold 2: 2870 training labels, gate 30/100 ms
+  [v2] fold 3: 3026 training labels, gate 40/60 ms
+  [v2] fold 4: 3032 training labels, gate 40/80 ms
+{'model': 'v2 labels (old), ungated', 'onset_F1': 0.3524, 'offset_F1': 0.2088, 'onset_mae_ms_v2labelled': 47.6, 'offset_mae_ms_v2labelled': 86.3}
+{'model': 'v2 labels (old), nested gate', 'onset_F1': 0.3541, 'offset_F1': 0.2176, 'onset_mae_ms_v2labelled': 48.6, 'offset_mae_ms_v2labelled': 84.9, 'train_labels_per_fold': '{"0": 3019, "1": 2841, "2": 2870, "3": 3026, "4": 3032}', 'gates_ms': '{"0": [30, 60], "1": [40, 80], "2": [30, 100], "3": [40, 60], "4": [40, 80]}'}
+  [union] fold 0: 3335 training labels, gate 40/140 ms
+  [union] fold 1: 3147 training labels, gate 50/120 ms
+  [union] fold 2: 3172 training labels, gate 30/120 ms
+  [union] fold 3: 3349 training labels, gate 40/80 ms
+  [union] fold 4: 3351 training labels, gate 40/120 ms
+{'model': 'union labels, strict nested, ungated', 'onset_F1': 0.3516, 'offset_F1': 0.1992, 'onset_mae_ms_v2labelled': 48.1, 'offset_mae_ms_v2labelled': 88.9}
+{'model': 'union labels, strict nested, nested gate', 'onset_F1': 0.3538, 'offset_F1': 0.2192, 'onset_mae_ms_v2labelled': 49.0, 'offset_mae_ms_v2labelled': 87.2, 'train_labels_per_fold': '{"0": 3335, "1": 3147, "2": 3172, "3": 3349, "4": 3351}', 'gates_ms': '{"0": [40, 140], "1": [50, 120], "2": [30, 120], "3": [40, 80], "4": [40, 120]}'}
+  [rematch] fold 0: 3166 training labels, gate 40/160 ms
+  [rematch] fold 1: 3000 training labels, gate 40/140 ms
+  [rematch] fold 2: 3011 training labels, gate 30/160 ms
+  [rematch] fold 3: 3202 training labels, gate 40/100 ms
+  [rematch] fold 4: 3198 training labels, gate 50/120 ms
+{'model': 'rematch-only labels, strict nested, ungated', 'onset_F1': 0.3531, 'offset_F1': 0.2, 'onset_mae_ms_v2labelled': 48.1, 'offset_mae_ms_v2labelled': 90.8}
+{'model': 'rematch-only labels, strict nested, nested gate', 'onset_F1': 0.3559, 'offset_F1': 0.2192, 'onset_mae_ms_v2labelled': 48.8, 'offset_mae_ms_v2labelled': 88.9, 'train_labels_per_fold': '{"0": 3166, "1": 3000, "2": 3011, "3": 3202, "4": 3198}', 'gates_ms': '{"0": [40, 160], "1": [40, 140], "2": [30, 160], "3": [40, 100], "4": [50, 120]}'}
+  [fixed] fold 0: 3310 training labels, gate 40/100 ms
+  [fixed] fold 1: 3124 training labels, gate 40/100 ms
+  [fixed] fold 2: 3140 training labels, gate 30/120 ms
+  [fixed] fold 3: 3324 training labels, gate 40/80 ms
+  [fixed] fold 4: 3338 training labels, gate 40/100 ms
+{'model': 'union labels from export (simple, weak leak), ungated', 'onset_F1': 0.3539, 'offset_F1': 0.206, 'onset_mae_ms_v2labelled': 47.5, 'offset_mae_ms_v2labelled': 87.3}
+{'model': 'union labels from export (simple, weak leak), nested gate', 'onset_F1': 0.3552, 'offset_F1': 0.2188, 'onset_mae_ms_v2labelled': 48.3, 'offset_mae_ms_v2labelled': 86.5, 'train_labels_per_fold': '{"0": 3310, "1": 3124, "2": 3140, "3": 3324, "4": 3338}', 'gates_ms': '{"0": [40, 100], "1": [40, 100], "2": [30, 120], "3": [40, 80], "4": [40, 100]}'}
+                                                       model  onset_F1  offset_F1  onset_mae_ms_v2labelled  offset_mae_ms_v2labelled                                    train_labels_per_fold                                                                          gates_ms
+0                                               BP unchanged    0.2628     0.1539                     68.8                      91.8                                                      NaN                                                                               NaN
+1                                   v2 labels (old), ungated    0.3524     0.2088                     47.6                      86.3                                                      NaN                                                                               NaN
+2                               v2 labels (old), nested gate    0.3541     0.2176                     48.6                      84.9  {"0": 3019, "1": 2841, "2": 2870, "3": 3026, "4": 3032}      {"0": [30, 60], "1": [40, 80], "2": [30, 100], "3": [40, 60], "4": [40, 80]}
+3                       union labels, strict nested, ungated    0.3516     0.1992                     48.1                      88.9                                                      NaN                                                                               NaN
+4                   union labels, strict nested, nested gate    0.3538     0.2192                     49.0                      87.2  {"0": 3335, "1": 3147, "2": 3172, "3": 3349, "4": 3351}   {"0": [40, 140], "1": [50, 120], "2": [30, 120], "3": [40, 80], "4": [40, 120]}
+5                rematch-only labels, strict nested, ungated    0.3531     0.2000                     48.1                      90.8                                                      NaN                                                                               NaN
+6            rematch-only labels, strict nested, nested gate    0.3559     0.2192                     48.8                      88.9  {"0": 3166, "1": 3000, "2": 3011, "3": 3202, "4": 3198}  {"0": [40, 160], "1": [40, 140], "2": [30, 160], "3": [40, 100], "4": [50, 120]}
+7      union labels from export (simple, weak leak), ungated    0.3539     0.2060                     47.5                      87.3                                                      NaN                                                                               NaN
+8  union labels from export (simple, weak leak), nested gate    0.3552     0.2188                     48.3                      86.5  {"0": 3310, "1": 3124, "2": 3140, "3": 3324, "4": 3338}   {"0": [40, 100], "1": [40, 100], "2": [30, 120], "3": [40, 80], "4": [40, 100]}
+done in 3129 s

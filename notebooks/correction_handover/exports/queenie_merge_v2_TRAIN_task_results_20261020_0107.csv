@@ -1,0 +1,4 @@
+model,merges_proposed,correct_merges,damaging_merges,merges_on_unlabelled,precision,recall,F1,F05
+Rule baseline,767,125,460,182,0.214,0.758,0.333,0.25
+Logistic regression (nested threshold),415,70,257,88,0.214,0.424,0.285,0.238
+Random forest (nested threshold),606,101,386,119,0.207,0.612,0.31,0.239

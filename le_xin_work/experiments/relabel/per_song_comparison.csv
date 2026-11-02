@@ -1,0 +1,7 @@
+model,metric,mean_gain,songs_better,songs_worse,songs,ci95
+"union, strict",f1,-0.0003,24,27,60,"[-0.0065, 0.0060]"
+"union, strict",offset_f1,0.0016,25,23,60,"[-0.0037, 0.0071]"
+"rematch-only, strict",f1,0.0019,25,28,60,"[-0.0059, 0.0093]"
+"rematch-only, strict",offset_f1,0.0015,30,23,60,"[-0.0054, 0.0082]"
+union from export (simple),f1,0.0011,31,24,60,"[-0.0051, 0.0074]"
+union from export (simple),offset_f1,0.0011,25,24,60,"[-0.0036, 0.0063]"

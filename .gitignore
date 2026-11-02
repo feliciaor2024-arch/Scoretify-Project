@@ -2,3 +2,9 @@
 .venv/
 venv/
 ENV/
+
+# Python bytecode (rebuilt automatically)
+__pycache__/
+
+# Review images made by Shared_Correction_Label_Audit.ipynb (kept on disk)
+basic_pitch_runs/correction_handover/*_review.png

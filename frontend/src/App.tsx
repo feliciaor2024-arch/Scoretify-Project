@@ -7,21 +7,25 @@ import {
   Check,
   LoaderCircle,
 } from "lucide-react";
-import { mockScoreProvider, type ScoreProvider } from "./lib/demo";
+import type { ScoreProvider, ScoreResult } from "./lib/demo";
+import { defaultProvider } from "./lib/api";
 import { AudioInput, type AudioClip } from "./components/AudioInput";
 import { ScoreViewer } from "./components/ScoreViewer";
+import { ResultViewer } from "./components/ResultViewer";
 import "./styles.css";
 export default function App({
-  provider = mockScoreProvider,
+  provider = defaultProvider,
 }: {
   provider?: ScoreProvider;
 }) {
   const [clip, setClip] = useState<AudioClip | null>(null),
     [stage, setStage] = useState(""),
-    [ready, setReady] = useState(false),
+    [result, setResult] = useState<ScoreResult | null>(null),
     [error, setError] = useState(""),
     [resetKey, setResetKey] = useState(0),
     [help, setHelp] = useState(false);
+  const live = !!provider.live,
+    transcription = result?.kind === "transcription" ? result : null;
   const job = useRef<AbortController | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => () => job.current?.abort(), []);
@@ -37,7 +41,7 @@ export default function App({
   const reset = () => {
     cancel();
     setClip(null);
-    setReady(false);
+    setResult(null);
     setError("");
     setResetKey((k) => k + 1);
   };
@@ -45,10 +49,10 @@ export default function App({
     if (!clip || job.current) return;
     const controller = new AbortController();
     job.current = controller;
-    setReady(false);
+    setResult(null);
     setError("");
     try {
-      await provider.generate({
+      const value = await provider.generate({
         input: clip,
         signal: controller.signal,
         onStage: (s) => {
@@ -56,7 +60,7 @@ export default function App({
         },
       });
       if (job.current === controller) {
-        setReady(true);
+        setResult(value);
         setStage("");
       }
     } catch (e) {
@@ -64,7 +68,9 @@ export default function App({
         setError(
           e instanceof Error
             ? e.message
-            : "The demo could not be prepared. Try again.",
+            : live
+              ? "The score could not be generated. Try again."
+              : "The demo could not be prepared. Try again.",
         );
     } finally {
       if (job.current === controller) {
@@ -92,7 +98,7 @@ export default function App({
         </nav>
         <span className="mock-badge">
           <span />
-          Mock demo
+          {live ? "Live model" : "Mock demo"}
         </span>
       </header>
       <main id="studio">
@@ -137,27 +143,49 @@ export default function App({
               disabled={!!stage}
               onChange={(value) => {
                 cancel();
-                setReady(false);
+                setResult(null);
                 setClip(value);
                 setError("");
               }}
             />
-            <div className="fixture-settings">
-              <span>
-                Sample score settings <span className="small-label">FIXED</span>
-              </span>
-              <div>
-                <strong>
-                  ♩ = 120 <small>BPM</small>
-                </strong>
-                <strong>
-                  4/4 <small>METRE</small>
-                </strong>
+            {live ? (
+              <div className="fixture-settings">
+                <span>
+                  Score settings <span className="small-label">AUTO</span>
+                </span>
+                <div>
+                  <strong>
+                    ♩ = {transcription ? transcription.bpm : "auto"}{" "}
+                    <small>BPM</small>
+                  </strong>
+                  <strong>
+                    4/4 <small>METRE</small>
+                  </strong>
+                </div>
+                <p>
+                  The tempo is estimated from your audio. The metre is always
+                  4/4.
+                </p>
               </div>
-              <p>
-                Informational only. Your input does not change this fixture.
-              </p>
-            </div>
+            ) : (
+              <div className="fixture-settings">
+                <span>
+                  Sample score settings{" "}
+                  <span className="small-label">FIXED</span>
+                </span>
+                <div>
+                  <strong>
+                    ♩ = 120 <small>BPM</small>
+                  </strong>
+                  <strong>
+                    4/4 <small>METRE</small>
+                  </strong>
+                </div>
+                <p>
+                  Informational only. Your input does not change this fixture.
+                </p>
+              </div>
+            )}
             <button
               className="primary generate"
               onClick={generate}
@@ -168,21 +196,26 @@ export default function App({
               ) : (
                 <Music2 size={19} />
               )}
-              Generate demo score <ArrowUpRight size={18} />
+              {live ? "Generate score" : "Generate demo score"}{" "}
+              <ArrowUpRight size={18} />
             </button>
             {stage && (
               <div className="generation" role="status">
-                <span className="eyebrow">SIMULATED WORKFLOW</span>
+                <span className="eyebrow">
+                  {live ? "TRANSCRIBING" : "SIMULATED WORKFLOW"}
+                </span>
                 <p>{stage}</p>
                 <button className="text-button" onClick={cancel}>
-                  Cancel preview
+                  {live ? "Cancel" : "Cancel preview"}
                 </button>
               </div>
             )}
-            {ready && (
+            {result && (
               <p className="success" role="status">
                 <Check size={16} />
-                Sample score ready
+                {transcription
+                  ? `Score ready · ${transcription.notes.length} notes`
+                  : "Sample score ready"}
               </p>
             )}
             {error && (
@@ -191,7 +224,9 @@ export default function App({
               </p>
             )}
             <p className="privacy">
-              Stays on this device. No audio is uploaded.
+              {live
+                ? "Audio is sent only to the transcription server you run."
+                : "Stays on this device. No audio is uploaded."}
             </p>
           </aside>
           <section className="score-panel" aria-label="Score workspace">
@@ -201,24 +236,34 @@ export default function App({
                 <h2>Your score</h2>
               </div>
               <span className="preview-label">
-                {ready ? "FIXED SAMPLE RESULT" : "Demo preview"}
+                {transcription
+                  ? "YOUR TRANSCRIPTION"
+                  : result
+                    ? "FIXED SAMPLE RESULT"
+                    : "Demo preview"}
               </span>
             </div>
             <div className="provenance">
               <span className="tiny-dot" />
               <p>
-                This preview uses a fixed sample, not a transcription of your
-                recording.
+                {transcription
+                  ? "Transcribed from your recording by the correction model."
+                  : "This preview uses a fixed sample, not a transcription of your recording."}
               </p>
             </div>
-            <ScoreViewer key={resetKey} />
+            {transcription ? (
+              <ResultViewer key={transcription.id} result={transcription} />
+            ) : (
+              <ScoreViewer key={resetKey} />
+            )}
           </section>
         </div>
         <footer>
           <span>Made for the melodies worth keeping.</span>
           <span>
-            FRONTEND PREVIEW <span className="footer-dot">·</span> NO MODEL
-            CONNECTED
+            {live ? "LIVE DEMO" : "FRONTEND PREVIEW"}{" "}
+            <span className="footer-dot">·</span>{" "}
+            {live ? "MODEL CONNECTED" : "NO MODEL CONNECTED"}
           </span>
         </footer>
       </main>
@@ -236,31 +281,65 @@ export default function App({
           <X />
         </button>
         <p className="eyebrow">A NOTE ABOUT THIS STUDIO</p>
-        <h2 id="help-title">
-          A real workspace.
-          <br />
-          <em>A simulated score.</em>
-        </h2>
-        <ol>
-          <li>
-            <strong>Bring a melody.</strong> Record up to 30 seconds, choose a
-            local audio file (20 MB max), or try our synthetic sample.
-          </li>
-          <li>
-            <strong>Explore the flow.</strong> “Generate demo score” walks
-            through labelled simulated stages. No model runs, no app-level noise
-            suppression is performed, and no audio leaves this device.
-          </li>
-          <li>
-            <strong>Listen & explore.</strong> The fixed Evening melody fixture
-            always plays at 120 BPM in 4/4. Listen with note highlighting, zoom
-            the notation, or download its sample files.
-          </li>
-        </ol>
-        <p className="modal-note">
-          This is not transcription. Lyrics are not included. Microphone access
-          requires localhost or HTTPS and browser permission.
-        </p>
+        {live ? (
+          <>
+            <h2 id="help-title">
+              Your voice.
+              <br />
+              <em>Your score.</em>
+            </h2>
+            <ol>
+              <li>
+                <strong>Bring a melody.</strong> Record up to 30 seconds of solo
+                singing, or choose a local audio file (20 MB max).
+              </li>
+              <li>
+                <strong>Generate.</strong> Basic Pitch finds the notes, five
+                trained correction steps fix their timing, split, remove and
+                snap them, and the result is written as a score. A 10-second
+                clip takes about 6–8 seconds.
+              </li>
+              <li>
+                <strong>Listen & explore.</strong> Play the transcribed notes on
+                their own or mixed with your voice, follow the cursor on the
+                score, and download the MusicXML or MIDI.
+              </li>
+            </ol>
+            <p className="modal-note">
+              Tempo is estimated from your audio and the metre is always 4/4.
+              Lyrics are not transcribed. Microphone access requires localhost
+              or HTTPS and browser permission.
+            </p>
+          </>
+        ) : (
+          <>
+            <h2 id="help-title">
+              A real workspace.
+              <br />
+              <em>A simulated score.</em>
+            </h2>
+            <ol>
+              <li>
+                <strong>Bring a melody.</strong> Record up to 30 seconds, choose
+                a local audio file (20 MB max), or try our synthetic sample.
+              </li>
+              <li>
+                <strong>Explore the flow.</strong> “Generate demo score” walks
+                through labelled simulated stages. No model runs, no app-level
+                noise suppression is performed, and no audio leaves this device.
+              </li>
+              <li>
+                <strong>Listen & explore.</strong> The fixed Evening melody
+                fixture always plays at 120 BPM in 4/4. Listen with note
+                highlighting, zoom the notation, or download its sample files.
+              </li>
+            </ol>
+            <p className="modal-note">
+              This is not transcription. Lyrics are not included. Microphone
+              access requires localhost or HTTPS and browser permission.
+            </p>
+          </>
+        )}
         <button className="primary" onClick={() => setHelp(false)}>
           Back to the studio
         </button>

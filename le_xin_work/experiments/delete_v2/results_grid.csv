@@ -1,0 +1,4 @@
+setting,label,model,features,notes_out,deleted,deleted_truly_false,deleted_unmatched,onset_F1,offset_F1,thresholds
+replace,y_official_pool,GB,49,7063,919,765,883,0.4116,0.2627,0.90/0.85/0.90/0.90/0.90
+more,y_official_kept,GB,64,7067,483,333,448,0.4112,0.262,0.90/0.90/0.90/0.85/0.90
+replace,y_official_pool,RF,50,7109,873,747,833,0.4102,0.262,0.80/0.80/0.75/0.80/0.80

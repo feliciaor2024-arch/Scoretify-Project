@@ -1,0 +1,5 @@
+training OOF onset F1 by threshold: {0.3: 0.2783, 0.4: 0.3295, 0.5: 0.3547, 0.6: 0.3622, 0.7: 0.3595, 0.8: 0.3557, 0.9: 0.3542, 0.95: 0.3541} -> threshold 0.6
+val candidates 11508, cuts 258 in 211 notes, notes 2329 -> 2587
+val input (timing): onset 0.3755 offset 0.2360
+val + split v2:     onset 0.3844 offset 0.2584
+songs better 12, worse 8, same 0 (onset F1)

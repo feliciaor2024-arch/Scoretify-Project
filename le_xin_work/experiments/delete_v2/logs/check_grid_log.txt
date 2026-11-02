@@ -1,0 +1,22 @@
+   setting            label model  features  notes_out  deleted  deleted_truly_false  deleted_unmatched  onset_F1  offset_F1                thresholds
+0  replace  y_official_pool    GB        49       7063      919                  765                883    0.4116     0.2627  0.90/0.85/0.90/0.90/0.90
+1     more  y_official_kept    GB        64       7067      483                  333                448    0.4112     0.2620  0.90/0.90/0.90/0.85/0.90
+2  replace  y_official_pool    RF        50       7109      873                  747                833    0.4102     0.2620  0.80/0.80/0.75/0.80/0.80
+replace y_official_pool GB: songs better 48, worse 10, same 2
+more y_official_kept GB: songs better 50, worse 10, same 0
+replace y_official_pool RF: songs better 47, worse 11, same 2
+f0_on_pitch        0.070
+prev_gap           0.048
+a_s_flux           0.042
+bp_note_mean       0.040
+bp_note_max        0.036
+a_s_rise           0.031
+rec_notes_per_s    0.029
+rel_pos            0.029
+bp_onset_start     0.028
+f0_med_absdiff     0.028
+bp_oct_mean        0.027
+amplitude          0.027
+bp_note_vs_rec     0.026
+f0_std             0.026
+a_db_at_end        0.026

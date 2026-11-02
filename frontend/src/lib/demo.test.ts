@@ -17,7 +17,7 @@ describe("fixed demo provider", () => {
     await vi.runAllTimersAsync();
     const result = await task;
     expect(result.kind).toBe("fixed-sample");
-    expect(result.audioUrl).toBe("/demo/sample.wav");
+    expect(result).toMatchObject({ audioUrl: "/demo/sample.wav" });
     expect(stages).toEqual([
       "Preparing demo",
       "Simulating pitch detection",
