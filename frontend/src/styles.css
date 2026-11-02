@@ -607,6 +607,20 @@ h1 em {
   fill: #b85040;
   filter: drop-shadow(0 0 7px #b8504040);
 }
+.osmd-host {
+  overflow-x: auto;
+  min-height: 113px;
+  padding: 6px 0 5px;
+  color: var(--ink);
+}
+.mode-switch {
+  margin: 0 25px 10px;
+}
+.mode-switch [aria-checked="true"] {
+  background: #fffefa;
+  color: var(--ink);
+  box-shadow: 0 1px 3px #30273e10;
+}
 .paper-bottom {
   border-top: 1px solid #e9e4dc;
   display: flex;

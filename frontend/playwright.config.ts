@@ -19,6 +19,8 @@ export default defineConfig({
     command: "npm run dev -- --port 5181 --strictPort",
     url: "http://127.0.0.1:5181",
     reuseExistingServer: false,
+    // These tests cover the mock flow; they must not need the Python back end.
+    env: { VITE_SCORE_PROVIDER: "mock" },
   },
   outputDir: "test-results",
 });

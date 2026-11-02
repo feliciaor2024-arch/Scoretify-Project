@@ -177,6 +177,9 @@ class Corrector:
         t1, tclues = self.timing(raw, recs)
         t2, cuts = self.split(t1, recs, order)
         t3, dele = self.delete(t2, raw, tclues, recs)
+        if t3.empty:            # every note deleted (e.g. noise, no singing): steps 4-5 have nothing to snap
+            return dict(basic_pitch=raw[NOTE_COLUMNS], timing=t1, split=t2, delete=t3, start_snap=t3, notes=t3,
+                        cuts=cuts, deletions=dele)
         t4a, _ = self.snap_start(t3, recs, self.s['snap_start']['margin_round1'])
         t4, _ = self.snap_start(t4a, recs, self.s['snap_start']['margin_round2'])
         t5, _ = self.snap_end(t4, recs, order)

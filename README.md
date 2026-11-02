@@ -2,7 +2,7 @@
 
 ## Run the Scoretify frontend
 
-The frontend is in `frontend/`. It currently uses **mocked transcription results**; no backend, Python environment, model setup, or API key is required. Recording and upload previews work locally, but every demo generation displays the same labelled sample score—not a transcription of your audio.
+The frontend is in `frontend/`; the back end that runs the transcription model is in `backend/`. For the live demo, start the back end first (setup and run steps: `backend/README.md`), then the frontend below. Without the back end, `Generate score` reports that the server is not reachable; to show the old fixed sample instead, set `VITE_SCORE_PROVIDER=mock` before `npm run dev`.
 
 ### Prerequisites
 
@@ -37,10 +37,10 @@ Run `npm ci` again when the dependency lockfile changes or dependencies are miss
 ### Try the demo
 
 1. Select **Try sample**, or record/upload a clip up to **30 seconds** (uploads up to **20 MB**).
-2. Select **Generate demo score** to see the simulated processing stages.
-3. Play the sample score to see note highlighting; try zoom and the PDF, MusicXML, and MIDI downloads.
+2. Select **Generate score**. The clip is sent to the local back end, which transcribes and corrects the notes (about 3-8 s for a 10 s clip).
+3. Play the result as transcribed notes alone or mixed with your voice, follow the cursor on the score, zoom, and download the MusicXML or MIDI.
 
-Allow microphone access when prompted if you want to record. Recording needs localhost or HTTPS and a supported browser. Audio stays in the browser; no audio is uploaded to a backend. Downloads contain the fixed sample, not a transcription of your recording.
+Allow microphone access when prompted if you want to record. Recording needs localhost or HTTPS and a supported browser. Audio is sent only to the back end you run locally.
 
 ### Checks and production build
 
@@ -52,7 +52,7 @@ npm run test:e2e  # Browser tests using installed Chrome and a simulated microph
 npm run build    # TypeScript check and production files in dist/
 ```
 
-See `frontend/README.md` for the file map, mock-data boundaries, and testing details.
+See `frontend/README.md` for the file map, mock-data boundaries, and testing details, and `backend/README.md` for the API.
 
 ## Project overview
 
