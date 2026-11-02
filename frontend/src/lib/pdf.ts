@@ -1,0 +1,47 @@
+/** Engrave MusicXML on A4 pages with OpenSheetMusicDisplay, off screen, and save the pages as a PDF.
+ * Everything runs in the browser (jsPDF + svg2pdf.js), so the back end needs no MuseScore or LilyPond. */
+export async function scorePdf(xml: string, title: string) {
+  const [{ OpenSheetMusicDisplay }, { jsPDF }] = await Promise.all([
+    import("opensheetmusicdisplay"),
+    import("jspdf"),
+  ]);
+  await import("svg2pdf.js"); // adds pdf.svg()
+  const host = document.createElement("div");
+  host.style.cssText = "position:fixed;left:-10000px;top:0;width:794px"; // A4 width at 96 dpi
+  document.body.append(host);
+  try {
+    const sheet = new OpenSheetMusicDisplay(host, {
+      autoResize: false,
+      backend: "svg",
+      pageFormat: "A4_P",
+      pageBackgroundColor: "#FFFFFF",
+      drawSubtitle: false, // music21 writes the run id there
+      drawComposer: false,
+      drawPartNames: false,
+    });
+    await sheet.load(xml);
+    sheet.Sheet.TitleString = title; // the MusicXML title is the run id
+    sheet.render();
+    const pdf = new jsPDF({ unit: "pt", format: "a4" });
+    const width = pdf.internal.pageSize.getWidth();
+    const pages = [...host.querySelectorAll("svg")];
+    for (const [i, svg] of pages.entries()) {
+      if (i) pdf.addPage();
+      // svg2pdf drops text sized in pt (OSMD uses it for the tempo mark's "= 136"), so give it in px.
+      svg.querySelectorAll("text[font-size$='pt']").forEach((t) => {
+        const size = parseFloat(t.getAttribute("font-size")!);
+        t.setAttribute("font-size", `${(size * 4) / 3}px`);
+      });
+      const box = svg.getBoundingClientRect();
+      await pdf.svg(svg, {
+        x: 0,
+        y: 0,
+        width,
+        height: (width * box.height) / box.width,
+      });
+    }
+    return pdf.output("blob");
+  } finally {
+    host.remove();
+  }
+}

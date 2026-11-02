@@ -1,5 +1,7 @@
 # Data-Mining-Project
 
+**New to the project? Start with [RUN_GUIDE.md](RUN_GUIDE.md)**: step-by-step setup and running the live demo.
+
 ## Run the Scoretify frontend
 
 The frontend is in `frontend/`; the back end that runs the transcription model is in `backend/`. For the live demo, start the back end first (setup and run steps: `backend/README.md`), then the frontend below. Without the back end, `Generate score` reports that the server is not reachable; to show the old fixed sample instead, set `VITE_SCORE_PROVIDER=mock` before `npm run dev`.
@@ -38,7 +40,7 @@ Run `npm ci` again when the dependency lockfile changes or dependencies are miss
 
 1. Select **Try sample**, or record/upload a clip up to **30 seconds** (uploads up to **20 MB**).
 2. Select **Generate score**. The clip is sent to the local back end, which transcribes and corrects the notes (about 3-8 s for a 10 s clip).
-3. Play the result as transcribed notes alone or mixed with your voice, follow the cursor on the score, zoom, and download the MusicXML or MIDI.
+3. Play the result as transcribed notes alone or mixed with your voice, follow the cursor on the score, zoom, and download the score as PDF, MusicXML or MIDI.
 
 Allow microphone access when prompted if you want to record. Recording needs localhost or HTTPS and a supported browser. Audio is sent only to the back end you run locally.
 

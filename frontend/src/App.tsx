@@ -302,7 +302,7 @@ export default function App({
               <li>
                 <strong>Listen & explore.</strong> Play the transcribed notes on
                 their own or mixed with your voice, follow the cursor on the
-                score, and download the MusicXML or MIDI.
+                score, and download it as PDF, MusicXML or MIDI.
               </li>
             </ol>
             <p className="modal-note">
