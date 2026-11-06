@@ -33,15 +33,46 @@ export async function scorePdf(xml: string, title: string) {
         t.setAttribute("font-size", `${(size * 4) / 3}px`);
       });
       const box = svg.getBoundingClientRect();
-      await pdf.svg(svg, {
-        x: 0,
-        y: 0,
-        width,
-        height: (width * box.height) / box.width,
-      });
+      const scale = width / box.width;
+      const label = i === 0 ? titleImage(svg, title) : null;
+      await pdf.svg(svg, { x: 0, y: 0, width, height: box.height * scale });
+      if (label) {
+        const r = label.rect;
+        pdf.addImage(
+          label.png,
+          "PNG",
+          (r.left - box.left) * scale,
+          (r.top - box.top) * scale,
+          r.width * scale,
+          r.height * scale,
+        );
+      }
     }
     return pdf.output("blob");
   } finally {
     host.remove();
   }
+}
+/** jsPDF's built-in fonts only cover Latin-1, so a title such as "说谎" would come out as gibberish. For those
+ * titles, take the title text out of the page and return it drawn by the browser (its own fonts) as an image,
+ * with the place it occupied. Latin-1 titles stay as real PDF text. */
+function titleImage(svg: SVGSVGElement, title: string) {
+  if (/^[\x20-\xff]*$/.test(title)) return null;
+  const text = [...svg.querySelectorAll("text")].find(
+    (t) => t.textContent === title,
+  );
+  if (!text) return null;
+  const rect = text.getBoundingClientRect();
+  const ink = 4; // pixels per screen pixel, for print sharpness
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.ceil(rect.width * ink);
+  canvas.height = Math.ceil(rect.height * ink);
+  const ctx = canvas.getContext("2d")!;
+  ctx.scale(ink, ink);
+  ctx.font = `${text.getAttribute("font-size")} ${text.getAttribute("font-family")}, serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(title, rect.width / 2, rect.height / 2);
+  text.remove();
+  return { png: canvas.toDataURL("image/png"), rect };
 }

@@ -129,12 +129,14 @@ should say **Live model**.
 1. **Upload a clip:** click **Upload**, then **Choose audio file**, and pick this clip from the project's data set
    (11 seconds of singing):
    `data\train\English\EN-Alto-1\Breathy\someday or oneday\Breathy_Group\0000.wav`
-2. Click **Generate score**. After a few seconds you should see **"Score ready · 10 notes"** and the sheet music on
+2. Optionally type a **Song name** (for example *Someday*). It becomes the title on the score and in the
+   downloads, and you can change it later without generating again. Leave it empty for "Your melody".
+3. Click **Generate score**. After a few seconds you should see **"Score ready · 10 notes"** and the sheet music on
    the right.
-3. **Listen:** press play. Use the switch above the play button to hear **Transcribed notes** only, or **Notes + your
+4. **Listen:** press play. Use the switch above the play button to hear **Transcribed notes** only, or **Notes + your
    voice**. The highlighted cursor on the score follows the music.
-4. **Download:** **PDF** (printable score), **MusicXML** (opens in MuseScore and other notation apps) or **MIDI**.
-5. **Record yourself:** click **Record**, then **Start recording**, and allow the microphone when Chrome asks. Sing
+5. **Download:** **PDF** (printable score), **MusicXML** (opens in MuseScore and other notation apps) or **MIDI**.
+6. **Record yourself:** click **Record**, then **Start recording**, and allow the microphone when Chrome asks. Sing
    or hum a simple tune for 5-10 seconds, click **Stop recording**, then **Generate score**.
 
 Limits: clips up to **30 seconds** and **20 MB**, **one voice**, no background music. The tempo is estimated from

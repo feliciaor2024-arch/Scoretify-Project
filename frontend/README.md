@@ -31,7 +31,8 @@ The browser suite launches its **own isolated Chrome profile** and a temporary s
 - `src/components/ScoreViewer.tsx` — genuine supplied SVG, zoom, sample audio playback, JSON-ID note highlighting, scrubber and real sample downloads.
 - `src/lib/audio.ts` — size/type/decode/duration validation.
 - `src/components/ResultViewer.tsx` — a transcribed score: MusicXML drawn by OpenSheetMusicDisplay (loaded on demand), a cursor that follows playback, a switch between the transcribed notes alone and mixed with the voice, and PDF/MusicXML/MIDI downloads.
-- `src/lib/pdf.ts` — engraves the MusicXML on A4 pages off screen and saves them as a PDF in the browser (jsPDF + svg2pdf.js, loaded on demand).
+- `src/lib/pdf.ts` — engraves the MusicXML on A4 pages off screen and saves them as a PDF in the browser (jsPDF + svg2pdf.js, loaded on demand). Titles outside Latin-1 (e.g. Chinese) are drawn as an image, because jsPDF's built-in fonts cannot show them.
+- `src/lib/title.ts` — the optional song name: default title, download file names, and writing the name into MusicXML.
 - `src/lib/demo.ts` — typed `ScoreProvider` seam, result types and the abortable mock adapter.
 - `src/lib/api.ts` — the live provider (`POST /api/transcribe`) and the default-provider choice.
 - `src/lib/wav.ts` — decodes any browser-playable clip and re-encodes it as mono 16-bit WAV for the back end.

@@ -12,6 +12,7 @@ import { defaultProvider } from "./lib/api";
 import { AudioInput, type AudioClip } from "./components/AudioInput";
 import { ScoreViewer } from "./components/ScoreViewer";
 import { ResultViewer } from "./components/ResultViewer";
+import { DEFAULT_TITLE, MAX_TITLE } from "./lib/title";
 import "./styles.css";
 export default function App({
   provider = defaultProvider,
@@ -23,7 +24,8 @@ export default function App({
     [result, setResult] = useState<ScoreResult | null>(null),
     [error, setError] = useState(""),
     [resetKey, setResetKey] = useState(0),
-    [help, setHelp] = useState(false);
+    [help, setHelp] = useState(false),
+    [songName, setSongName] = useState("");
   const live = !!provider.live,
     transcription = result?.kind === "transcription" ? result : null;
   const job = useRef<AbortController | null>(null);
@@ -43,6 +45,7 @@ export default function App({
     setClip(null);
     setResult(null);
     setError("");
+    setSongName("");
     setResetKey((k) => k + 1);
   };
   const generate = async () => {
@@ -148,6 +151,21 @@ export default function App({
                 setError("");
               }}
             />
+            {live && (
+              <label className="song-name">
+                <span>
+                  Song name <span className="small-label">OPTIONAL</span>
+                </span>
+                <input
+                  type="text"
+                  value={songName}
+                  maxLength={MAX_TITLE}
+                  placeholder={DEFAULT_TITLE}
+                  onChange={(e) => setSongName(e.target.value)}
+                />
+                <small>Shown at the top of your score and its downloads.</small>
+              </label>
+            )}
             {live ? (
               <div className="fixture-settings">
                 <span>
@@ -252,7 +270,11 @@ export default function App({
               </p>
             </div>
             {transcription ? (
-              <ResultViewer key={transcription.id} result={transcription} />
+              <ResultViewer
+                key={transcription.id}
+                result={transcription}
+                name={songName}
+              />
             ) : (
               <ScoreViewer key={resetKey} />
             )}
