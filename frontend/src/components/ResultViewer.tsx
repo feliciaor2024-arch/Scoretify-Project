@@ -11,10 +11,21 @@ import {
 } from "lucide-react";
 import type { TranscriptionResult } from "../lib/demo";
 import { scorePdf } from "../lib/pdf";
+import { fileStem, retitle, songTitle } from "../lib/title";
 type Mode = "synth" | "mix";
+/** Download kind (= file extension) -> button label. */
+const DOWNLOADS = { pdf: "PDF", musicxml: "MusicXML", mid: "MIDI" } as const;
+type Kind = keyof typeof DOWNLOADS;
 /** A transcribed score from the back end: MusicXML drawn by OpenSheetMusicDisplay, a cursor that follows playback,
- * and a switch between the transcribed notes alone and the notes mixed with the singer. */
-export function ResultViewer({ result }: { result: TranscriptionResult }) {
+ * and a switch between the transcribed notes alone and the notes mixed with the singer. `name` is the song name
+ * typed in the studio; it can change after the score is made. */
+export function ResultViewer({
+  result,
+  name,
+}: {
+  result: TranscriptionResult;
+  name: string;
+}) {
   const [status, setStatus] = useState<"loading" | "ready" | "error">(
       "loading",
     ),
@@ -24,7 +35,9 @@ export function ResultViewer({ result }: { result: TranscriptionResult }) {
     [mode, setMode] = useState<Mode>("synth"),
     [error, setError] = useState(""),
     [attempt, setAttempt] = useState(0),
-    [makingPdf, setMakingPdf] = useState(false);
+    [making, setMaking] = useState<Kind | "">("");
+  const title = songTitle(name),
+    stem = fileStem(name, result.id);
   const host = useRef<HTMLDivElement>(null),
     osmd = useRef<OpenSheetMusicDisplay | null>(null),
     steps = useRef<number[]>([]),
@@ -139,24 +152,46 @@ export function ResultViewer({ result }: { result: TranscriptionResult }) {
     setTime(0);
     setPlaying(false);
   };
-  const downloadPdf = async () => {
-    setMakingPdf(true);
+  /** Every download is saved from the browser, so the file name (and the PDF/MusicXML title) is the current song
+   * name. A plain link would get the back end's file name instead. */
+  const download = async (kind: Kind) => {
+    setMaking(kind);
     setError("");
     try {
-      const xml = await fetch(result.files.musicxml).then((r) => {
-        if (!r.ok) throw Error();
-        return r.text();
-      });
-      const url = URL.createObjectURL(await scorePdf(xml, "Your melody"));
+      const get = (url: string) =>
+        fetch(url).then((r) => {
+          if (!r.ok) throw Error();
+          return r;
+        });
+      const blob =
+        kind === "mid"
+          ? await (await get(result.files.midi)).blob()
+          : kind === "pdf"
+            ? await scorePdf(
+                await (await get(result.files.musicxml)).text(),
+                title,
+              )
+            : new Blob(
+                [
+                  retitle(
+                    await (await get(result.files.musicxml)).text(),
+                    title,
+                  ),
+                ],
+                { type: "application/vnd.recordare.musicxml+xml" },
+              );
+      const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `scoretify-${result.id}.pdf`;
+      link.download = `${stem}.${kind}`;
       link.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch {
-      setError("The PDF could not be made. Please try again.");
+      setError(
+        `The ${DOWNLOADS[kind]} file could not be made. Please try again.`,
+      );
     } finally {
-      setMakingPdf(false);
+      setMaking("");
     }
   };
   const switchMode = (next: Mode) => {
@@ -201,7 +236,7 @@ export function ResultViewer({ result }: { result: TranscriptionResult }) {
             <span className="paper-ornament" aria-hidden="true">
               ♮
             </span>
-            <h3>Your melody</h3>
+            <h3>{title}</h3>
             <p>Transcribed from your recording</p>
             <div className="score-meta">
               <span>
@@ -328,27 +363,15 @@ export function ResultViewer({ result }: { result: TranscriptionResult }) {
           <span>Downloads</span>
         </div>
         <div>
-          <button
-            disabled={makingPdf || status !== "ready"}
-            onClick={() => void downloadPdf()}
-          >
-            {makingPdf ? "Making PDF…" : "PDF"}
-            <Download size={13} />
-          </button>
-          {(
-            [
-              ["MusicXML", result.files.musicxml, "musicxml"],
-              ["MIDI", result.files.midi, "mid"],
-            ] as const
-          ).map(([label, href, extension]) => (
-            <a
-              key={label}
-              href={href}
-              download={`scoretify-${result.id}.${extension}`}
+          {(Object.keys(DOWNLOADS) as Kind[]).map((kind) => (
+            <button
+              key={kind}
+              disabled={!!making || status !== "ready"}
+              onClick={() => void download(kind)}
             >
-              {label}
+              {making === kind ? `Making ${DOWNLOADS[kind]}…` : DOWNLOADS[kind]}
               <Download size={13} />
-            </a>
+            </button>
           ))}
         </div>
       </div>
