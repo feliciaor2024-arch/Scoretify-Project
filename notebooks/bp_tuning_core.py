@@ -181,7 +181,8 @@ def aggregate(record_metrics):
     for record in record_metrics:
         sid = record['sample_id']
         if sid not in groups:
-            groups[sid] = dict(sample_id=sid, **{key: record.get(key) for key in ('language', 'singer', 'range')},
+            groups[sid] = dict(sample_id=sid, **{key: record.get(key) for key in ('language', 'singer')},
+                               vocal_range=record.get('vocal_range', record.get('range')),
                                **dict.fromkeys(keys, 0), recordings=0)
         song = groups[sid]
         for key in keys:

@@ -106,7 +106,7 @@ For the before/after tables use `corrector.correct(path)` instead: it returns Da
   0.4563 / 0.3213 in the chain v4 tables. Expect the same tiny run-to-run wobble on any song.
 - Full audio-to-sheet run on a val recording with fresh Basic Pitch: the same corrected notes as the chain v4 table.
   Basic Pitch itself gives exactly the same activations and notes as the frozen predictions (3 val recordings checked).
-- All models were trained on the 60 training songs only. Val was used only for checking. The test songs were never opened.
+- The correction models were fitted on the 60 training songs. Validation was used during development, including the earlier Basic Pitch decoder selection; it is not fresh independent evidence. Test remained locked through the BP/initial-handover stage; the later run is recorded below and in `SCIENTIFIC_GUIDE.md` (repository root).
 
 ## Test result (the one test run, 2026-10-27)
 

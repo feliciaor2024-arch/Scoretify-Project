@@ -9,7 +9,7 @@
     "merge_candidates.csv": "e45044171e1fc9bf1c270d53ee747fee6965a511ae76afb9ef05bd6caa2d8b38",
     "merge_targets.csv": "02146636d14ae44f84c1d994e3194f9483334ea06bd8fcb766baf039174609ca",
     "references_train.csv": "4ce0aa6e726eba60143357677cee79667b41096c4eb63d393c4f030cd3d18876",
-    "training_recording_manifest.csv": "7eafa63a7938870a7d43b1478b01e4b2a241601cbfa93971283e84297ad7f085"
+    "training_recording_manifest.csv": "3fdb126bdea72953e80c3350f25e9ced3329517cd93f13198ea5044042030103"
   },
   "prediction_version": {
     "version": "correction_handover_tuning001_onset099",
@@ -19,5 +19,24 @@
     },
     "labels_approved": false,
     "test_enabled": false
+  },
+  "version": "provisional_v1_packaged_paths_r2",
+  "artifact_scope": "Packaged v1 training/validation handover tables; automatic labels, unchanged note identities and targets.",
+  "algorithm_scope": "algorithm_sha256 and exporter_sha256 identify the original v1 label-generation source, not later notebook experiments.",
+  "manifest_provenance": {
+    "source_version": "provisional_v1_source_relative",
+    "source_training_recording_manifest_sha256": "7eafa63a7938870a7d43b1478b01e4b2a241601cbfa93971283e84297ad7f085",
+    "source_path_prefix": "source_files/",
+    "packaged_path_prefix": "data/train/",
+    "path_columns": [
+      "audio_path",
+      "json_path",
+      "musicxml_path",
+      "textgrid_path"
+    ],
+    "scope": "The source-relative manifest identifies the original download layout. The packaged manifest uses selected_files.csv export_path for the same training recordings and files; all non-path values and row order are identical.",
+    "source_manifest_line_endings": "CRLF",
+    "packaged_manifest_line_endings": "LF",
+    "approval_scope": "Prediction and label approval flags describe the initial handover, not the chronology of later test runs."
   }
 }
