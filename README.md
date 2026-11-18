@@ -1,5 +1,7 @@
 # Data-Mining-Project
 
+**Scientific submission:** start with [SCIENTIFIC_GUIDE.md](SCIENTIFIC_GUIDE.md) for the frozen dataset, EDA, Basic Pitch decoder selection, correction handover, reproducibility limits and test chronology.
+
 **New to the project? Start with [RUN_GUIDE.md](RUN_GUIDE.md)**: step-by-step setup and running the live demo.
 
 ## Run the Scoretify frontend

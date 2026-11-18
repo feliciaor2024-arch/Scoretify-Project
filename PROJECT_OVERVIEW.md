@@ -28,7 +28,7 @@ Turn a sung melody into standard, quantised sheet music (MusicXML/MIDI, with tem
 | Cmedia | 200 YouTube pop songs (mostly Chinese) | Dropped |
 | jaCappella | 50 Japanese a cappella songs with stems and scores | Proposed |
 
-**Note for the team:** the handover uses **GTSinger** (100-song sample, split by singer and song), not the datasets above. The proposal is the original plan; the handover is the concrete data we are working on now.
+**Note for the team:** the handover uses **GTSinger** (100-song sample, song-grouped train/validation/test split, with singers shared across splits), not the datasets above. The proposal is the original plan; the handover is the concrete data we are working on now.
 
 ## Tools
 - Basic Pitch (primary), CREPE (comparison)
@@ -56,7 +56,7 @@ Turn a sung melody into standard, quantised sheet music (MusicXML/MIDI, with tem
 The handover (GTSinger correction) sits between steps 1 and 2: it takes Basic Pitch's notes and fixes them before quantisation.
 - Merge fragments (Queenie), remove false notes (Felicia), fix start/end timing (Le Xin), fix pitch (Hann Qian)
 - Output: a corrected note table `note_id, recording_id, start, end, pitch`
-- Status: labels are automatic and not yet group-approved. Timing (Le Xin): random forest on note + audio-only (loudness, pitch) features, trained on the provisional v2 labels (out-of-fold by song). Validation songs: onset F1 0.2726 → 0.3755, offset F1 0.1602 → 0.2360, all 20 songs improved. No TextGrid input. Results must be rerun once reviewed labels exist; test is still locked.
+- Status: labels are automatic and not yet group-approved. Timing (Le Xin): random forest on note + audio-only (loudness, pitch) features, trained on the provisional v2 labels (out-of-fold by song). Validation songs: onset F1 0.2726 → 0.3755, offset F1 0.1602 → 0.2360, all 20 songs improved. No TextGrid input. These are provisional-label development results. At BP tuning and initial handover time, test remained locked; the later pipeline records a completed test run on 2026-10-27. See [SCIENTIFIC_GUIDE.md](SCIENTIFIC_GUIDE.md) for the stage boundary. Do not rerun test for development.
 
 ## Open questions
 - Which dataset is the main evaluation set: GTSinger (current handover) or the proposal's list?

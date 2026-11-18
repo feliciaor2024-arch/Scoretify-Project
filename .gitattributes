@@ -1,0 +1,16 @@
+# Immutable scientific inputs retain their original bytes on every platform.
+/data/** -text
+/selected_100.csv -text
+/selected_recordings.csv -text
+/selected_files.csv -text
+/split_manifest.csv -text
+/hf_source_manifest.json -text
+/package_integrity.json -text
+/basic_pitch_runs/correction_handover/*.csv -text
+/basic_pitch_runs/correction_handover/*.json -text
+/basic_pitch_runs/correction_handover/proposed_v2/*.csv -text
+/basic_pitch_runs/correction_handover/proposed_v2/*.json -text
+/basic_pitch_runs/correction_handover/proposed_v2/*.py text eol=lf
+# Versioned source hashes use LF; notebook output payloads are retained.
+/notebooks/*.py text eol=lf
+/notebooks/correction_handover/*.py text eol=lf

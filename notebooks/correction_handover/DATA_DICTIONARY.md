@@ -50,8 +50,8 @@ The starter loading cells explicitly rename raw targets to helper names: false_n
 
 - `references_train.csv`: all training reference events, including ones with no usable correction label. Columns note_id (reference-local), recording_id, start, end, pitch.
 - `training_recording_manifest.csv`: every training recording, even if no model predictions exist. Use this for full evaluation, not a manifest reconstructed from filtered notes.
-- `recording_manifest.csv`: train/val recording metadata, including source-relative paths and duration. Reference source paths here are not features and are not automatically read by task starters.
-- `no_correction_training_baseline.json` / `no_correction_song_metrics.csv`: scores on all training references and predictions, not only labelled examples.
+- `recording_manifest.csv`: train/val recording metadata, including packaged data paths and duration. Original source-relative paths remain in the root manifests. Reference paths here are not features and are not automatically read by task starters.
+- `no_correction_training_baseline.json` / `no_correction_song_metrics.csv`: original scores on all training references and predictions, not only labelled examples. The original song CSV has blank subgroup metadata. Use `no_correction_song_metrics_metadata_v2.csv` for subgroup reporting: it joins `selected_100.csv` one-to-one on `sample_id`, adds language/singer/folder-derived `vocal_range`, and retains every saved count and score unchanged. Its companion JSON pins inputs and output; no note rescoring is involved.
 - `training_diagnostics.csv`: counts of provisional relationships; counts are not true error prevalence.
 
 ## Review and provenance
@@ -61,7 +61,7 @@ The starter loading cells explicitly rename raw targets to helper names: false_n
 - `review_examples.json` and `*_review.png`: selected training excerpts shown with embedded playable audio in the audit notebook.
 - `group_review_gate.json`: approval remains false.
 - `input_version.json`: fixed prediction hashes and version.
-- `label_version.json`: algorithm/data hashes for this provisional label snapshot, written by final verification.
+- `label_version.json`: packaged v1 artifact hashes (`provisional_v1_packaged_paths_r2`). Generation-source hashes identify the original v1 label algorithm/exporter; `manifest_provenance` separately identifies source-relative and packaged training-manifest scope. Packaged paths resolve through `selected_files.csv`; targets, note IDs and non-path manifest values are unchanged.
 - `proposed_v2/label_version_v2.json`: version, counts, safety-filter settings and hashes for the proposed v2 labels; `approved` is false.
 - `prior_artifact_hashes.json`: original tuning_001 and top-level notebook/helper preservation baseline. This is an audit artifact, not model data.
 
@@ -69,4 +69,4 @@ The starter loading cells explicitly rename raw targets to helper names: false_n
 
 `note_id, recording_id, start, end, pitch` is a COMPLETE replacement event table. Timestamps are seconds; pitch is MIDI. Deleted notes are omitted; merged notes retain one source ID. No reference columns. Keep source-to-output action history separately for audit. Use the original complete recording manifest for scoring so fully deleted/empty recordings still receive a score.
 
-Timing and pitch can both be corrected for the same event. Do not assign overlapping merges or delete an absorbed note twice without an explicit conflict policy. Combined-system orchestration is not implemented because trained component models are not yet available.
+Timing and pitch can both be corrected for the same event. Do not assign overlapping merges or delete an absorbed note twice without an explicit conflict policy. At the initial handover stage, combined-system orchestration was not implemented. Later fitted experiments and the combined chain are saved in the correction notebooks; see `SCIENTIFIC_GUIDE.md` at the repository root. Shared v1 merge tables still contain zero rows; the Queenie notebook builds a separate, in-memory v2 set (1,249 pairs: 779 keep, 165 merge, 305 unresolved). These are different candidate versions, not replacement counts for shared v1.

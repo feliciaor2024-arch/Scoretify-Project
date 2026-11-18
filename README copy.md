@@ -1,4 +1,6 @@
-# Group handover — START HERE
+# Initial correction handover — historical stage snapshot
+
+**Scope:** after Basic Pitch decoder selection and before correction-model fitting. Present-tense instructions below describe that initial stage, not the later experiments now saved in the linked notebooks. Read [SCIENTIFIC_GUIDE.md](SCIENTIFIC_GUIDE.md) for current navigation and test chronology. Notebook filenames were retained as their contents evolved.
 
 ## The issue we are solving
 Basic Pitch has already converted the singing audio into predicted notes, but the notes still contain mistakes. Our job is to build traditional-ML correction components that OUTPUT CORRECTED NOTES: merge fragments, remove genuinely extra notes, fix timing, and fix pitch.
@@ -9,7 +11,7 @@ Basic Pitch has already converted the singing audio into predicted notes, but th
 
 The fixed input is original **tuning_001: onset 0.99, frame 0.30, minimum note length 127.7 ms, Melodia on**. Everyone uses the same predictions and note IDs. Do not resample songs, change splits, or substitute predictions.
 
-## Only seven notebooks matter
+## Seven notebooks at the initial handover stage
 Paths are relative to this folder. Open in Jupyter or VS Code; read saved outputs first.
 
 | Order | Notebook | Purpose |
@@ -24,7 +26,7 @@ Paths are relative to this folder. Open in Jupyter or VS Code; read saved output
 
 The person notebooks load data, inspect proposed targets, calculate a no-change baseline and demonstrate export format. They contain no fitted correction models. Training them is the next development phase AFTER shared label review.
 
-## Current blockers — discuss these before training
+## Initial-stage blockers — before correction fitting
 1. **Automatic labels are proposals, not human ground truth.** Of 7,623 training predictions, 3,893 have provisional labels and 3,730 remain unresolved under v2 (v1: 1,142 and 6,481). The v2 rule adds 2,751 matches automatically and has not been listened to. An unmatched prediction might need a timing/pitch repair rather than deletion. Blank means unknown, NEVER zero. One note can need both timing and pitch correction.
 2. **Queenie has zero merge candidates.** The current rule considers neighbouring same-pitch notes with a gap from -0.02 to 0.12 seconds. Zero candidates under this rule does not prove there are no merge errors. Agree on whether/how to broaden the rule and version the resulting candidates/labels before supervised merge training.
 3. **No combined correction system exists yet.** Evaluate each component before combining; agree how deletion, merging, timing and pitch decisions interact. Missing-note insertion and splitting a long prediction are outside the four initial tasks.
@@ -42,7 +44,7 @@ The person notebooks load data, inspect proposed targets, calculate a no-change 
 ## Folder map — everything else supports those notebooks
 - `data/`: complete frozen 100-song sample, organized into train/val/test. Includes audio and original JSON, MusicXML and TextGrid annotations. No duplicate source download folder or reserves.
 - `GTSinger_100_EDA_and_BasicPitch.ipynb` (root): the Phase A EDA notebook; it sits at the root because it locates the sample by finding `selected_100.csv` in its working folder.
-- `notebooks/`: six notebooks plus required Python helpers. Helpers are dependencies, not extra tasks to read.
+- `notebooks/`: the six initial handover/BP notebooks plus required Python helpers at this stage. The later repository contains nine notebooks here, plus the root EDA notebook. Helpers are dependencies, not extra tasks to read.
 - `basic_pitch_runs/correction_handover/`: shared prediction inputs, training proposals, review queues, folds and baseline outputs. No separate tuning-candidate run folders.
 - `selected_100.csv`, `selected_recordings.csv`, `selected_files.csv`, `split_manifest.csv`: fixed sample/recording/file/split manifests. Do not edit. Use `export_path` / recording paths to locate packaged data; source `local_path` entries are original download provenance and are intentionally not duplicated.
 - `hf_source_manifest.json`, `SAMPLE_FROZEN_DO_NOT_RESAMPLE.txt`, `package_integrity.json`: source provenance, freeze notice and byte-integrity checks.
@@ -142,7 +144,7 @@ These are dataset-specific reference scores, NOT universal targets for every fol
 6. Later, agree on conflict handling and compare **BP + combined corrections**. No component order or combined gain is proven yet.
 7. Report both task and transcription results. A good task score does not guarantee better overall note F1. Separate improvements on originally wrong examples from damage to originally correct examples where useful.
 
-Training songs were already inspected during BP development, so correction-fold results remain development estimates, not completely untouched evidence. Validation was used for BP selection; further use is continued development. The final test remains separately locked. No correction-model improvement is claimed in this handover.
+Training songs were already inspected during BP development, so correction-fold results remain development estimates, not completely untouched evidence. Validation was used for BP selection; further use is continued development. At the initial handover stage, the final test remained separately locked. No correction-model improvement is claimed in this handover.
 
 ## What each person should return
 - An executed notebook with model choices, input features, label version and results.
@@ -154,7 +156,7 @@ Training songs were already inspected during BP development, so correction-fold 
 A corrected CSV REPLACES the original note list: omitted notes count as deleted. Keep unchanged notes too. A merge retains one source ID and logs the absorbed IDs separately. Score all recordings and all reference notes, not only the easy labelled subset.
 
 ## Running vs reading
-Saved outputs can be read without installing dependencies. To run the shared and person notebooks, use Python 3.10 with dependencies from `requirements-lock.txt` in an isolated environment. From this extracted root, for example:
+Saved outputs can be read without installing dependencies. The original shared/person notebook environment used Python 3.10; `requirements-lock.txt` records that environment and declares the later pitch notebook’s XGBoost dependency. Installation of the complete historical environment is not verified for current runtimes. Running later person notebooks fits models; read their saved outputs unless a new experiment is explicitly intended. For read-only input verification, use the standard-library command in `SCIENTIFIC_GUIDE.md`. The historical environment setup, from the extracted root, was:
 
 ```sh
 python -m venv .venv
@@ -168,4 +170,4 @@ The EDA notebook (`GTSinger_100_EDA_and_BasicPitch.ipynb`) is read-only history:
 
 The BP notebook has an explicit accidental-rerun guard. Original experiment code and outputs are retained. Its historical 0.95 comparisons are scientific history, NOT an alternative input package. All standalone 0.95 run folders and the retired experiment are excluded. Removing those comparisons from the original notebook would misrepresent how 0.99 was selected.
 
-Full historical retuning is deliberately NOT a supported one-click workflow in this compact handover: caches, historical output trees, builder/test scripts and duplicate provenance reports are omitted. Request a separately authorized reproduction workspace if required. No models were trained or test results generated during repackaging.
+Full historical retuning is deliberately NOT a supported one-click workflow in this compact handover: caches, historical output trees, builder/test scripts and duplicate provenance reports are omitted. Request a separately authorized reproduction workspace if required. See the scientific guide for the later fitted experiments and recorded test run.

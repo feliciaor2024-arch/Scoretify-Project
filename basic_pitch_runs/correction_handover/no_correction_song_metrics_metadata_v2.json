@@ -1,0 +1,11 @@
+{
+  "version": "no_correction_song_metrics_metadata_v2",
+  "operation": "One-to-one sample_id join of the original saved training song metrics with frozen selected_100.csv language, singer and folder-derived vocal_range. No note scoring or inference; metric/count strings and row order retained.",
+  "rows": 60,
+  "source_sha256": {
+    "selected_100.csv": "cde3c653012ab30444a063b2b823aa5306648ab85891cb623792b4d4ee897843",
+    "basic_pitch_runs/correction_handover/no_correction_song_metrics.csv": "8947de04f0e57bf48cc0ff64a78b59703aacfde033a195cd7b291ed523243e8d"
+  },
+  "artifact_sha256": "64e69dfac73da1b03c83458381b8db58343f87245a3f00e18755ef045c6bad75",
+  "metadata_not_acoustic_pitch_measurement": true
+}
