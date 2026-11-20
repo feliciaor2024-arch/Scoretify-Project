@@ -158,7 +158,7 @@ transcribed.
 |---|---|
 | `py` is not recognised, or `py -3.13` says no such Python | Install Python 3.13 (step 1) with the py launcher, then open a new PowerShell window. |
 | pip: *Could not install packages due to an OSError: No such file or directory* (mentions **Long Path support**) | The project folder's path is too long (see step 2). Delete the `venv` folder, move the project to a shorter path such as `C:\Projects\Data-Mining-Project`, and repeat step 3. Or ask an administrator to [enable long paths](https://pip.pypa.io/warnings/enable-long-paths). |
-| pip: *No matching distribution found for tensorflow* | You installed basic-pitch without `--no-deps`, or used `le_xin_work/inference/requirements.txt`. Run the step 3 commands exactly as shown. |
+| pip: *No matching distribution found for tensorflow* | You installed basic-pitch without `--no-deps`, or used `final_pipeline/inference/requirements.txt`. Run the step 3 commands exactly as shown. |
 | pip warns about tensorflow / resampy conflicts | Expected; ignore it (see step 3). |
 | *ModuleNotFoundError: No module named 'pkg_resources'* | Wrong resampy version. Run `venv\Scripts\python -m pip install resampy==0.4.3`. |
 | Back end: *address already in use* / port 8000 | Another program uses port 8000, possibly an earlier back end that is still running. Close it, or find it with `netstat -ano \| findstr :8000`. The front end expects port 8000. |
@@ -200,7 +200,7 @@ Not tested yet, but the steps should be the same with these changes:
 |---|---|---|
 | `frontend/` | The web page (React + TypeScript + Vite) | `frontend/README.md` |
 | `backend/` | The web server that runs the model (FastAPI) | `backend/README.md` (API, how a request flows) |
-| `le_xin_work/inference/` | The transcription model: Basic Pitch + 5 correction steps + sheet writer | `le_xin_work/inference/README.md` |
-| `le_xin_work/inference/models/` | The 7 trained models | |
+| `final_pipeline/inference/` | The transcription model: Basic Pitch + 5 correction steps + sheet writer | `final_pipeline/inference/README.md` |
+| `final_pipeline/inference/models/` | The 7 trained models | |
 | `data/` | The GTSinger audio clips (train / val / test) | |
 | `venv/`, `backend/runs/` | Created on your computer (Python environment, generated scores). Not in git. | |

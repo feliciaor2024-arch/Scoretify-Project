@@ -1,6 +1,6 @@
 """Scoretify back end: one recording in, a corrected score out.
 
-Wraps the chain v4 pipeline in le_xin_work/inference (imported, not copied, so fixes there apply here).
+Wraps the chain v4 pipeline in final_pipeline/inference (imported, not copied, so fixes there apply here).
 
     POST /api/transcribe        form field 'audio': a WAV clip (the browser converts recordings to WAV)
     GET  /api/runs/{id}/{file}  score.musicxml, score.mid, synth.wav, mix.wav, input.wav
@@ -25,7 +25,7 @@ from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import FileResponse
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT / 'le_xin_work' / 'inference'))
+sys.path.insert(0, str(ROOT / 'final_pipeline' / 'inference'))
 from pipeline import Corrector  # noqa: E402
 import synth  # noqa: E402
 
