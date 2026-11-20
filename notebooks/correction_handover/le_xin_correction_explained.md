@@ -149,7 +149,7 @@ A realistic target with this approach was 0.45 to 0.50. The final system reaches
 | Snap model v1 and v2 | `le_xin_snap_model.ipynb` |
 | First combined chain (timing → split → Felicia's delete → snap) | `combined_correction_system.ipynb` |
 | **Final chain** (all stages, training + validation tables, one README per stage) | `final_pipeline/chain_v4/` |
-| How each new stage was built and tested | `final_pipeline/experiments/` (split_v2, delete_v2, snap_v3, end_snap, relabel) |
+| How each new stage was built and tested | `final_pipeline/experiments/` (split_v2, delete_v2, snap_v3, end_snap; relabel is in `final_pipeline/archive/`) |
 | Folder map and how to rerun | `final_pipeline/README.md` |
 | Saved corrected note tables from the notebooks | `exports/le_xin_*` and `exports/combined_final_*` |
 

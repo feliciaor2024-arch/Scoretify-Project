@@ -13,7 +13,7 @@ Leakage rules kept here:
   when its model is trained. Gates are chosen on the 4 other folds only (Step 4b recipe).
 Train songs only. No val, no test, no TextGrid.
 
-Run from anywhere:  python final_pipeline/experiments/relabel_not_used/relabel.py
+Run from anywhere:  python final_pipeline/archive/relabel_not_used/relabel.py
 """
 from pathlib import Path
 import sys, json, time

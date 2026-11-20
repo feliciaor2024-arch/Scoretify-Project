@@ -56,9 +56,9 @@ All 20 test songs improve. Every model and threshold was chosen on training song
 | `inference/` | **The deployable pipeline.** `pipeline.py`, the 7 saved models in `models/`, `features.py`, test-run scripts. Has its own README (how to call it from code, the sheet step, how the results were checked). |
 | `chain_v4/` | One complete note table after every step, for training songs (out-of-fold) and the 20 val songs, an action history per step, a README per step and `val_score.py`. |
 | `test_run/` | The one test run: note tables per step, scores, and the sheets (`sheets/`, with `which_song.csv` to tell the files apart). |
-| `experiments/` | How each step was built and compared: `split_v2/`, `delete_v2/`, `start_snap_v3/`, `end_snap/` (each has a README or RESULTS.md). `relabel_not_used/` is a side experiment that gave no gain. |
+| `experiments/` | How each step was built and compared: `split_v2/`, `delete_v2/`, `start_snap_v3/`, `end_snap/` (each has a README or RESULTS.md). |
 | `tools/` | Helpers: `shim.py` (stands in for librosa and mir_eval if they will not install), `snap_bp_clues.py`, `bp_onset_features.py`. |
-| `archive/` | Not in the report, kept for the record: `early/` (first exploratory scripts). |
+| `archive/` | Not in the report, kept for the record: `early/` (first exploratory scripts) and `relabel_not_used/` (rebuilding training labels after timing: about 10% more labels, no gain). |
 | `bp_activations/` | Basic Pitch's saved outputs per recording (about 850 MB). Not in git; rebuild with `tools/snap_bp_clues.py` if missing. |
 
 `sheets_val/` (160 val sheets) is inside `chain_v4/`.
