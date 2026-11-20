@@ -58,25 +58,6 @@ npm run build    # TypeScript check and production files in dist/
 
 See `frontend/README.md` for the file map, mock-data boundaries, and testing details, and `backend/README.md` for the API.
 
-## Correction pipeline (v2, the actual run)
-
-Basic Pitch (tuned) writes down the notes, then 5 correction steps (7 trained models) fix them, then a sheet is made:
-timing → split → delete → start snap → end snap → sheet. This is `final_pipeline/`, it is what the demo runs, and it
-raised test onset F1 from 0.240 to 0.415 (offset 0.134 to 0.281; all 20 test songs improve).
-
-The 4 first (v1) models (timing, merge, pitch, delete) are in `notebooks/correction_handover/`. We kept timing
-(improved), replaced delete, added split, start snap and end snap, and removed merge and pitch (no gain). The
-step-by-step table is in `final_pipeline/README.md`.
-
-Run it on one recording (Python 3.13, `final_pipeline/inference/requirements.txt`):
-
-```bash
-python final_pipeline/inference/pipeline.py song.wav --out results
-```
-
-This writes the corrected notes (CSV), a MIDI file and a MusicXML score. Re-check the reported val numbers with
-`python final_pipeline/chain_v4/val_score.py`. More: `final_pipeline/README.md`, `final_pipeline/inference/README.md`.
-
 ## Project overview
 
 MusicCare: Singing-to-Sheet AI System: An AI-driven system is designed to convert vocal performances into structured music sheets. It leverages data mining, machine learning (ML), deep learning (DL), and large language models (LLMs) to transcribe human singing into standard musical notation, assisting musicians, composers, and hobbyists in capturing their melodies easily.
