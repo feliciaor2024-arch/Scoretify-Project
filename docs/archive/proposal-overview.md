@@ -52,7 +52,7 @@ Turn a sung melody into standard, quantised sheet music (MusicXML/MIDI, with tem
 | 11 | User testing and human-singing validation |
 | 12 | Final presentation |
 | 13 | (no task listed) |
-| 14 | Final evaluation, report, code cleanup. 
+| 14 | Final evaluation, report, code cleanup.
 
 ## Where the correction work fits
 The handover (GTSinger correction) sits between steps 1 and 2: it takes Basic Pitch's notes and fixes them before quantisation.
