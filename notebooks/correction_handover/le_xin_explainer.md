@@ -180,4 +180,4 @@ the way, so the system works on songs it has never seen.
 
 **Where the work is:** timing in `le_xin_timing_starter.ipynb`, split v1 in `le_xin_split_model.ipynb`,
 snap v1/v2 in `le_xin_snap_model.ipynb`, first full system in `combined_correction_system.ipynb`,
-final system in `le_xin_work/chain_v4/`, and how each new step was built in `le_xin_work/experiments/`.
+final system in `final_pipeline/chain_v4/`, and how each new step was built in `final_pipeline/experiments/`.

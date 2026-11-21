@@ -1,4 +1,4 @@
-# Python 3.13. The model packages are le_xin_work/inference/requirements.txt without basic-pitch, plus the
+# Python 3.13. The model packages are final_pipeline/inference/requirements.txt without basic-pitch, plus the
 # packages basic-pitch needs at run time. basic-pitch itself goes in separately with --no-deps (see README.md):
 # it asks for TensorFlow, which has no Python 3.13 build, but the pipeline only uses its ONNX model.
 onnxruntime==1.31.0

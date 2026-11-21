@@ -1,7 +1,7 @@
 # Scoretify back end
 
 A small FastAPI server that connects the frontend (`frontend/`) to the chain v4 correction pipeline
-(`le_xin_work/inference/`). It imports `pipeline.py` directly, so fixes there apply here.
+(`final_pipeline/inference/`). It imports `pipeline.py` directly, so fixes there apply here.
 
 ```
 browser                                   back end (port 8000)

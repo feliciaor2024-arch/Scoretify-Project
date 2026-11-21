@@ -44,7 +44,7 @@ export function ResultViewer({
     step = useRef(0),
     audio = useRef<HTMLAudioElement>(null),
     resume = useRef<{ time: number; play: boolean } | null>(null);
-  // The sheet's beat 0 is at 0 s of the recording (le_xin_work/inference/pipeline.py, sheet_notes).
+  // The sheet's beat 0 is at 0 s of the recording (final_pipeline/inference/pipeline.py, sheet_notes).
   const secondsPerWhole = (4 * 60) / result.bpm;
   useEffect(() => {
     const element = audio.current;
