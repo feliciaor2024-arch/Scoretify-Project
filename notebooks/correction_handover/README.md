@@ -22,7 +22,7 @@ Literal project paths and shell commands below are relative to the repository ro
 | 2: Queenie | [queenie_merge_starter.ipynb](queenie_merge_starter.ipynb) | Future merge/keep model. Currently blocked by zero candidate pairs. |
 | 2: Felicia | [felicia_false_starter.ipynb](felicia_false_starter.ipynb) | Future extra-note deletion model; retain notes that can be repaired. |
 | 2: Le Xin | [le_xin_timing_starter.ipynb](le_xin_timing_starter.ipynb) | Future model correcting note start/end times. |
-| 2: Hann Qian | [hann_qian_pitch_starter.ipynb](hann_qian_pitch_starter.ipynb) | Future model correcting MIDI pitch. |
+| 2: Hann Qian | [hann_qian_pitch_starter.ipynb](hann_qian_pitch_starter.ipynb) | Pitch v1 (XGBoost, up/keep/down one semitone). Left out of the final pipeline: no gain. Scripts, results and how to run: [hann_qian_pitch_model/README.md](hann_qian_pitch_model/README.md). Its pyin tracks (`f0_tracks.npz`) are still used by the final pipeline. |
 
 The person notebooks load data, inspect proposed targets, calculate a no-change baseline and demonstrate export format. They contain no fitted correction models. Training them is the next development phase AFTER shared label review.
 
