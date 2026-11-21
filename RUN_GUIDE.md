@@ -8,7 +8,7 @@ the first time, mostly downloads.
  Browser (frontend/)                            Your computer (backend/)
  ┌─────────────────────────────┐   audio clip   ┌──────────────────────────────────────┐
  │ record or upload a clip     │ ─────────────► │ Basic Pitch finds the notes          │
- │ see the score, play it,     │                │ 5 correction steps fix the notes        │
+ │ see the score, play it,     │                │ 5 correction steps fix the notes     │
  │ download PDF/MusicXML/MIDI  │ ◄───────────── │ the result is written as sheet music │
  └─────────────────────────────┘  score + audio └──────────────────────────────────────┘
    http://127.0.0.1:5173                           http://127.0.0.1:8000
@@ -181,10 +181,18 @@ From the `frontend` folder (these do not need the back end):
 npm test            # unit and component tests
 npm run build       # type check and production build
 npm run test:e2e    # browser tests in Chrome, with a simulated microphone
+npm run format      # tidy the code with Prettier
 ```
 
+- The browser tests start their own Chrome profile and a temporary server on port 5181, so they do not touch
+  your own Chrome or a running `npm run dev`. If Chrome is not installed, install it or change `channel` in
+  `frontend/playwright.config.ts`.
+- Both test suites use the **mock** (see below), so they never need the back end. They check the app's behaviour,
+  not transcription quality or a real microphone.
+
 To show the old fixed sample score without the back end (for example on a laptop without Python), start the front
-end with `$env:VITE_SCORE_PROVIDER="mock"; npm run dev`.
+end with `$env:VITE_SCORE_PROVIDER="mock"; npm run dev`. In this mock mode, **Generate demo score** always shows the
+same built-in "Evening melody" sample, whatever you record or upload, and the badge says **Mock demo**.
 
 ## macOS and Linux
 
@@ -198,9 +206,29 @@ Not tested yet, but the steps should be the same with these changes:
 
 | Folder / file | What it is | More detail |
 |---|---|---|
-| `frontend/` | The web page (React + TypeScript + Vite) | `frontend/README.md` |
+| `frontend/` | The web page (React + TypeScript + Vite) | [Front-end code](#front-end-code) below |
 | `backend/` | The web server that runs the model (FastAPI) | `backend/README.md` (API, how a request flows) |
 | `final_pipeline/inference/` | The transcription model: Basic Pitch + 5 correction steps + sheet writer | `final_pipeline/inference/README.md` |
 | `final_pipeline/inference/models/` | The 7 trained models | |
 | `data/` | The GTSinger audio clips (train / val / test) | |
 | `venv/`, `backend/runs/` | Created on your computer (Python environment, generated scores). Not in git. | |
+
+### Front-end code
+
+All in `frontend/src/`:
+
+| File | What it does |
+|---|---|
+| `App.tsx` | The page: input panel, song name, Generate button, help dialog, live or mock mode |
+| `components/AudioInput.tsx` | Recording (with the level meter), file upload and drag-and-drop, the sample clip |
+| `components/ResultViewer.tsx` | A transcribed score: drawing, playback cursor, the playback switch, zoom, downloads |
+| `components/ScoreViewer.tsx` | The fixed sample score shown before anything is generated |
+| `lib/api.ts` | Sends the clip to the back end (`POST /api/transcribe`) and picks live or mock mode |
+| `lib/wav.ts` | Converts any browser-playable clip to WAV before upload |
+| `lib/pdf.ts` | Makes the PDF in the browser (titles in non-Latin scripts, such as Chinese, are drawn as an image) |
+| `lib/title.ts` | The song name: default title, download file names, title inside the MusicXML |
+| `lib/audio.ts`, `lib/demo.ts` | Upload checks (type, size, length); the mock provider and result types |
+| `*.test.ts(x)`, `../e2e/` | Unit tests (Vitest) and browser tests (Playwright) |
+
+`frontend/public/demo/` holds the built-in sample (audio, score and downloads). `npm run dev` passes `/api`
+requests to the back end on port 8000; `VITE_API_URL` can point elsewhere.
