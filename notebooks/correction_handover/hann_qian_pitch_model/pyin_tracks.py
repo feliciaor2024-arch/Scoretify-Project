@@ -2,7 +2,7 @@
 
 Saves f0_tracks.npz next to this script: for each recording_id, '<id>_t' (frame times, s)
 and '<id>_f0' (Hz, NaN where unvoiced). Features are then built from the cache by
-pyin_middle_features.py, so trying different settings does not rerun pyin.
+eval_pitch_middle.py, so trying different settings does not rerun pyin.
 Usage: python pyin_tracks.py <GTSinger_100_unique_sample>
 """
 import sys

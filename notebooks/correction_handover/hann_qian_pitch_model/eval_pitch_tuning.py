@@ -3,7 +3,7 @@
 Song-grouped 5-fold CV on train; confidence cutoff chosen by inner CV on the
 training folds only. Trained on v2 labels; per-note scores on held-out
 v2-labelled held-out notes (same rows for every setup); end-to-end via correction_utils.
-Usage: python eval_pitch_pyin.py <GTSinger_100_unique_sample> <scratchpad>
+Usage: python eval_pitch_tuning.py <GTSinger_100_unique_sample> <scratchpad>
 """
 import sys
 from pathlib import Path
