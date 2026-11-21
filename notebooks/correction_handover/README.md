@@ -1,28 +1,28 @@
 # Initial correction handover — historical stage snapshot
 
-**Scope:** after Basic Pitch decoder selection and before correction-model fitting. Present-tense instructions below describe that initial stage, not the later experiments now saved in the linked notebooks. Read [SCIENTIFIC_GUIDE.md](SCIENTIFIC_GUIDE.md) for current navigation and test chronology. Notebook filenames were retained as their contents evolved.
+**Scope:** after Basic Pitch decoder selection and before correction-model fitting. Present-tense instructions below describe that initial stage, not the later experiments now saved in the linked notebooks. Read [SCIENTIFIC_GUIDE.md](../../SCIENTIFIC_GUIDE.md) for current navigation and test chronology. Notebook filenames were retained as their contents evolved.
 
 ## The issue we are solving
 Basic Pitch has already converted the singing audio into predicted notes, but the notes still contain mistakes. Our job is to build traditional-ML correction components that OUTPUT CORRECTED NOTES: merge fragments, remove genuinely extra notes, fix timing, and fix pitch.
 
 **Basic Pitch is finished for this handover. Correction models are NOT trained yet. The shared training labels are NOT approved yet.** Do not mistake the starter notebooks or their unchanged-note exports for finished models.
 
-**Label version in use:** the Felicia, Le Xin and Hann Qian starters now load the **proposed v2 labels** (`basic_pitch_runs/correction_handover/proposed_v2/train_targets_v2.csv`, mutual-best overlap rule). v2 is automatic, NOT manually verified and NOT approved. The original v1 `train_targets.csv` is unchanged. See `basic_pitch_runs/correction_handover/proposed_v2/README_v2.md`. Counts below are v2 with v1 in brackets.
+**Label version in use:** the Felicia, Le Xin and Hann Qian starters now load the **proposed v2 labels** (`basic_pitch_runs/correction_handover/proposed_v2/train_targets_v2.csv`, mutual-best overlap rule). v2 is automatic, NOT manually verified and NOT approved. The original v1 `train_targets.csv` is unchanged. See [proposed v2 label notes](../../basic_pitch_runs/correction_handover/proposed_v2/README_v2.md). Counts below are v2 with v1 in brackets.
 
 The fixed input is original **tuning_001: onset 0.99, frame 0.30, minimum note length 127.7 ms, Melodia on**. Everyone uses the same predictions and note IDs. Do not resample songs, change splits, or substitute predictions.
 
 ## Seven notebooks at the initial handover stage
-Paths are relative to this folder. Open in Jupyter or VS Code; read saved outputs first.
+Literal project paths and shell commands below are relative to the repository root, unless a table explicitly names files within the frozen handover. Clickable links resolve from this document. Open in Jupyter or VS Code; read saved outputs first.
 
 | Order | Notebook | Purpose |
 |---|---|---|
-| Background (first) | `GTSinger_100_EDA_and_BasicPitch.ipynb` | Original executed Phase A: frozen-sample verification (100 songs, 60/20/20 split, 858 recordings, 3,432 files, 2.51 h audio, 9 languages, 20 singers, 4 vocal ranges), descriptive EDA tables/charts, and Basic Pitch input preparation. No BP inference. Do not rerun (see below). |
-| Background | `notebooks/GTSinger_100_BasicPitch_Tuning.ipynb` | Original executed BP experiment: what was tried and why 0.99 was selected. Do not rerun. |
-| 1: everyone | `notebooks/correction_handover/Shared_Correction_Label_Audit.ipynb` | Inspect automatic label proposals, listen to examples, compare predicted/reference notes, and agree on shared labels. |
-| 2: Queenie | `notebooks/correction_handover/queenie_merge_starter.ipynb` | Future merge/keep model. Currently blocked by zero candidate pairs. |
-| 2: Felicia | `notebooks/correction_handover/felicia_false_starter.ipynb` | Future extra-note deletion model; retain notes that can be repaired. |
-| 2: Le Xin | `notebooks/correction_handover/le_xin_timing_starter.ipynb` | Future model correcting note start/end times. |
-| 2: Hann Qian | `notebooks/correction_handover/hann_qian_pitch_starter.ipynb` | Future model correcting MIDI pitch. |
+| Background (first) | [EDA notebook](../../eda/GTSinger_100_EDA_and_BasicPitch.ipynb) | Original executed Phase A: frozen-sample verification (100 songs, 60/20/20 split, 858 recordings, 3,432 files, 2.51 h audio, 9 languages, 20 singers, 4 vocal ranges), descriptive EDA tables/charts, and Basic Pitch input preparation. No BP inference. Do not rerun (see below). |
+| Background | [BP tuning notebook](../GTSinger_100_BasicPitch_Tuning.ipynb) | Original executed BP experiment: what was tried and why 0.99 was selected. Do not rerun. |
+| 1: everyone | [Shared_Correction_Label_Audit.ipynb](Shared_Correction_Label_Audit.ipynb) | Inspect automatic label proposals, listen to examples, compare predicted/reference notes, and agree on shared labels. |
+| 2: Queenie | [queenie_merge_starter.ipynb](queenie_merge_starter.ipynb) | Future merge/keep model. Currently blocked by zero candidate pairs. |
+| 2: Felicia | [felicia_false_starter.ipynb](felicia_false_starter.ipynb) | Future extra-note deletion model; retain notes that can be repaired. |
+| 2: Le Xin | [le_xin_timing_starter.ipynb](le_xin_timing_starter.ipynb) | Future model correcting note start/end times. |
+| 2: Hann Qian | [hann_qian_pitch_starter.ipynb](hann_qian_pitch_starter.ipynb) | Future model correcting MIDI pitch. |
 
 The person notebooks load data, inspect proposed targets, calculate a no-change baseline and demonstrate export format. They contain no fitted correction models. Training them is the next development phase AFTER shared label review.
 
@@ -43,8 +43,8 @@ The person notebooks load data, inspect proposed targets, calculate a no-change 
 
 ## Folder map — everything else supports those notebooks
 - `data/`: complete frozen 100-song sample, organized into train/val/test. Includes audio and original JSON, MusicXML and TextGrid annotations. No duplicate source download folder or reserves.
-- `GTSinger_100_EDA_and_BasicPitch.ipynb` (root): the Phase A EDA notebook; it sits at the root because it locates the sample by finding `selected_100.csv` in its working folder.
-- `notebooks/`: the six initial handover/BP notebooks plus required Python helpers at this stage. The later repository contains nine notebooks here, plus the root EDA notebook. Helpers are dependencies, not extra tasks to read.
+- [eda/GTSinger_100_EDA_and_BasicPitch.ipynb](../../eda/GTSinger_100_EDA_and_BasicPitch.ipynb): the Phase A EDA notebook; its discovery checks the working folder and its parent for `selected_100.csv`.
+- `notebooks/`: the six initial handover/BP notebooks plus required Python helpers at this stage. The later repository contains nine notebooks under `notebooks/`, plus the EDA notebook under `eda/`. Helpers are dependencies, not extra tasks to read.
 - `basic_pitch_runs/correction_handover/`: shared prediction inputs, training proposals, review queues, folds and baseline outputs. No separate tuning-candidate run folders.
 - `selected_100.csv`, `selected_recordings.csv`, `selected_files.csv`, `split_manifest.csv`: fixed sample/recording/file/split manifests. Do not edit. Use `export_path` / recording paths to locate packaged data; source `local_path` entries are original download provenance and are intentionally not duplicated.
 - `hf_source_manifest.json`, `SAMPLE_FROZEN_DO_NOT_RESAMPLE.txt`, `package_integrity.json`: source provenance, freeze notice and byte-integrity checks.
@@ -64,7 +64,7 @@ The person notebooks load data, inspect proposed targets, calculate a no-change 
 | `folds.csv` | Fixed training folds: excerpts of the same song stay together. |
 | `input_version.json`, `label_version.json`, `baseline_config.json` | Identify predictions, original provisional-label snapshot and final BP settings. Human-reviewed labels need their own version. `proposed_v2/label_version_v2.json` identifies the v2 proposal. |
 
-See `notebooks/correction_handover/DATA_DICTIONARY.md` for detailed columns. Some historic audit-only artifacts named there are intentionally omitted from this minimal package; they are not required to use the notebooks.
+See [DATA_DICTIONARY.md](DATA_DICTIONARY.md) for detailed columns. Some historic audit-only artifacts named there are intentionally omitted from this minimal package; they are not required to use the notebooks.
 
 ## Rules, current example counts and evaluation metrics
 
@@ -156,7 +156,7 @@ Training songs were already inspected during BP development, so correction-fold 
 A corrected CSV REPLACES the original note list: omitted notes count as deleted. Keep unchanged notes too. A merge retains one source ID and logs the absorbed IDs separately. Score all recordings and all reference notes, not only the easy labelled subset.
 
 ## Running vs reading
-Saved outputs can be read without installing dependencies. The original shared/person notebook environment used Python 3.10; `requirements-lock.txt` records that environment and declares the later pitch notebook’s XGBoost dependency. Installation of the complete historical environment is not verified for current runtimes. Running later person notebooks fits models; read their saved outputs unless a new experiment is explicitly intended. For read-only input verification, use the standard-library command in `SCIENTIFIC_GUIDE.md`. The historical environment setup, from the extracted root, was:
+Saved outputs can be read without installing dependencies. The original shared/person notebook environment used Python 3.10; `requirements-lock.txt` records that environment and declares the later pitch notebook’s XGBoost dependency. Installation of the complete historical environment is not verified for current runtimes. Running later person notebooks fits models; read their saved outputs unless a new experiment is explicitly intended. For read-only input verification, use the standard-library command in `SCIENTIFIC_GUIDE.md`. The historical environment setup, from the repository root (not this README’s folder), was:
 
 ```sh
 python -m venv .venv
@@ -166,7 +166,7 @@ python -m venv .venv
 
 Choose that environment as the notebook kernel in your notebook editor. Run notebooks from their own folder or this extracted root. This package contains the dataset needed for shared review; no Basic Pitch inference is needed to use the supplied predictions. Selected audio is also embedded in the saved shared notebook.
 
-The EDA notebook (`GTSinger_100_EDA_and_BasicPitch.ipynb`) is read-only history: read its saved outputs. It predates the BP experiment, so its statements that Basic Pitch is not installed, its Python 3.14 environment and its three prepared run configs (onset 0.5/0.6/0.4) are superseded by the BP notebook and the fixed tuning_001 input. Do not rerun it in this package: it needs `validation_report.json` and the original source `local_path` copies, which are intentionally omitted, and it would write `eda_outputs/`, `reports/`, `basic_pitch_runs/run_00*` folders and `notebooks/basic_pitch_train_val.py`. Its `RUN_BASIC_PITCH` and `RUN_FINAL_TEST` flags stay False; test data appears only in integrity checks and descriptive counts.
+The EDA notebook ([EDA notebook](../../eda/GTSinger_100_EDA_and_BasicPitch.ipynb)) is read-only history: read its saved outputs. It predates the BP experiment, so its statements that Basic Pitch is not installed, its Python 3.14 environment and its three prepared run configs (onset 0.5/0.6/0.4) are superseded by the BP notebook and the fixed tuning_001 input. Do not rerun it in this package: it needs `validation_report.json` and the original source `local_path` copies, which are intentionally omitted, and it would write `eda_outputs/`, `reports/`, `basic_pitch_runs/run_00*` folders and `notebooks/basic_pitch_train_val.py`. Its `RUN_BASIC_PITCH` and `RUN_FINAL_TEST` flags stay False; test data appears only in integrity checks and descriptive counts.
 
 The BP notebook has an explicit accidental-rerun guard. Original experiment code and outputs are retained. Its historical 0.95 comparisons are scientific history, NOT an alternative input package. All standalone 0.95 run folders and the retired experiment are excluded. Removing those comparisons from the original notebook would misrepresent how 0.99 was selected.
 

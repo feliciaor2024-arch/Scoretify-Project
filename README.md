@@ -1,63 +1,57 @@
-# Data-Mining-Project
+# Scoretify — singing to sheet music
 
-**Scientific submission:** start with [SCIENTIFIC_GUIDE.md](SCIENTIFIC_GUIDE.md) for the frozen dataset, EDA, Basic Pitch decoder selection, correction handover, reproducibility limits and test chronology.
+Scoretify turns a solo singing recording into sheet music. It uses Basic Pitch to predict notes, applies five correction steps, and turns the corrected notes into a score. Users can view and play the result, then download PDF, MusicXML or MIDI files.
 
-**New to the project? Start with [RUN_GUIDE.md](RUN_GUIDE.md)**: step-by-step setup and running the live demo.
+## Start here
 
-## Run the Scoretify frontend
+- **Run the application:** follow the [Run Guide](RUN_GUIDE.md) for requirements, installation, startup and troubleshooting.
+- **Review the research:** follow the [Scientific Guide](SCIENTIFIC_GUIDE.md) for the dataset, experiments, saved results and limits on reproducing the work.
 
-The frontend is in `frontend/`; the back end that runs the transcription model is in `backend/`. For the live demo, start the back end first (setup and run steps: `backend/README.md`), then the frontend below. Without the back end, `Generate score` reports that the server is not reachable; to show the old fixed sample instead, set `VITE_SCORE_PROVIDER=mock` before `npm run dev`.
+## How the project developed
 
-### Prerequisites
+1. **Dataset sampling and EDA:** select and freeze the songs, check the files, and explore the data. EDA means exploratory data analysis.
+2. **Basic Pitch tuning:** compare settings that turn the pretrained model's signals into notes. The neural network itself was not retrained.
+3. **Correction-model handover:** prepare the predicted notes, initial input features and reference targets for the correction experiments.
+4. **Correction experiments:** test ways to fix errors in the predicted notes.
+5. **Final pipeline:** combine five correction steps: timing, splitting, deletion, start adjustment and end adjustment.
+6. **Web application:** connect the final pipeline to recording, upload, score display and downloads.
 
-- Node.js 22.12+ and npm (tested with Node.js 26.8.1).
-- Google Chrome is recommended for this project's microphone demo and is required by the current browser-test configuration.
+This is the development sequence. The app does not repeat sampling, tuning or model training when a user uploads audio.
 
-### First-time setup
+## Where to find the work
 
-Open a terminal in the cloned `Data-Mining-Project` repository, then run:
+| Part | Files and explanation |
+|---|---|
+| Selected dataset | [Selected songs](selected_100.csv) and [train/validation/test split](split_manifest.csv) |
+| Dataset checks and EDA | [EDA notebook](eda/GTSinger_100_EDA_and_BasicPitch.ipynb), with saved tables and charts |
+| Basic Pitch tuning | [Tuning notebook](notebooks/GTSinger_100_BasicPitch_Tuning.ipynb), with saved comparisons and selected settings |
+| Initial correction handover | [Handover README](notebooks/correction_handover/README.md) and [data dictionary](notebooks/correction_handover/DATA_DICTIONARY.md) |
+| Correction experiments | [Experiment reading guide](SCIENTIFIC_GUIDE.md#read-the-stages-in-order) and [later model comparisons](final_pipeline/experiments/) |
+| Final pipeline | [Overview and results](final_pipeline/README.md) and [step-by-step explanation](final_pipeline/pipeline.md) |
+| Web application | [Frontend details and tests](frontend/README.md) and [backend API](backend/README.md) |
 
-```bash
-cd frontend
-npm ci
-npm run dev
-```
+Read the saved notebook outputs first. Some historical notebooks need files or environments that are not included here; see the Scientific Guide before trying to rerun them.
 
-Open the address printed by Vite, normally `http://127.0.0.1:5173`, in your browser. If that port is occupied, use the alternative address printed in the terminal.
+### Why there are two correction-handover folders
 
-Keep the terminal running while you use the app. Press **Ctrl+C** to stop it.
+After BP tuning, the selected predictions became the starting point for correction-model development:
 
-### Start again later
+- [basic_pitch_runs/correction_handover/](basic_pitch_runs/correction_handover/) holds the frozen predictions, initial features, reference targets and version records supplied to that work. Do not replace these inputs with corrected notes.
+- [notebooks/correction_handover/](notebooks/correction_handover/) holds the review notebooks, correction experiments, helpers and their outputs. Later models extended or replaced some initial features.
 
-From the repository root:
+The [original proposal](docs/archive/proposal-overview.md) is kept as historical context, not as a description of the final system.
 
-```bash
-cd frontend
-npm run dev
-```
+## Dataset and results
 
-Run `npm ci` again when the dependency lockfile changes or dependencies are missing.
+The frozen GTSinger sample contains **100 songs and 858 audio excerpts**, split into **60 training, 20 validation and 20 test songs**. Songs do not overlap between splits, but singers can appear in more than one split.
 
-### Try the demo
+The table uses **pitch + note-start F1**: a score from 0 to 1 that balances how many predicted notes are correct and how many reference notes were found. Higher is better. Scores are calculated per song and averaged equally across songs.
 
-1. Select **Try sample**, or record/upload a clip up to **30 seconds** (uploads up to **20 MB**).
-2. Select **Generate score**. The clip is sent to the local back end, which transcribes and corrects the notes (about 3-8 s for a 10 s clip).
-3. Play the result as transcribed notes alone or mixed with your voice, follow the cursor on the score, zoom, and download the score as PDF, MusicXML or MIDI.
+| Comparison | Data used | Before | After |
+|---|---|---:|---:|
+| Default BP → tuned BP | 20 validation songs | 0.1855 | 0.2726 |
+| Tuned BP → final corrected notes | 20 test songs | 0.2397 | 0.4148 |
 
-Allow microphone access when prompted if you want to record. Recording needs localhost or HTTPS and a supported browser. Audio is sent only to the back end you run locally.
+These rows describe different comparisons on different splits. Validation was used during development; it is not an independent final test. The test results come from the saved final run on 27 October 2026.
 
-### Checks and production build
-
-Run these from `frontend/`:
-
-```bash
-npm test          # Unit and component tests
-npm run test:e2e  # Browser tests using installed Chrome and a simulated microphone
-npm run build    # TypeScript check and production files in dist/
-```
-
-See `frontend/README.md` for the file map, mock-data boundaries, and testing details, and `backend/README.md` for the API.
-
-## Project overview
-
-MusicCare: Singing-to-Sheet AI System: An AI-driven system is designed to convert vocal performances into structured music sheets. It leverages data mining, machine learning (ML), deep learning (DL), and large language models (LLMs) to transcribe human singing into standard musical notation, assisting musicians, composers, and hobbyists in capturing their melodies easily.
+These are note-prediction scores, before rounding note times to create sheet music. See the [saved pipeline results](final_pipeline/README.md) for the full results, including scores after sheet-music conversion.

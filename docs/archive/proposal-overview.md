@@ -1,9 +1,11 @@
 # MusicCare: Singing-to-Sheet AI System (project overview)
 
-Source: the project proposal PDF (`dma_project_.pdf`). This file summarises it for teammates and Claude Code. For the Le Xin timing task, see `CLAUDE.md` in the same folder.
+> **Historical proposal snapshot:** MusicCare was the proposed scope, including an LLM layer that is not part of Scoretify. Dataset options, questions and status below describe that earlier stage. For the implemented system and recorded final test, use the [scientific guide](../../SCIENTIFIC_GUIDE.md) and [run guide](../../RUN_GUIDE.md).
+
+Source: the project proposal PDF (`dma_project_.pdf`). This file summarises it for teammates and Claude Code. For the Le Xin timing task, see the original repository-root `CLAUDE.md` reference (not bundled in this submission).
 
 ## One-line summary
-Turn a sung melody into standard, quantised sheet music (MusicXML/MIDI, with tempo, rhythm, rests and bars), then let the singer refine it through natural-language commands.
+Turn a sung melody into standard, quantised sheet music (MusicXML/MIDI, with tempo, rhythm, rests and bars).
 
 ## Problem
 - Writing down a sung melody needs years of ear-training or a trained transcriber. Most people who can sing an idea cannot notate it.
@@ -47,18 +49,13 @@ Turn a sung melody into standard, quantised sheet music (MusicXML/MIDI, with tem
 | 8 | Full EDA; vocal separation for polyphonic songs; baseline on full evaluation subset |
 | 9 | Post-processing: tempo, quantisation, rests, bars |
 | 10 | Sheet-music generation (MIDI/MusicXML) |
-| 11 | LLM editing layer (kept small because of the midterm); user testing and human-singing validation |
-| 12 | Final presentation (slides due two days before slot) |
+| 11 | User testing and human-singing validation |
+| 12 | Final presentation |
 | 13 | (no task listed) |
-| 14 | Final evaluation, report, code cleanup. Submit by 11:59 pm, 24 Nov |
+| 14 | Final evaluation, report, code cleanup.
 
 ## Where the correction work fits
 The handover (GTSinger correction) sits between steps 1 and 2: it takes Basic Pitch's notes and fixes them before quantisation.
 - Merge fragments (Queenie), remove false notes (Felicia), fix start/end timing (Le Xin), fix pitch (Hann Qian)
 - Output: a corrected note table `note_id, recording_id, start, end, pitch`
-- Status: labels are automatic and not yet group-approved. Timing (Le Xin): random forest on note + audio-only (loudness, pitch) features, trained on the provisional v2 labels (out-of-fold by song). Validation songs: onset F1 0.2726 → 0.3755, offset F1 0.1602 → 0.2360, all 20 songs improved. No TextGrid input. These are provisional-label development results. At BP tuning and initial handover time, test remained locked; the later pipeline records a completed test run on 2026-10-27. See [SCIENTIFIC_GUIDE.md](SCIENTIFIC_GUIDE.md) for the stage boundary. Do not rerun test for development.
-
-## Open questions
-- Which dataset is the main evaluation set: GTSinger (current handover) or the proposal's list?
-- Do we still plan to use CREPE, given Basic Pitch is the chosen baseline?
-- The timeline has no task in week 13.
+- Status: labels are automatic and not yet group-approved. Timing (Le Xin): random forest on note + audio-only (loudness, pitch) features, trained on the provisional v2 labels (out-of-fold by song). Validation songs: onset F1 0.2726 → 0.3755, offset F1 0.1602 → 0.2360, all 20 songs improved. No TextGrid input. These are provisional-label development results. At BP tuning and initial handover time, test remained locked; the later pipeline records a completed test run on 2026-10-27. See [SCIENTIFIC_GUIDE.md](../../SCIENTIFIC_GUIDE.md) for the stage boundary. Do not rerun test for development.

@@ -8,7 +8,7 @@ the first time, mostly downloads.
  Browser (frontend/)                            Your computer (backend/)
  ┌─────────────────────────────┐   audio clip   ┌──────────────────────────────────────┐
  │ record or upload a clip     │ ─────────────► │ Basic Pitch finds the notes          │
- │ see the score, play it,     │                │ 5 trained models correct them        │
+ │ see the score, play it,     │                │ 5 correction steps fix the notes        │
  │ download PDF/MusicXML/MIDI  │ ◄───────────── │ the result is written as sheet music │
  └─────────────────────────────┘  score + audio └──────────────────────────────────────┘
    http://127.0.0.1:5173                           http://127.0.0.1:8000

@@ -50,7 +50,7 @@ pitch. **Offset F1** also needs the end to be close. Both go from 0 (nothing rig
 A **decision tree** asks a series of yes/no questions about the clues ("is the note shorter than 0.2 s?",
 "does the voice get much louder here?") and ends with an answer.
 
-In total: **5 steps, 7 trained models** (4 random forests, 2 gradient boosting, 1 ranking model).
+In total: **5 steps, 7 trained estimators in 6 joblib containers** (4 random forests, 2 gradient boosting, 1 ranking model; the split container wraps two estimators).
 
 ## What the models are allowed to see
 
@@ -111,8 +111,8 @@ colour changes (for example a new vowel or consonant), or Basic Pitch's own "new
 **Models:** a random forest and a gradient boosting model. Their two scores are averaged, which was a little better
 than either one alone.
 
-**Clues (74):** the pitch before and after the cut point, how steady the pitch is, how deep the loudness dip is, how much
-the sound's colour changes, Basic Pitch's signals, and how this cut point compares with the note's other possible cuts.
+**Clues (64 in the saved runtime):** the pitch before and after the cut point, how steady the pitch is, how deep the loudness dip is, how much
+the sound's colour changes, Basic Pitch's signals, and how this cut point compares with the note's other possible cuts. The authoritative input list is [models/settings.json](inference/models/settings.json). Earlier stage recipes describe a richer set as “74”; that historical count is not the deployed feature count.
 
 **Careful rule:** a note is only cut if the averaged score is at least 0.6.
 
@@ -209,9 +209,8 @@ validation.
 
 - **Fair testing:** the 60 training songs are split into 5 groups. Each model is always marked on a group of songs it
   never learned from, and every "sure enough" level is chosen without looking at that group.
-- **Checked once on new songs:** after everything was decided, the finished pipeline was run once on 20 validation
-  songs. The gain there (+0.18 onset F1) was as big as on training songs (+0.16), so it isn't memorising.
-- **Test songs locked:** the last 20 songs were never opened. They are for one final check after the group agrees.
+- **Validation is development evidence:** the 20 validation songs were already used for Basic Pitch decoder selection and later correction development. Their gain is not fresh independent evidence and does not alone rule out overfitting.
+- **Final test completed:** the recorded chain-v4 test run on 27 October 2026 covers 20 songs / 164 recordings. [Saved test scores](test_run/test_scores.csv) give 0.4148 onset F1 / 0.2812 offset F1 for final notes. The [scientific chronology](../SCIENTIFIC_GUIDE.md#test-chronology-and-freeze-boundary) distinguishes this from the earlier locked-test stage. Do not rerun or tune on test results.
 
 ## All results in one table
 
@@ -228,10 +227,10 @@ validation.
 
 | Step | How it was built and tested | Final output tables |
 |---|---|---|
-| 1. Timing | `notebooks/correction_handover/le_xin_timing_starter.ipynb` | `exports/le_xin_timing_*` |
-| 2. Split | `final_pipeline/experiments/split_v2/` | `chain_v4/stage1_*`, `chain_v4/val_stage1_*` |
-| 3. Delete | `final_pipeline/experiments/delete_v2/` | `chain_v4/stage2_*`, `chain_v4/val_stage2_*` |
-| 4. Start snap | `final_pipeline/experiments/start_snap_v3/` | `chain_v4/stage3_*`, `chain_v4/val_stage3_*` |
-| 5. End snap | `final_pipeline/experiments/end_snap/` | `chain_v4/stage4_*`, `chain_v4/val_stage4_*` |
+| 1. Timing | [timing notebook](../notebooks/correction_handover/le_xin_timing_starter.ipynb) | `exports/le_xin_timing_*` |
+| 2. Split | [split_v2](experiments/split_v2/) | `chain_v4/stage1_*`, `chain_v4/val_stage1_*` |
+| 3. Delete | [delete_v2](experiments/delete_v2/) | `chain_v4/stage2_*`, `chain_v4/val_stage2_*` |
+| 4. Start snap | [start_snap_v3](experiments/start_snap_v3/) | `chain_v4/stage3_*`, `chain_v4/val_stage3_*` |
+| 5. End snap | [end_snap](experiments/end_snap/) | `chain_v4/stage4_*`, `chain_v4/val_stage4_*` |
 
-Each `chain_v4/stageN_README.md` has the exact settings of that step's model.
+The [stage 1](chain_v4/stage1_README.md), [stage 2](chain_v4/stage2_README.md), [stage 3](chain_v4/stage3_README.md) and [stage 4](chain_v4/stage4_README.md) recipes retain the historical construction settings; [runtime settings](inference/models/settings.json) are the current feature/threshold authority. Literal paths elsewhere on this page are repository-root relative, except output patterns in this table, which refer to the [handover exports](../notebooks/correction_handover/exports/) and [chain tables](chain_v4/).
