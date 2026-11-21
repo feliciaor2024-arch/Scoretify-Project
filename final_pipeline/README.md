@@ -5,7 +5,7 @@ the live demo (`backend/`) runs. In the report's words: the **v1 models** are th
 (they live in `notebooks/correction_handover/`); the **v2 pipeline** is what we kept, replaced and added after
 comparing them, and it is what is in this folder.
 
-Basic Pitch (tuned) writes down the notes, then **5 correction steps (7 trained models)** fix them, then a sheet is made.
+Basic Pitch (tuned) writes down the notes, then **5 correction steps (7 estimators in 6 joblib containers)** fix them, then a sheet is made.
 
 ```
  audio (.wav)
@@ -22,15 +22,15 @@ Basic Pitch (tuned) writes down the notes, then **5 correction steps (7 trained 
 
 | # | Step | Final model (v2) | Folder | v1 model for the same job | Decision |
 |---|---|---|---|---|---|
-| 1 | Timing | 2 random forests (start, end), 31 clues | `chain_v4/`, `inference/` (notebook: `notebooks/correction_handover/timing_v1_and_final.ipynb`) | timing v1: random forest, 7 note features | Kept, improved with audio and pitch-track clues |
-| 2 | Split | random forest + gradient boosting, averaged | `experiments/split_v2/` | split v1 (`split_v1.ipynb`) | Added |
+| 1 | Timing | 2 random forests (start, end), 31 clues | `chain_v4/`, `inference/` (notebook: [timing experiments](../notebooks/correction_handover/le_xin_timing_starter.ipynb)) | timing v1: random forest, 7 note features | Kept, improved with audio and pitch-track clues |
+| 2 | Split | random forest + gradient boosting, averaged | `experiments/split_v2/` | split v1 ([split notebook](../notebooks/correction_handover/le_xin_split_model.ipynb)) | Added |
 | 3 | Delete | gradient boosting, 49 clues | `experiments/delete_v2/` | delete v1: Gaussian naive Bayes | Replaced |
-| 4 | Start snap | LightGBM ranker, 2 rounds | `experiments/start_snap_v3/` | start snap v1 / v2 (`start_snap_v1_v2.ipynb`) | Added (v3 is the final one) |
+| 4 | Start snap | LightGBM ranker, 2 rounds | `experiments/start_snap_v3/` | start snap v1 / v2 ([snap notebook](../notebooks/correction_handover/le_xin_snap_model.ipynb)) | Added (v3 is the final one) |
 | 5 | End snap | random forest | `experiments/end_snap/` | none | Added |
 | - | Merge | none | - | merge v1: logistic regression | Removed (no gain) |
 | - | Pitch | none | - | pitch v1: XGBoost | Removed (no gain) |
 
-The 7 trained models: 4 random forests (timing start, timing end, split, end snap), 2 gradient boosting (split, delete)
+The 7 trained estimators, stored in 6 joblib containers (the split container wraps two estimators): 4 random forests (timing start, timing end, split, end snap), 2 gradient boosting (split, delete)
 and 1 ranking model (start snap). `pipeline.md` explains each step in plain words; `chain_v4/stageN_README.md` has the
 exact recipe and numbers per step.
 
@@ -46,14 +46,13 @@ exact recipe and numbers per step.
 | **5. End snap (final notes)** | **0.4213 / 0.2844** | **0.4563 / 0.3213** | **0.4148 / 0.2812** |
 | 6. Sheet read back (32nd grid) | - | 0.4280 / 0.2937 | 0.3954 / 0.2480 |
 
-All 20 test songs improve. Every model and threshold was chosen on training songs only; the test songs were run once
-(`inference/run_test.py` refuses a second run on purpose).
+All 20 test songs improve in the saved results. Correction-model comparisons and gates used training songs/folds; the earlier Basic Pitch decoder was selected on validation. Validation was reused during development, so it is not a fresh independent test. The recorded final test was completed on 27 October 2026 after the chain-v4 models/settings were fixed ([chronology](../SCIENTIFIC_GUIDE.md#test-chronology-and-freeze-boundary)); `inference/run_test.py` refuses a second run on purpose.
 
 ## What is where
 
 | Folder | What it is |
 |---|---|
-| `inference/` | **The deployable pipeline.** `pipeline.py`, the 7 saved models in `models/`, `features.py`, test-run scripts. Has its own README (how to call it from code, the sheet step, how the results were checked). |
+| `inference/` | **The deployable pipeline.** `pipeline.py`, 7 estimators in 6 saved joblib containers in `models/`, `features.py`, test-run scripts. Has its own README (how to call it from code, the sheet step, how the results were checked). |
 | `chain_v4/` | One complete note table after every step, for training songs (out-of-fold) and the 20 val songs, an action history per step, a README per step and `val_score.py`. |
 | `test_run/` | The one test run: note tables per step, scores, and the sheets (`sheets/`, with `which_song.csv` to tell the files apart). |
 | `experiments/` | How each step was built and compared: `split_v2/`, `delete_v2/`, `start_snap_v3/`, `end_snap/` (each has a README or RESULTS.md). |
@@ -65,13 +64,7 @@ All 20 test songs improve. Every model and threshold was chosen on training song
 
 ## How to run it
 
-Python 3.13 (see `inference/requirements.txt`; keep scikit-learn 1.9.1 and lightgbm 4.7.0, the saved models need them).
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-pip install -r final_pipeline/inference/requirements.txt
-```
+Use the canonical [RUN_GUIDE.md setup](../RUN_GUIDE.md#3-set-up-the-back-end-once) for Python 3.13 and the separate Basic Pitch `--no-deps` installation. `inference/requirements.txt` is retained as a stage dependency record, not an alternative install command. Keep the saved-model package versions specified in the run guide. Commands below are from the repository root.
 
 Turn one recording into corrected notes, MIDI and sheet:
 

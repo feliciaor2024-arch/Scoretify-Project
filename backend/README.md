@@ -14,14 +14,7 @@ browser                                   back end (port 8000)
 
 ## Setup (once)
 
-Python 3.13, from the repository root:
-
-```bash
-py -3.13 -m venv venv
-venv\Scripts\activate
-pip install -r backend/requirements.txt
-pip install --no-deps basic-pitch==0.4.0
-```
+Follow the canonical [RUN_GUIDE.md setup](../RUN_GUIDE.md#3-set-up-the-back-end-once) for Python 3.13, installation and platform-specific activation. Commands below assume the repository root.
 
 `basic-pitch` goes in separately with `--no-deps`. It asks for TensorFlow, which has no Python 3.13 build, but the
 pipeline only uses its ONNX model. After that, pip may say basic-pitch needs tensorflow and an older resampy. Both
@@ -41,7 +34,7 @@ npm ci          # first time only
 npm run dev     # http://127.0.0.1:5173, /api is proxied to port 8000
 ```
 
-Start-up loads the 7 models (a few seconds) and then transcribes the bundled sample once in the background. The
+Start-up loads 7 estimators from 6 joblib containers (a few seconds) and then transcribes the bundled sample once in the background. The
 first song after Python starts is about 10 s slower, so the warm-up takes that cost. `GET /api/health` returns
 `{"models_loaded": true, "warmed_up": true}` when the server is ready for the demo. After that, a 10 s clip takes
 about 3-8 s.

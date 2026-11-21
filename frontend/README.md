@@ -51,4 +51,4 @@ The mock is used under Vitest and when `VITE_SCORE_PROVIDER=mock` (the Playwrigh
 
 ## Manual acceptance still needed
 
-Human hardware microphone permission/denial and audible quality, Safari/mobile hardware codecs, projector legibility in the intended room, and assistive-technology review. Fake-device success does not establish real singing transcription. No transcription is implemented.
+Human hardware microphone permission/denial and audible quality, Safari/mobile hardware codecs, projector legibility in the intended room, and assistive-technology review. The live provider implements transcription through the local backend. Mock/fake-device browser checks exercise fixed fixtures and UI behaviour; they do not validate live-model transcription quality or real microphone acceptance.

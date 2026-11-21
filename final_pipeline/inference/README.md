@@ -23,7 +23,7 @@ offset F1** on the 20 validation songs (Basic Pitch alone: 0.273 / 0.160).
 |---|---|
 | `pipeline.py` | The pipeline. `Corrector().correct(path)` or run it from the command line. |
 | `features.py` | The clues each step measures from the audio (copied from the stage scripts, unchanged). |
-| `models/` | The 7 trained models (`*.joblib`, 27 MB) and `settings.json` (clue lists, thresholds, margins). |
+| `models/` | 7 trained estimators in 6 joblib containers (the split container wraps two), plus `settings.json` (clue lists, thresholds, margins). |
 | `train_final_models.py` | Remakes `models/` from the training songs. Only needed if the models change. |
 | `check_val.py` | Proves the pipeline gives exactly the chain v4 val tables, step by step. |
 | `run_test.py`, `score_test.py` | The one test run (already done) and its scoring. Results in `../test_run/`. |
@@ -31,11 +31,7 @@ offset F1** on the 20 validation songs (Basic Pitch alone: 0.273 / 0.160).
 
 ## Setup
 
-```bash
-python -m venv venv
-venv\Scripts\activate
-pip install -r final_pipeline/inference/requirements.txt
-```
+Follow the canonical [RUN_GUIDE.md setup](../../RUN_GUIDE.md#3-set-up-the-back-end-once), including the separate Basic Pitch `--no-deps` installation. `requirements.txt` here is a historical dependency record, not an alternative installation route. All command examples below assume the repository root.
 
 Keep **scikit-learn 1.9.1** and **lightgbm 4.7.0**: the saved models are loaded with these versions. Basic Pitch
 needs `onnxruntime` (no TensorFlow needed; the warnings about TensorFlow/CoreML/TFLite can be ignored).

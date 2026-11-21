@@ -1,5 +1,7 @@
 # Le Xin's part: how I built the correction model
 
+> **Historical contribution narrative:** the chronology, proposed agreements, “test locked” and “validation once” wording below describe the development stage, not current global status. Validation was reused (including BP selection); the final pipeline later completed its recorded test run on 27 October 2026. Use the [current pipeline](../../final_pipeline/pipeline.md) and [scientific chronology](../../SCIENTIFIC_GUIDE.md#test-chronology-and-freeze-boundary) for present scope/results.
+
 Basic Pitch listens to a singer and writes down the notes, but it gets a lot wrong. My part was to build the
 correction steps that clean up its notes so they match the real notes (the answer key) more closely.
 This page explains what I built, in what order, what worked, what didn't, and why the score stops well short of 0.8.

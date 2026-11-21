@@ -1,5 +1,7 @@
 # Le Xin's part, step by step
 
+> **Historical contribution narrative:** the chronology, proposed agreements, “test locked” and “validation once” wording below describe the development stage, not current global status. Validation was reused (including BP selection); the final pipeline later completed its recorded test run on 27 October 2026. Use the [current pipeline](../../final_pipeline/pipeline.md) and [scientific chronology](../../SCIENTIFIC_GUIDE.md#test-chronology-and-freeze-boundary) for present scope/results.
+
 This is the story of my part in the order I did it: what I tried at each step, why, and what the score did.
 For a shorter summary (the tables of what was and wasn't used), see `le_xin_correction_explained.md`.
 
