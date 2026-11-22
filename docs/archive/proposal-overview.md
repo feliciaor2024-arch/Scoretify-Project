@@ -17,8 +17,7 @@ Turn a sung melody into standard, quantised sheet music (MusicXML/MIDI, with tem
 1. **Pitch detection (deep learning):** Basic Pitch as the primary baseline, CREPE for comparison.
 2. **Note formation and post-processing (ML/rules):** group pitch into notes, fix errors, estimate tempo, quantise durations, add rests and bar divisions.
 3. **Sheet-music generation:** export MIDI or MusicXML (music21), render with OpenSheetMusicDisplay.
-4. **LLM editing layer:** translate requests such as "make the final note longer" into validated structured edits. The LLM works on the note data, not on raw audio.
-5. **Human-singing validation:** singers of different ranges, skill levels, microphones and rooms.
+4. **Human-singing validation:** singers of different ranges, skill levels, microphones and rooms.
 
 ## Datasets named in the proposal
 | Dataset | What it is | Status |
