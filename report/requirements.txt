@@ -1,0 +1,4 @@
+# Packages for report/make_figures.py: the backend packages (librosa, mir_eval, pandas) plus matplotlib.
+#   python -m pip install -r report/requirements.txt
+-r ../backend/requirements.txt
+matplotlib==3.11.2

@@ -3,8 +3,7 @@
     python report/make_figures.py            # all figures
     python report/make_figures.py 4 6        # only figs 4 and 6
 
-Writes report/figures/fig<N>_<name>.png. Needs Python 3.13 with backend/requirements.txt (librosa, mir_eval,
-pandas) plus matplotlib.
+Writes report/figures/fig<N>_<name>.png. Install its packages first: pip install -r report/requirements.txt
 Reads only saved files: the sample manifests, the GTSinger annotations and audio in data/, and the one test run in
 final_pipeline/test_run/. Nothing is retrained or re-run; the test numbers are re-scored with the same scorer as
 final_pipeline/inference/score_test.py.

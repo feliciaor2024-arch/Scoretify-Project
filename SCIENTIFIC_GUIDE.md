@@ -76,7 +76,7 @@ python report/make_figures.py        # all six figures
 python report/make_figures.py 4 6    # only Figs. 4 and 6
 ```
 
-Uses the Python 3.13 environment from `backend/requirements.txt` plus `matplotlib`. It reads only saved files and overwrites only `report/figures/fig<N>_*.png`; it fits nothing, runs no inference and does not regenerate `final_pipeline/test_run/`. Drawing Figs. 5–6 from saved test tables is not a new test evaluation.
+Install its packages first with `python -m pip install -r report/requirements.txt` (the `backend/requirements.txt` packages plus `matplotlib`; Fig. 2 needs `librosa`, Fig. 5 needs `librosa` and `mir_eval`). It reads only saved files and overwrites only `report/figures/fig<N>_*.png`; it fits nothing, runs no inference and does not regenerate `final_pipeline/test_run/`. Drawing Figs. 5–6 from saved test tables is not a new test evaluation.
 
 ### Frozen byte contract and artifact versions
 
